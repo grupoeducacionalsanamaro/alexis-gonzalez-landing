@@ -41,6 +41,7 @@
 
   --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-quote: var(--font-poppins-quote), var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 
   --ease-out-expo: var(--ease-out-expo);
   --ease-out-quart: var(--ease-out-quart);
@@ -131,7 +132,7 @@ img {
   }
 }
 .t-quote {
-  font-family: var(--font-display);
+  font-family: var(--font-quote);
   font-weight: 700;
   font-style: italic;
   font-size: clamp(28px, 4vw, 56px);
@@ -237,6 +238,50 @@ img {
   z-index: 50;
   opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ───────────────────────── Render diferido (mobile) ───────────────────────── */
+/* Las secciones bajo el pliegue no se maquetan hasta acercarse al viewport: el primer
+   layout queda acotado al hero y el primer frame no se atrasa (LCP). Alturas aproximadas
+   medidas a 375px; `auto` recuerda la real una vez pintada. #postular queda fuera porque
+   su overlay `fixed` no puede vivir dentro de un contenedor con contención (ídem el
+   modal de #testimonios). */
+@media (max-width: 1023px) {
+  #contenido > section:not(#inicio):not(#postular):not(#testimonios),
+  body > footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto var(--cis, 900px);
+  }
+  #diagnostico {
+    --cis: 880px;
+  }
+  #metodo {
+    --cis: 3000px;
+  }
+  #sobre-mi {
+    --cis: 2200px;
+  }
+  #prospera {
+    --cis: 1130px;
+  }
+  #para-quien {
+    --cis: 950px;
+  }
+  #mentoria {
+    --cis: 1080px;
+  }
+  #ebook {
+    --cis: 970px;
+  }
+  #ecosistema {
+    --cis: 1820px;
+  }
+  #faq {
+    --cis: 400px;
+  }
+  body > footer {
+    --cis: 365px;
+  }
 }
 
 /* ───────────────────────── Estados iniciales de motion ───────────────────────── */

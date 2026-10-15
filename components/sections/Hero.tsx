@@ -142,7 +142,7 @@ export function Hero() {
               priority
               fetchPriority="high"
               sizes="(min-width: 1024px) 55vw, 100vw"
-              className="photo-bw object-cover object-[50%_18%]"
+              className="object-cover object-[50%_18%]"
             />
           )}
         </div>

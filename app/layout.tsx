@@ -11,11 +11,19 @@ import { Analytics } from "@/components/layout/Analytics";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: ["500", "600"],
   variable: "--font-poppins",
   display: "swap",
   preload: true,
+});
+// 700 itálica solo se usa en citas bajo el pliegue: sin preload (no compite con el LCP)
+const poppinsQuote = Poppins({
+  subsets: ["latin"],
+  weight: "700",
+  style: "italic",
+  variable: "--font-poppins-quote",
+  display: "swap",
+  preload: false,
 });
 const inter = Inter({
   subsets: ["latin"],
@@ -57,7 +65,7 @@ const bootScript = `(function(){var d=document.documentElement;d.classList.add('
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es-CL" className={`${poppins.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="es-CL" className={`${poppins.variable} ${poppinsQuote.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>

@@ -4,7 +4,7 @@
 
 - **Next.js 16.4** (el brief pide 15+). Se desactivó `cacheComponents` del scaffold: la página es estática y no lo necesita.
 - **H1 del hero**: el token `.t-display` (hasta 104px) no cabe en 6 columnas con una frase de 9 palabras. El H1 usa `clamp(34px, 5.2vw, 78px)` con el mismo estilo (Poppins 600, mayúsculas, −0.02em).
-- **Retrato del hero**: la foto viene con fondo (evento). No se recortó con IA; se trata en B/N cálido con máscara CSS hacia la izquierda, degradado a negro y halo dorado. Si llega una foto con fondo neutro, basta reemplazar `public/img/alexis-hero.webp`.
+- **Retrato del hero**: la foto viene con fondo (evento). No se recortó con IA; se trata en B/N cálido con máscara CSS hacia la izquierda, degradado a negro y halo dorado. El B/N va **horneado en el archivo** (`alexis-hero-bw.webp`, generado con `node scripts/bake-photo-bw.mjs public/img/alexis-hero.webp public/img/alexis-hero-bw.webp`): un `filter` CSS sobre el elemento LCP retrasaba ~1s el primer frame en Chrome mobile. Si llega otra foto, reemplazar `alexis-hero.webp` y volver a correr el script.
 - **Galería de autoridad**: 3 fotos (Harvard Business School, Faculty Club, conferencia). La 4.ª foto disponible (evento Acelerador) se usa como retrato de “¿Quién soy?”.
 - **Mockup del ebook**: construido en CSS 3D (tapa, lomo, páginas) con el título real, en vez de usar la imagen con fondo blanco. Cuando exista la portada final en alta, puede reemplazarse el contenido de la tapa.
 - **Framer Motion**: no se usa. Las microinteracciones van en CSS y las transiciones de pasos del formulario con Web Animations API (más liviano).
@@ -12,6 +12,9 @@
 - **Reduced motion**: el script de `<head>` agrega la clase `rm` si el sistema pide menos movimiento. Con `rm` se desactivan pin, scrub, parallax, marquee, cursor, tilt y preloader; todo pasa a fades de 200ms. **`?motion=full` fuerza la versión completa** (queda guardado en la sesión) para revisión interna.
 - **Preloader**: solo primera visita de la sesión, en desktop con puntero fino y sin reduced motion (en mobile no retrasa el LCP).
 - **LCP**: el retrato del hero nunca se oculta con opacidad (entra con transform + blur), para no retrasar el LCP.
+- **Primer frame en Chrome mobile (Lighthouse)**: Chrome asigna un nuevo `LocalSurfaceId` justo después de navegar; si el primer commit del renderer se atrasa (layout largo), viz deja de pedirle frames durante ~1s y el FCP/LCP observado se va a ~1.5s. Para que el primer layout sea corto: en mobile las secciones bajo el pliegue usan `content-visibility: auto` (alturas aproximadas en `globals.css`; `#postular` y `#testimonios` quedan fuera por sus overlays `fixed`).
+- **Fuentes**: se precargan solo Poppins 500/600 e Inter. Poppins 700 itálica (citas, tapa del ebook) es un loader aparte sin preload (`--font-quote` / clase `font-quote`).
+- **Carga de motion**: los setups de GSAP (cada `useMotion` y el orquestador, en lotes de 4 elementos) corren en tareas separadas vía `queueMotion()` para no generar una tarea larga al llegar GSAP (TBT).
 - **Wireframes**: sin `vector-effect: non-scaling-stroke` porque rompe el dibujo por `stroke-dashoffset`; el grosor se ajusta con la prop `strokeWidth`.
 - **Rate limit**: en memoria por instancia (5/min por IP). Para algo robusto usar Vercel Firewall / Upstash.
 - **Banner de cookies**: solo aparece si hay al menos un ID de analítica configurado. GTM, Pixel y Clarity se cargan únicamente tras “Aceptar”.

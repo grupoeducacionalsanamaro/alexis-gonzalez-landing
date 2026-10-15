@@ -55,7 +55,8 @@ export const site = {
     ctaPrimario: "Postular a la mentoría",
     ctaSecundario: "Descargar ebook gratis",
     microPrueba: "MBA · +10 años construyendo ecosistemas en salud",
-    imagen: "/img/alexis-hero.webp",
+    // B/N horneado en el archivo (scripts/bake-photo-bw.mjs); el original en color es alexis-hero.webp
+    imagen: "/img/alexis-hero-bw.webp",
     imagenAlt: "Alexis González, mentor de negocios, con las manos juntas en actitud reflexiva",
     videoSrc: null as string | null, // TODO(cliente): loop MP4/WebM ≤2MB si se produce
   },

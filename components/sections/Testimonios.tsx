@@ -35,7 +35,7 @@ export function Testimonios() {
                       />
                     </button>
                   ) : null}
-                  <blockquote className="gold-text font-display text-[24px] leading-tight font-bold italic md:text-[30px]">“{t.cita}”</blockquote>
+                  <blockquote className="gold-text font-quote text-[24px] leading-tight font-bold italic md:text-[30px]">“{t.cita}”</blockquote>
                   <p className="t-body mt-6">{t.resultado}</p>
                   <div className="mt-8 flex items-center gap-4">
                     {t.foto && <Image src={t.foto} alt="" width={48} height={48} className="photo-bw size-12 rounded-full object-cover" />}

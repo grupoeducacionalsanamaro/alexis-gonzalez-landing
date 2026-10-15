@@ -24,7 +24,7 @@ function Book({ open }: { open: boolean }) {
         <div className="absolute inset-y-0 left-0 w-3 bg-[linear-gradient(to_right,rgb(0_0_0/0.6),transparent)]" />
         <div className="relative flex h-full flex-col p-6 sm:p-8">
           <p className="font-display text-[9px] tracking-[0.3em] text-paper/60 uppercase sm:text-[10px]">Mini ebook</p>
-          <p className="gold-text mt-auto font-display text-[24px] leading-[1.02] font-bold uppercase italic sm:text-[32px]">
+          <p className="gold-text mt-auto font-quote text-[24px] leading-[1.02] font-bold uppercase italic sm:text-[32px]">
             {e.tituloPortada[0]}
             <br />
             {e.tituloPortada[1]}

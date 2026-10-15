@@ -33,6 +33,35 @@ export function loadMotion(): Promise<Motion> {
   return motionPromise;
 }
 
+/**
+ * Cola de trabajo de motion: cada job corre en su propia tarea y se cede el hilo entre
+ * uno y otro. Sin esto, al llegar GSAP todos los setups (split de líneas, ScrollTriggers,
+ * lecturas de layout) se ejecutaban en una sola tarea larga que bloqueaba el hilo (TBT).
+ */
+const motionQueue: (() => void)[] = [];
+let pumping = false;
+
+function pumpMotionQueue() {
+  const job = motionQueue.shift();
+  if (!job) {
+    pumping = false;
+    return;
+  }
+  try {
+    job();
+  } finally {
+    setTimeout(pumpMotionQueue, 0);
+  }
+}
+
+export function queueMotion(job: () => void) {
+  motionQueue.push(job);
+  if (!pumping) {
+    pumping = true;
+    setTimeout(pumpMotionQueue, 0);
+  }
+}
+
 /** true si el usuario pidió menos movimiento (respeta override ?motion=full). */
 export function isReducedMotion(): boolean {
   if (typeof document === "undefined") return false;
