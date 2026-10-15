@@ -47,7 +47,9 @@ export function Hero() {
         tl = gsap.timeline({ defaults: { ease: "expo.out" } });
         tl.to(bg, { opacity: 1, duration: 0.6, ease: "power2.out" }, 0);
         wires.forEach((w, i) => tl!.add(drawStroke(gsap, w, { duration: 1.2 }), 0.2 + i * 0.08));
-        tl.to(img, { y: 0, filter: "blur(0px)", duration: 1, onComplete: () => gsap.set(img, { filter: "none" }) }, 0.3);
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+          tl.to(img, { y: 0, filter: "blur(0px)", duration: 1, onComplete: () => gsap.set(img, { filter: "none" }) }, 0.3);
+        }
         tl.add(maskLines(gsap, h1), 0.5);
         tl.add(goldSweep(gsap, h1.querySelectorAll(".gold-text"), { stagger: 0.06 }), 0.95);
         tl.fromTo(
