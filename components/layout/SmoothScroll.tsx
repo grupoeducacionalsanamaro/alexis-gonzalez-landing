@@ -34,7 +34,8 @@ export function unlockScroll() {
 /** Lenis sincronizado con ScrollTrigger (import dinámico, solo cliente). */
 export function SmoothScroll() {
   useEffect(() => {
-    if (isReducedMotion()) return;
+    // En táctil el scroll nativo es mejor y se ahorra JS (Lenis no suaviza touch por defecto)
+    if (isReducedMotion() || !window.matchMedia("(pointer: fine)").matches) return;
     let destroyed = false;
     let tick: ((t: number) => void) | null = null;
     Promise.all([import("lenis"), loadMotion()]).then(([{ default: LenisCtor }, { gsap, ScrollTrigger }]) => {
