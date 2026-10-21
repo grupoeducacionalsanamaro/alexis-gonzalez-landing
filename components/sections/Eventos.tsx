@@ -24,16 +24,16 @@ export function Eventos() {
           {c.titulo}
         </h2>
 
-        {/* Mosaico de eventos: una foto grande + cuatro */}
-        <ul className="mt-12 grid grid-cols-2 gap-3 lg:mt-16 lg:grid-cols-4 lg:grid-rows-2 lg:gap-4" data-reveal-stagger="0.06">
-          <li className="relative col-span-2 lg:row-span-2">
-            <ImageSlot src={primero.src} alt={`Evento ${primero.titulo}`} label={primero.titulo} sizes="(min-width: 1024px) 50vw, 100vw" className="aspect-[4/3] h-full rounded-2xl lg:aspect-auto" />
+        {/* Mosaico de eventos: banda ancha (foto grupal completa) + cuatro en 4:3 */}
+        <ul className="mt-12 grid grid-cols-2 gap-3 lg:mt-16 lg:grid-cols-4 lg:gap-4" data-reveal-stagger="0.06">
+          <li className="relative col-span-2 lg:col-span-4">
+            <ImageSlot src={primero.src} alt={primero.alt} label={primero.titulo} sizes="(min-width: 1024px) 1312px, 100vw" className="aspect-[2000/877] rounded-2xl" />
             <span className="pointer-events-none absolute bottom-4 left-4 rounded-full bg-ink-950/70 px-3.5 py-1.5 text-[13px] font-semibold text-paper backdrop-blur">{primero.titulo}</span>
           </li>
           {resto.map((ev) => (
             <li key={ev.titulo} className="relative">
-              <ImageSlot src={ev.src} alt={`Evento ${ev.titulo}`} label={ev.titulo} sizes="(min-width: 1024px) 25vw, 50vw" className="aspect-square rounded-2xl" />
-              <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-ink-950/70 px-3 py-1 text-[12px] font-semibold text-paper backdrop-blur">{ev.titulo}</span>
+              <ImageSlot src={ev.src} alt={ev.alt} label={ev.titulo} sizes="(min-width: 1024px) 25vw, 50vw" className="aspect-[4/3] rounded-2xl" />
+              <span className="pointer-events-none absolute bottom-3 left-3 max-w-[calc(100%-24px)] rounded-full bg-ink-950/70 px-3 py-1 text-[12px] leading-snug font-semibold text-paper backdrop-blur">{ev.titulo}</span>
             </li>
           ))}
         </ul>

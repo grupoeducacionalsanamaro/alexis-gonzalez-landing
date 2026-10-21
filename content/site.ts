@@ -258,13 +258,13 @@ export const site = {
   contenido: {
     eyebrow: "Eventos y contenido",
     titulo: "Escenarios, conversaciones y comunidad",
-    // TODO(cliente): fotos de eventos
+    // La primera va como banda ancha (foto grupal completa); las demás en 4:3
     eventos: [
-      { titulo: "Momentum", src: null as string | null },
-      { titulo: "Level Up", src: null as string | null },
-      { titulo: "ICONS Dental Congress", src: null as string | null },
-      { titulo: "Harmony On Tour", src: null as string | null },
-      { titulo: "Conferencia", src: "/img/galeria-conferencia.webp" as string | null },
+      { titulo: "Momentum", src: "/img/evento-momentum.webp" as string | null, alt: "Foto grupal del congreso Momentum frente al escenario" },
+      { titulo: "CEOs Podcast", src: "/img/evento-ceos-podcast.webp" as string | null, alt: "Alexis González grabando el podcast CEOs con dos invitados" },
+      { titulo: "Harmony On Tour Concepción", src: "/img/evento-harmony-on-tour.webp" as string | null, alt: "Alexis González con dos asistentes en Harmony On Tour Concepción" },
+      { titulo: "Workshop El Círculo Sessions", src: "/img/evento-workshop-circulo.webp" as string | null, alt: "Alexis González presentando frente a un auditorio en El Círculo Sessions" },
+      { titulo: "Workshop Establecimiento de metas", src: "/img/evento-workshop-metas.webp" as string | null, alt: "Alexis González dictando el workshop de establecimiento de metas en una sala" },
     ],
     podcastsEyebrow: "Podcasts",
     podcastsTitulo: "CEOS y Círculo Sessions",
