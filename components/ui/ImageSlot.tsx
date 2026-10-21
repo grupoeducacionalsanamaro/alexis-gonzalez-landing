@@ -11,17 +11,19 @@ type Props = {
   className?: string;
   imgClassName?: string;
   priority?: boolean;
+  /** Sirve el archivo tal cual, sin recomprimir (fotos ya exportadas a su tamaño final) */
+  unoptimized?: boolean;
 };
 
 /**
  * Foto o, si aún no existe, un espacio reservado con el mismo tamaño
  * (marcado como pendiente) para cargarla después sin cambiar el layout.
  */
-export function ImageSlot({ src, alt, label, sizes, tone = "dark", className = "", imgClassName = "", priority }: Props) {
+export function ImageSlot({ src, alt, label, sizes, tone = "dark", className = "", imgClassName = "", priority, unoptimized }: Props) {
   if (src) {
     return (
       <div className={`relative overflow-hidden ${className}`}>
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className={`object-cover ${imgClassName}`} />
+        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} unoptimized={unoptimized} className={`object-cover ${imgClassName}`} />
       </div>
     );
   }

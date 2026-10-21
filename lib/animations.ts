@@ -108,22 +108,46 @@ export function splitLines(el: HTMLElement): HTMLElement[] {
   if (el.dataset.split === "done") return Array.from(el.querySelectorAll<HTMLElement>(".line-mask > span"));
   const label = el.textContent?.replace(/\s+/g, " ").trim() ?? "";
   const words: HTMLElement[] = [];
+  // Si en el original no había espacio entre dos trozos (p. ej. <span>exitoso</span>.),
+  // se agrupan en un solo bloque: sin espacio agregado y sin salto de línea entre ellos.
+  let pendingSpace = true;
+  const push = (w: HTMLElement) => {
+    const prev = words[words.length - 1];
+    if (!pendingSpace && prev && !prev.dataset.br) {
+      let group = prev;
+      if (!prev.dataset.group) {
+        group = document.createElement("span");
+        group.dataset.group = "1";
+        group.style.display = "inline-block";
+        group.style.whiteSpace = "nowrap";
+        group.appendChild(prev);
+        words[words.length - 1] = group;
+      }
+      group.appendChild(w);
+    } else words.push(w);
+    pendingSpace = false;
+  };
 
   const wrapNode = (node: Node, parentClone: (w: HTMLElement) => HTMLElement) => {
     node.childNodes.forEach((child) => {
       if (child.nodeType === Node.TEXT_NODE) {
         (child.textContent ?? "").split(/([ \t\n\r]+)/).forEach((part) => {
-          if (!part.replace(/[ \t\n\r]/g, "")) return;
+          if (!part) return;
+          if (!part.replace(/[ \t\n\r]/g, "")) {
+            pendingSpace = true;
+            return;
+          }
           const w = document.createElement("span");
           w.style.display = "inline-block";
           w.textContent = part;
-          words.push(parentClone(w));
+          push(parentClone(w));
         });
       } else if (child instanceof HTMLElement) {
         if (child.tagName === "BR") {
           const br = document.createElement("span");
           br.dataset.br = "1";
           words.push(br);
+          pendingSpace = true;
           return;
         }
         wrapNode(child, (w) => {

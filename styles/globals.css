@@ -959,6 +959,9 @@ img {
 .rm .marquee-track > [aria-hidden="true"] {
   display: none;
 }
+.rm .marquee-track > :first-child > svg:last-child {
+  display: none;
+}
 .rm .card-interactive:hover {
   transform: none;
 }
@@ -1115,19 +1118,20 @@ img {
   box-shadow: inset 0 0 0 1px rgb(10 10 11 / 0.08);
 }
 
-/* ───────────────────────── Hero: “exitoso” en contorno ───────────────────────── */
+/* ───────────────────────── “exitoso” en contorno ─────────────────────────
+   Montserrat variable tiene contornos superpuestos dentro de cada letra, y
+   -webkit-text-stroke los dibuja todos (líneas cruzadas en la x, la e…). En su lugar
+   el filtro SVG #text-outline (app/layout.tsx) dilata la silueta y le resta la letra:
+   queda solo el borde exterior, continuo, y el interior transparente. */
 .text-outline {
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.5px rgb(245 245 242 / 0.55);
+  color: var(--paper);
+  -webkit-text-fill-color: var(--paper);
+  filter: url(#text-outline);
 }
 @media (min-width: 1024px) {
   .text-outline {
-    -webkit-text-stroke-width: 2px;
+    filter: url(#text-outline-lg);
   }
-}
-.on-paper .text-outline {
-  -webkit-text-stroke-color: rgb(10 10 11 / 0.45);
 }
 
 /* Sección clara (ecosistema, servicios) */

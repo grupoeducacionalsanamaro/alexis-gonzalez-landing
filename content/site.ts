@@ -51,7 +51,8 @@ export const site = {
     h1Pre: "Es mejor ser",
     h1Destacado: "próspero",
     h1Medio: "que",
-    h1Contraste: "exitoso.",
+    h1Contraste: "exitoso",
+    h1Cierre: ".", // punto sólido (no en contorno)
     cta: "Conoce más",
     ctaHref: "#sobre-mi",
     imagen: "/img/alexis-hero-v3.webp",
@@ -122,12 +123,11 @@ export const site = {
     filosofia: "Es mejor ser próspero que exitoso.",
     filosofiaCierre:
       "Porque para Alexis, crecer no significa únicamente facturar más. Significa también avanzar en libertad, familia, experiencias, aprendizaje y propósito.",
-    // Collage junto a la bio (placeholders hasta cargar fotos)
-    fotos: [
-      { src: "/img/alexis-retrato.webp" as string | null, alt: "Alexis González con los brazos cruzados en el Acelerador Empresarial" },
-      { src: null as string | null, alt: "Foto de Alexis (pendiente)" },
-      { src: null as string | null, alt: "Foto de Alexis (pendiente)" },
-    ],
+    // Foto junto a la bio: 1080×1350 (4:5), servida tal cual
+    foto: {
+      src: "/img/alexis-quien-es.webp" as string | null,
+      alt: "Alexis González de traje claro, sentado sobre un sillón revisando unos documentos",
+    },
     // TODO(cliente): fotos de cada programa
     carruselTitulo: "Programas y experiencias",
     carrusel: [

@@ -82,52 +82,51 @@ export function SobreAlexis() {
 
   return (
     <section id="sobre-mi" aria-labelledby="sobre-title" className="relative overflow-hidden bg-ink-950 section-y">
-      <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-12">
-        {/* Collage de fotos */}
-        <div data-reveal="up" className="grid grid-cols-2 gap-3 self-start lg:sticky lg:top-28 lg:col-span-5 lg:gap-4">
+      <div className="container-x grid gap-14 lg:grid-cols-12 lg:items-start lg:gap-12">
+        {/* Foto 1080×1350 */}
+        <div data-reveal="up" className="lg:col-span-5">
           <ImageSlot
-            src={s.fotos[0].src}
-            alt={s.fotos[0].alt}
+            src={s.foto.src}
+            alt={s.foto.alt}
             sizes="(min-width: 1024px) 40vw, 100vw"
-            className="col-span-2 aspect-[4/3] rounded-2xl"
+            unoptimized
+            className="aspect-[1080/1350] w-full max-w-[1080px] rounded-2xl"
           />
-          <ImageSlot src={s.fotos[1].src} alt={s.fotos[1].alt} sizes="(min-width: 1024px) 20vw, 50vw" className="aspect-square rounded-2xl" />
-          <ImageSlot src={s.fotos[2].src} alt={s.fotos[2].alt} sizes="(min-width: 1024px) 20vw, 50vw" className="aspect-square rounded-2xl" />
         </div>
 
         {/* Bio */}
-        <div className="lg:col-span-7 lg:pl-6">
+        <div data-bio="" className="lg:col-span-7 lg:pl-4">
           <div data-reveal="up">
             <Eyebrow>{s.eyebrow}</Eyebrow>
           </div>
-          <h2 id="sobre-title" data-reveal="lines" className="t-h2 mt-6 font-black! text-paper uppercase">
+          <h2 id="sobre-title" data-reveal="lines" className="t-h2 mt-5 text-[clamp(32px,3.2vw,46px)]! font-black! text-paper uppercase">
             {s.nombre}
           </h2>
-          <p data-reveal="up" className="t-eyebrow mt-4 text-accent-300!">
+          <p data-reveal="up" className="t-eyebrow mt-3 text-accent-300!">
             {s.rol}
           </p>
-          <div className="mt-10 flex flex-col gap-5" data-reveal-stagger="0.08">
+          <div className="mt-5 flex flex-col gap-3" data-reveal-stagger="0.08">
             {s.bio.map((p) => (
-              <p key={p} className="t-body">
+              <p key={p} className="text-[15px] leading-[1.6] text-paper/80">
                 {p}
               </p>
             ))}
           </div>
 
-          <div data-reveal="up" className="mt-10">
-            <p className="t-lead text-[16px] text-paper">{s.formacionTitulo}</p>
-            <ul className="mt-4 flex flex-wrap gap-2">
+          <div data-reveal="up" className="mt-5">
+            <p className="t-lead text-[14px] text-paper">{s.formacionTitulo}</p>
+            <ul className="mt-3 flex flex-wrap gap-1.5">
               {s.formacion.map((f) => (
-                <li key={f} className="rounded-full border border-ink-700 px-4 py-2 text-[14px] font-medium text-paper/85">
+                <li key={f} className="rounded-full border border-ink-700 px-3 py-1.5 text-[12.5px] font-medium text-paper/85">
                   {f}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="mt-10 flex flex-col gap-5" data-reveal-stagger="0.08">
+          <div className="mt-5 flex flex-col gap-3" data-reveal-stagger="0.08">
             {s.bio2.map((p) => (
-              <p key={p} className="t-body">
+              <p key={p} className="text-[15px] leading-[1.6] text-paper/80">
                 {p}
               </p>
             ))}
@@ -145,9 +144,8 @@ export function SobreAlexis() {
             {pre}
             <AccentText sweep>próspero</AccentText>
             {medio}
-            <span className="text-outline">
-              exitoso{final}
-            </span>
+            <span className="text-outline">exitoso</span>
+            {final}
           </blockquote>
           <p data-reveal="up" className="t-lead mt-10 max-w-[680px] text-[18px] text-paper/80 lg:text-[21px]">
             {s.filosofiaCierre}

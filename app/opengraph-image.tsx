@@ -24,7 +24,7 @@ export default async function OG() {
           <div style={{ display: "flex", flexDirection: "column", marginTop: 32, fontSize: 64, lineHeight: 1.02, fontWeight: 900, textTransform: "uppercase", letterSpacing: -1 }}>
             <span style={{ color: "#F5F5F2" }}>{site.hero.h1Pre}</span>
             <span style={{ color: "#B85CDB" }}>{site.hero.h1Destacado}</span>
-            <span style={{ color: "#F5F5F2" }}>{`${site.hero.h1Medio} ${site.hero.h1Contraste}`}</span>
+            <span style={{ color: "#F5F5F2" }}>{`${site.hero.h1Medio} ${site.hero.h1Contraste}${site.hero.h1Cierre}`}</span>
           </div>
           <div style={{ marginTop: 28, fontSize: 26, color: "rgba(245,245,242,0.7)" }}>{site.sobre.rol}</div>
           <div style={{ marginTop: 48, fontSize: 20, color: "#F5F5F2", letterSpacing: 5, textTransform: "uppercase" }}>{site.nombre}</div>

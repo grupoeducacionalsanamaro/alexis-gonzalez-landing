@@ -55,6 +55,22 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
       <body>
+        {/* Filtros del texto en contorno (.text-outline): solo el borde exterior de cada letra */}
+        <svg aria-hidden="true" width="0" height="0" className="absolute">
+          <defs>
+            {[
+              ["text-outline", 1.5],
+              ["text-outline-lg", 2],
+            ].map(([id, r]) => (
+              <filter key={id} id={String(id)} x="-5%" y="-5%" width="110%" height="110%" colorInterpolationFilters="sRGB">
+                <feMorphology in="SourceAlpha" operator="dilate" radius={r} result="grueso" />
+                <feComposite in="grueso" in2="SourceAlpha" operator="out" result="borde" />
+                <feFlood floodColor="#F5F5F2" floodOpacity="0.6" />
+                <feComposite in2="borde" operator="in" />
+              </filter>
+            ))}
+          </defs>
+        </svg>
         <a href="#contenido" className="skip-link t-btn">
           Ir al contenido
         </a>

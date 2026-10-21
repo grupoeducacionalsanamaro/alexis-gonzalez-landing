@@ -96,6 +96,8 @@ export function Hero() {
               className="object-cover object-[27%_18%] lg:object-[32%_50%]"
             />
           )}
+          {/* Solo el borde inferior se funde con el fondo de la sección siguiente (sin cortes) */}
+          <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-20 bg-[linear-gradient(to_top,var(--ink-950),transparent)] lg:h-28" />
         </div>
       </div>
 
@@ -115,6 +117,7 @@ export function Hero() {
             <AccentText>{h.h1Destacado}</AccentText>
             <br />
             {h.h1Medio}&nbsp;<span className="text-outline">{h.h1Contraste}</span>
+            {h.h1Cierre}
           </h1>
           <div data-hero="rest" className="mt-8 lg:mt-12">
             <a
