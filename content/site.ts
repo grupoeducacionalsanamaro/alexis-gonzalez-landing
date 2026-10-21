@@ -215,38 +215,41 @@ export const site = {
   ecosistema: {
     eyebrow: "Ecosistema",
     titulo: "Marcas, comunidades y experiencias que lidero",
-    // TODO(cliente): subir logos (SVG/PNG en /public/logos) y completar `logo`
+    // Logos en /public/logos (recortados y exportados desde “Logos Marcas”)
     grupos: [
       {
         nombre: "Área educacional",
         destacado: "Grupo Educacional San Amaro" as string | null,
+        destacadoLogo: "/logos/san-amaro.webp" as string | null,
         marcas: [
-          { nombre: "AGC Instituto de Odontología", logo: null as string | null },
-          { nombre: "Harmony Institute Internacional", logo: null as string | null },
-          { nombre: "Simetría Academia", logo: null as string | null },
-          { nombre: "KONCEPTO Instituto de Formación", logo: null as string | null },
-          { nombre: "Premier Medical Institute", logo: null as string | null },
+          { nombre: "AGC Instituto de Odontología", logo: "/logos/agc.webp" as string | null },
+          { nombre: "Harmony Institute Internacional", logo: "/logos/harmony-institute.webp" as string | null },
+          { nombre: "Simetría Academia", logo: "/logos/simetria.webp" as string | null },
+          { nombre: "KONCEPTO Instituto de Formación", logo: "/logos/koncepto.webp" as string | null },
+          { nombre: "Premier Medical Institute", logo: "/logos/premier.webp" as string | null },
         ],
       },
       {
         nombre: "Comunidades, medios y desarrollo profesional",
         destacado: null as string | null,
+        destacadoLogo: null as string | null,
         marcas: [
-          { nombre: "Círculo Society", logo: null as string | null },
-          { nombre: "ORO Magazine", logo: null as string | null },
-          { nombre: "Emplea Dental", logo: null as string | null },
-          { nombre: "EmpleaSalud", logo: null as string | null },
+          { nombre: "Círculo Society", logo: "/logos/circulo-society.webp" as string | null },
+          { nombre: "ORO Magazine", logo: "/logos/oro-magazine.webp" as string | null },
+          { nombre: "Emplea Dental", logo: "/logos/emplea-dental.webp" as string | null },
+          { nombre: "EmpleaSalud", logo: "/logos/emplea-salud.webp" as string | null },
         ],
       },
       {
         nombre: "Eventos y experiencias",
         destacado: null as string | null,
+        destacadoLogo: null as string | null,
         marcas: [
-          { nombre: "Momentum", logo: null as string | null },
-          { nombre: "Level Up", logo: null as string | null },
-          { nombre: "ICONS Dental Congress", logo: null as string | null },
-          { nombre: "Harmony On Tour", logo: null as string | null },
-          { nombre: "Next", logo: null as string | null },
+          { nombre: "Momentum", logo: "/logos/momentum.webp" as string | null },
+          { nombre: "Level Up", logo: "/logos/level-up.webp" as string | null },
+          { nombre: "ICONS Dental Congress", logo: "/logos/icons.webp" as string | null },
+          { nombre: "Harmony On Tour", logo: "/logos/harmony-on-tour.webp" as string | null },
+          { nombre: "Next", logo: "/logos/next.webp" as string | null },
         ],
       },
     ],
