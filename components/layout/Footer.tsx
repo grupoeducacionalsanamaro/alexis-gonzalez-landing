@@ -7,7 +7,7 @@ export function Footer() {
   const redes = site.footer.redes.filter((r) => r.href);
   return (
     <footer className="relative bg-ink-950 pb-28 lg:pb-12">
-      <div aria-hidden="true" className="h-px w-full" style={{ background: "var(--gold-gradient)" }} />
+      <div aria-hidden="true" className="h-px w-full" style={{ background: "var(--accent-gradient)" }} />
       <div className="container-x flex flex-col gap-10 pt-14 md:flex-row md:items-end md:justify-between">
         <div className="flex items-center gap-4">
           <Monogram className="size-11" />

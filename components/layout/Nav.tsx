@@ -58,7 +58,7 @@ export function Nav() {
     return () => io.disconnect();
   }, []);
 
-  // Línea dorada que se desliza entre links
+  // Línea de acento que se desliza entre links
   useEffect(() => {
     const ul = linksRef.current;
     if (!ul) return;
@@ -108,7 +108,7 @@ export function Nav() {
                     scrollToHash(l.href);
                   }}
                   aria-current={active === l.href.slice(1) ? "true" : undefined}
-                  className={`block py-2 font-display text-[14px] font-medium tracking-wide transition-colors duration-200 hover:text-paper ${
+                  className={`block py-2 font-display text-[14px] font-medium transition-colors duration-200 hover:text-paper ${
                     active === l.href.slice(1) ? "text-paper" : "text-paper/65"
                   }`}
                 >
@@ -118,7 +118,7 @@ export function Nav() {
             ))}
             <span
               aria-hidden="true"
-              className="absolute bottom-0 left-0 h-px bg-gold-500 transition-[transform,width,opacity] duration-500 ease-out-expo"
+              className="absolute bottom-0 left-0 h-px bg-accent-500 transition-[transform,width,opacity] duration-500 ease-out-expo"
               style={{
                 width: indicator?.w ?? 0,
                 transform: `translateX(${indicator?.x ?? 0}px)`,

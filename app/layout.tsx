@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "@/styles/globals.css";
 import { site } from "@/content/site";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
@@ -9,27 +9,12 @@ import { Preloader } from "@/components/layout/Preloader";
 import { Cursor } from "@/components/layout/Cursor";
 import { Analytics } from "@/components/layout/Analytics";
 
-const poppins = Poppins({
+// Montserrat variable (un solo archivo cubre 400–900): titulares Black/ExtraBold, textos Regular/Medium
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["500", "600"],
-  variable: "--font-poppins",
+  variable: "--font-montserrat",
   display: "swap",
   preload: true,
-});
-// 700 itálica solo se usa en citas bajo el pliegue: sin preload (no compite con el LCP)
-const poppinsQuote = Poppins({
-  subsets: ["latin"],
-  weight: "700",
-  style: "italic",
-  variable: "--font-poppins-quote",
-  display: "swap",
-  preload: false,
-});
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-inter",
-  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -65,7 +50,7 @@ const bootScript = `(function(){var d=document.documentElement;d.classList.add('
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es-CL" className={`${poppins.variable} ${poppinsQuote.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="es-CL" className={montserrat.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>

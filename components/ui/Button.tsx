@@ -5,7 +5,7 @@ import { track } from "@/lib/analytics";
 import { isDesktopPointer, isReducedMotion, loadMotion } from "@/lib/animations";
 import { scrollToHash } from "@/components/layout/SmoothScroll";
 
-type Variant = "primary" | "gold" | "ghost" | "text";
+type Variant = "primary" | "accent" | "ghost" | "text";
 
 type Props = {
   variant?: Variant;
@@ -43,7 +43,7 @@ export function Button({
   external,
 }: Props) {
   const ref = useRef<HTMLElement>(null);
-  const isMagnetic = magnetic ?? (variant === "primary" || variant === "gold");
+  const isMagnetic = magnetic ?? (variant === "primary" || variant === "accent");
 
   useEffect(() => {
     const el = ref.current;

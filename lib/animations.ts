@@ -102,7 +102,7 @@ export function maskLines(gsap: Gsap, el: HTMLElement, opts: gsap.TweenVars = {}
 /**
  * Split propio por líneas: envuelve palabras, mide offsetTop y agrupa.
  * Conserva el texto accesible con un span .sr-only (las líneas van aria-hidden).
- * Respeta nodos hijos (p. ej. <span class="gold-text">) clonándolos por palabra.
+ * Respeta nodos hijos (p. ej. <span class="accent-text">) clonándolos por palabra.
  */
 export function splitLines(el: HTMLElement): HTMLElement[] {
   if (el.dataset.split === "done") return Array.from(el.querySelectorAll<HTMLElement>(".line-mask > span"));
@@ -198,8 +198,8 @@ export function drawStroke(gsap: Gsap, svg: Element, opts: gsap.TweenVars = {}) 
   return gsap.to(paths, { strokeDashoffset: 0, duration: 1.4, ease: gEase.inOut, stagger: 0.04, ...opts });
 }
 
-/** Barrido de brillo dorado, una sola vez. */
-export function goldSweep(gsap: Gsap, el: gsap.TweenTarget, opts: gsap.TweenVars = {}) {
+/** Barrido de brillo de acento, una sola vez. */
+export function accentSweep(gsap: Gsap, el: gsap.TweenTarget, opts: gsap.TweenVars = {}) {
   if (isReducedMotion()) return gsap.set(el, { backgroundPosition: "0% 0" });
   return gsap.fromTo(
     el,
@@ -266,7 +266,7 @@ export function splitWords(el: HTMLElement): HTMLElement[] {
         });
         child.replaceWith(frag);
       } else if (child instanceof HTMLElement) {
-        if (child.classList.contains("gold-text")) {
+        if (child.classList.contains("accent-text")) {
           child.dataset.w = "1";
           out.push(child);
         } else walk(child);

@@ -62,7 +62,7 @@ export function ChipGroup({ label, options, multiple, value, onChange, error, co
   const labelId = `${name}-label`;
   return (
     <fieldset className="min-w-0">
-      <legend id={labelId} className="mb-4 font-display text-[15px] font-medium text-ink-950 md:text-[16px]">
+      <legend id={labelId} className="mb-4 font-display text-[15px] font-bold text-ink-950 md:text-[16px]">
         {label}
         {multiple && <span className="ml-2 text-[13px] font-normal opacity-60">(puedes elegir varias)</span>}
       </legend>

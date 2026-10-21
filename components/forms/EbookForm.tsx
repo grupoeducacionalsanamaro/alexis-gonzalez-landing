@@ -122,7 +122,7 @@ export function EbookForm({ onSuccess, location, autoFocus }: Props) {
       <p aria-live="assertive" className="min-h-[20px] text-[14px] text-no">
         {serverError ?? ""}
       </p>
-      <Button type="submit" variant="gold" loading={submitting} location={`${location}_submit`} className="mt-2 w-full sm:w-auto">
+      <Button type="submit" variant="accent" loading={submitting} location={`${location}_submit`} className="mt-2 w-full sm:w-auto">
         {site.ebook.formCta}
       </Button>
     </form>

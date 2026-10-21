@@ -32,7 +32,7 @@ export function ParaQuien() {
           </h2>
           <ul className="mt-10 flex flex-col gap-6" data-reveal-stagger="0.1">
             {p.si.map((s) => (
-              <li key={s} className="flex gap-4 font-display text-[20px] leading-snug font-medium text-paper md:text-[26px]">
+              <li key={s} className="flex gap-4 t-lead text-[20px] leading-snug text-paper md:text-[26px]">
                 <CheckSvg />
                 <span>{s}</span>
               </li>

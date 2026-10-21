@@ -48,7 +48,7 @@ export const site = {
   hero: {
     eyebrow: `Mentoría 1:1 · Método ${marca}`,
     h1Pre: "Si tu negocio depende de ti,",
-    h1Gold: "no tienes un negocio.",
+    h1Accent: "no tienes un negocio.",
     subtitulo: "Tienes un empleo caro.",
     bajada:
       "Dirección estratégica para profesionales y empresarios de la salud que facturan sobre 100 millones al año.",
@@ -74,7 +74,7 @@ export const site = {
       "No tienes plan a 3–5 años.",
     ],
     rematePre: "Facturar no es lo mismo que",
-    remateGold: "prosperar.",
+    remateAccent: "prosperar.",
   },
 
   dimensiones: {

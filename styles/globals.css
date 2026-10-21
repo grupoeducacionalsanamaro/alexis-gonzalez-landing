@@ -9,12 +9,12 @@
   --paper: #f5f5f2;
   --mist: #a1a1a6;
   --silver: #d9d9dc;
-  --gold-300: #e8c770;
-  --gold-500: #d4a537;
-  --gold-700: #9c7424;
+  --accent-300: #b85cdb; /* púrpura claro: texto/acento sobre negro (contraste AA) */
+  --accent-500: #8a17b2; /* púrpura de marca: rellenos, líneas, foco */
+  --accent-700: #5c0f78; /* púrpura profundo */
   --ok: #7bae7f;
   --no: #b5575a;
-  --gold-gradient: linear-gradient(100deg, #9c7424 0%, #e8c770 45%, #d4a537 60%, #9c7424 100%);
+  --accent-gradient: linear-gradient(100deg, #5c0f78 0%, #8a17b2 45%, #b85cdb 75%, #8a17b2 100%);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
@@ -33,15 +33,15 @@
   --color-paper: var(--paper);
   --color-mist: var(--mist);
   --color-silver: var(--silver);
-  --color-gold-300: var(--gold-300);
-  --color-gold-500: var(--gold-500);
-  --color-gold-700: var(--gold-700);
+  --color-accent-300: var(--accent-300);
+  --color-accent-500: var(--accent-500);
+  --color-accent-700: var(--accent-700);
   --color-ok: var(--ok);
   --color-no: var(--no);
 
-  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-quote: var(--font-poppins-quote), var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  /* Una sola familia: Montserrat. Titulares 800/900, textos 400/500. */
+  --font-display: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 
   --ease-out-expo: var(--ease-out-expo);
   --ease-out-quart: var(--ease-out-quart);
@@ -82,12 +82,12 @@ body {
 }
 
 ::selection {
-  background: var(--gold-500);
+  background: var(--accent-500);
   color: var(--ink-950);
 }
 
 :focus-visible {
-  outline: 2px solid var(--gold-500);
+  outline: 2px solid var(--accent-500);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -96,31 +96,45 @@ img {
   user-select: none;
 }
 
-/* ───────────────────────── Tipografía ───────────────────────── */
+/* ───────────────────────── Tipografía ─────────────────────────
+   Jerarquía (Montserrat):
+   1. Display (H1)  · Black 900, mayúsculas
+   2. H2            · ExtraBold 800
+   3. H3            · ExtraBold 800
+   4. Lead          · Medium 500 (subtítulos y frases destacadas)
+   5. Body / Small  · Regular 400
+   6. Eyebrow / Btn · etiquetas en mayúsculas espaciadas (600 / 700) */
 .t-display {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   font-size: clamp(40px, 7vw, 104px);
   line-height: 0.95;
 }
 .t-h2 {
   font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  letter-spacing: -0.025em;
   font-size: clamp(32px, 4.5vw, 64px);
   line-height: 1.05;
 }
 .t-h3 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 800;
+  letter-spacing: -0.015em;
   font-size: clamp(22px, 2.2vw, 30px);
   line-height: 1.2;
 }
+.t-lead {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
 .t-eyebrow {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.24em;
   font-size: 12px;
@@ -132,17 +146,17 @@ img {
   }
 }
 .t-quote {
-  font-family: var(--font-quote);
-  font-weight: 700;
-  font-style: italic;
-  font-size: clamp(28px, 4vw, 56px);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(30px, 4vw, 56px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
 }
 .t-body {
   font-family: var(--font-body);
+  font-weight: 400;
   font-size: 17px;
-  line-height: 1.6;
+  line-height: 1.65;
   color: rgb(245 245 242 / 0.8);
 }
 @media (min-width: 1024px) {
@@ -152,15 +166,16 @@ img {
 }
 .t-small {
   font-family: var(--font-body);
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
   color: var(--mist);
 }
 .t-btn {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   font-size: 13px;
   line-height: 1;
 }
@@ -170,18 +185,15 @@ img {
   }
 }
 
-/* Texto dorado con barrido único */
-.gold-text {
+/* Texto de acento (púrpura claro) con un barrido de luz único al entrar */
+.accent-text {
   background-image: linear-gradient(
     100deg,
-    #9c7424 0%,
-    #e8c770 22%,
-    #d4a537 30%,
-    #9c7424 50%,
-    #9c7424 50%,
-    #e8c770 72%,
-    #d4a537 80%,
-    #9c7424 100%
+    #b85cdb 0%,
+    #e4c2f1 22%,
+    #b85cdb 34%,
+    #b85cdb 50%,
+    #b85cdb 100%
   );
   background-size: 200% 100%;
   background-position: 0% 0;
@@ -190,7 +202,7 @@ img {
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
-.gold-text[data-sweep] {
+.accent-text[data-sweep] {
   background-position: 100% 0;
 }
 
@@ -373,12 +385,15 @@ img {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--gold-gradient);
+  background: var(--accent-500);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 400ms var(--ease-out-quart);
 }
 @media (hover: hover) {
+  .btn-primary:hover {
+    color: var(--paper);
+  }
   .btn-primary:hover::before {
     transform: scaleX(1);
   }
@@ -392,20 +407,20 @@ img {
   }
 }
 
-.btn-gold {
+.btn-accent {
   height: 56px;
   padding-inline: 32px;
-  color: var(--gold-300);
+  color: var(--accent-300);
   background: transparent;
 }
-.btn-gold::before {
-  /* borde 1px con gradiente */
+.btn-accent::before {
+  /* borde 1px de acento */
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: var(--gold-gradient);
+  background: var(--accent-300);
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -413,24 +428,24 @@ img {
   mask-composite: exclude;
   pointer-events: none;
 }
-.btn-gold::after {
+.btn-accent::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--gold-gradient);
+  background: var(--accent-500);
   opacity: 0;
   transition: opacity 300ms var(--ease-micro);
 }
 @media (hover: hover) {
-  .btn-gold:hover {
-    color: var(--ink-950);
-    box-shadow: 0 0 24px rgb(212 165 55 / 0.25);
+  .btn-accent:hover {
+    color: var(--paper);
+    box-shadow: 0 0 24px rgb(138 23 178 / 0.25);
   }
-  .btn-gold:hover::after {
+  .btn-accent:hover::after {
     opacity: 1;
   }
-  .btn-gold:hover .btn-arrow {
+  .btn-accent:hover .btn-arrow {
     width: 14px;
     opacity: 1;
     transform: translateX(0);
@@ -548,7 +563,7 @@ img {
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: var(--gold-gradient);
+  background: var(--accent-gradient);
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -563,7 +578,7 @@ img {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(400px circle at var(--x, 50%) var(--y, 50%), rgb(212 165 55 / 0.1), transparent 60%);
+  background: radial-gradient(400px circle at var(--x, 50%) var(--y, 50%), rgb(138 23 178 / 0.1), transparent 60%);
   opacity: 0;
   transition: opacity 300ms var(--ease-micro);
   pointer-events: none;
@@ -581,7 +596,7 @@ img {
 /* Número en contorno */
 .num-outline {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 900;
   color: transparent;
   -webkit-text-stroke: 1px rgb(161 161 166 / 0.3); /* --mist al 30% */
   transition: -webkit-text-stroke-color 300ms var(--ease-micro);
@@ -589,7 +604,7 @@ img {
 }
 @media (hover: hover) {
   .card-interactive:hover .num-outline {
-    -webkit-text-stroke-color: var(--gold-500);
+    -webkit-text-stroke-color: var(--accent-500);
   }
 }
 
@@ -687,7 +702,7 @@ img {
   right: 0;
   height: 2px;
   margin-top: -1px;
-  background: var(--gold-gradient);
+  background: var(--accent-gradient);
   transform: scaleX(0);
   transition: transform 300ms var(--ease-out-quart);
 }
@@ -778,11 +793,11 @@ img {
 .chip-check svg {
   transform: scale(0);
   transition: transform 300ms var(--ease-out-expo);
-  color: var(--gold-300);
+  color: var(--accent-300);
 }
 .chip[aria-checked="true"] .chip-check {
   opacity: 1;
-  border-color: var(--gold-500);
+  border-color: var(--accent-500);
 }
 .chip[aria-checked="true"] .chip-check svg {
   transform: scale(1);
@@ -980,8 +995,8 @@ img {
   content: "";
   width: 10px;
   height: 6px;
-  border-left: 1.6px solid var(--gold-300);
-  border-bottom: 1.6px solid var(--gold-300);
+  border-left: 1.6px solid var(--accent-300);
+  border-bottom: 1.6px solid var(--accent-300);
   transform: rotate(-45deg) translate(1px, -1px) scale(0);
   transition: transform 300ms var(--ease-out-expo);
 }
@@ -1011,7 +1026,7 @@ img {
 @media (hover: hover) {
   .card-light .btn-primary:hover,
   .on-light .btn-primary:hover {
-    color: var(--ink-950);
+    color: var(--paper);
   }
 }
 
@@ -1034,7 +1049,7 @@ img {
 /* ───────────────────────── Dimensiones (pin desktop) ───────────────────────── */
 .dim-word {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.03em;
   line-height: 0.85;

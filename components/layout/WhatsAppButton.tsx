@@ -31,7 +31,7 @@ export function WhatsAppButton() {
       rel="noopener noreferrer"
       onClick={() => track("whatsapp_click")}
       aria-label="Escribir por WhatsApp a Alexis González"
-      className={`card-glass group fixed right-4 z-30 flex h-12 items-center gap-2 rounded-full px-4 text-paper transition-[bottom,border-color] duration-500 ease-out-expo hover:border-gold-500 lg:right-6 lg:bottom-6 ${
+      className={`card-glass group fixed right-4 z-30 flex h-12 items-center gap-2 rounded-full px-4 text-paper transition-[bottom,border-color] duration-500 ease-out-expo hover:border-accent-500 lg:right-6 lg:bottom-6 ${
         lifted ? "bottom-[calc(92px+env(safe-area-inset-bottom))]" : "bottom-4"
       }`}
     >

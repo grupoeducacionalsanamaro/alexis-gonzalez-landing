@@ -24,14 +24,14 @@ function Book({ open }: { open: boolean }) {
         <div className="absolute inset-y-0 left-0 w-3 bg-[linear-gradient(to_right,rgb(0_0_0/0.6),transparent)]" />
         <div className="relative flex h-full flex-col p-6 sm:p-8">
           <p className="font-display text-[9px] tracking-[0.3em] text-paper/60 uppercase sm:text-[10px]">Mini ebook</p>
-          <p className="gold-text mt-auto font-quote text-[24px] leading-[1.02] font-bold uppercase italic sm:text-[32px]">
+          <p className="accent-text mt-auto font-display text-[24px] leading-[1.02] font-black uppercase tracking-[-0.02em] sm:text-[32px]">
             {e.tituloPortada[0]}
             <br />
             {e.tituloPortada[1]}
           </p>
-          <span className="mt-4 block h-px w-full" style={{ background: "var(--gold-gradient)" }} />
+          <span className="mt-4 block h-px w-full" style={{ background: "var(--accent-gradient)" }} />
           <p className="mt-3 font-display text-[9px] leading-snug tracking-[0.14em] text-paper/70 uppercase sm:text-[10px]">{e.subtituloPortada}</p>
-          <p className="mt-8 font-display text-[10px] font-semibold tracking-[0.24em] text-gold-500 uppercase sm:text-[11px]">Alexis González C.</p>
+          <p className="mt-8 font-display text-[10px] font-bold tracking-[0.24em] text-accent-300 uppercase sm:text-[11px]">Alexis González C.</p>
         </div>
         {/* reflejo de luz que se mueve con el tilt */}
         <div data-glare="" aria-hidden="true" className="pointer-events-none absolute -inset-1/2 bg-[linear-gradient(115deg,transparent_40%,rgb(255_255_255/0.10)_50%,transparent_60%)]" />
@@ -99,17 +99,17 @@ export function Ebook() {
       </div>
       <div className="container-x relative grid items-center gap-16 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-6">
-          <h2 id="ebook-title" className="t-quote gold-text pr-2">
+          <h2 id="ebook-title" className="t-quote accent-text pr-2">
             {e.titulo}
           </h2>
           <p className="t-body mt-6 max-w-[520px] text-[19px]! text-paper!">{e.bajada}</p>
           <p className="t-body mt-4 max-w-[520px]">
-            {e.reflexionPre} <strong className="font-semibold text-paper">{e.reflexionBold}</strong> {e.reflexionPost}
+            {e.reflexionPre} <strong className="font-bold text-paper">{e.reflexionBold}</strong> {e.reflexionPost}
           </p>
 
           <div className="mt-10">
             {!expanded && (
-              <Button variant="gold" onClick={open} location="ebook_open">
+              <Button variant="accent" onClick={open} location="ebook_open">
                 {e.cta}
               </Button>
             )}
@@ -119,11 +119,11 @@ export function Ebook() {
                   {done ? (
                     <div className="flex flex-col items-start gap-5" aria-live="polite">
                       <div>
-                        <p className="font-display text-[22px] font-medium text-paper">{e.exitoTitulo}</p>
+                        <p className="font-display text-[22px] font-extrabold tracking-[-0.02em] text-paper">{e.exitoTitulo}</p>
                         <p className="t-small mt-1">{e.exitoEmail}</p>
                       </div>
                       {done.url && (
-                        <Button variant="gold" href={done.url} external location="ebook_download">
+                        <Button variant="accent" href={done.url} external location="ebook_download">
                           {e.exitoDescargar}
                         </Button>
                       )}
@@ -142,7 +142,7 @@ export function Ebook() {
 
         <div className="book-scene flex justify-center py-6 lg:col-span-6 lg:py-0">
           <div className="relative">
-            <div aria-hidden="true" className="absolute top-1/2 left-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(circle, rgb(212 165 55 / 0.12), transparent 65%)" }} />
+            <div aria-hidden="true" className="absolute top-1/2 left-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(circle, rgb(138 23 178 / 0.12), transparent 65%)" }} />
             <Book open={!!done} />
           </div>
         </div>

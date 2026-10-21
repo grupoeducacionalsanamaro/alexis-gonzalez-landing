@@ -65,7 +65,7 @@ export function Cursor() {
         style={{ width: label ? 64 : 8, height: label ? 64 : 8 }}
       >
         <span
-          className="font-display text-[10px] font-semibold tracking-[0.18em] text-ink-950 uppercase transition-opacity duration-300"
+          className="font-display text-[10px] font-bold tracking-[0.18em] text-ink-950 uppercase transition-opacity duration-300"
           style={{ opacity: label ? 1 : 0 }}
         >
           {label}

@@ -16,7 +16,7 @@ export function LegalPage({ title, updated, children }: { title: string; updated
         <article className="mx-auto max-w-[760px]">
           <h1 className="t-h2 text-paper">{title}</h1>
           <p className="t-small mt-4">Última actualización: {updated}</p>
-          <div className="legal mt-12 flex flex-col gap-6 text-[17px] leading-relaxed text-paper/80 [&_h2]:mt-8 [&_h2]:font-display [&_h2]:text-[22px] [&_h2]:font-medium [&_h2]:text-paper [&_li]:ml-5 [&_li]:list-disc [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2">
+          <div className="legal mt-12 flex flex-col gap-6 text-[17px] leading-relaxed text-paper/80 [&_h2]:mt-8 [&_h2]:font-display [&_h2]:text-[22px] [&_h2]:font-extrabold [&_h2]:text-paper [&_li]:ml-5 [&_li]:list-disc [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2">
             {children}
           </div>
           <p className="mt-16">

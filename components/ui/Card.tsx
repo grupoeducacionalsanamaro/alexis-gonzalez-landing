@@ -10,7 +10,7 @@ type Props = {
   as?: ElementType;
 };
 
-/** Card de marca. `interactive` agrega spotlight que sigue al cursor + borde dorado al hover. */
+/** Card de marca. `interactive` agrega spotlight que sigue al cursor + borde de acento al hover. */
 export function Card({ tone = "dark", interactive, className = "", children, as: Tag = "div" }: Props) {
   const onMove = (e: PointerEvent<HTMLElement>) => {
     if (!interactive || e.pointerType !== "mouse") return;

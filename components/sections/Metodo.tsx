@@ -72,9 +72,9 @@ export function Metodo() {
                     <span aria-hidden="true" className="num-outline text-[88px] md:text-[104px]">
                       0{i + 1}
                     </span>
-                    <Icon strokeWidth={1.5} className="mt-3 size-7 text-paper/80 transition-colors duration-300 group-hover:text-gold-500" aria-hidden="true" />
+                    <Icon strokeWidth={1.5} className="mt-3 size-7 text-paper/80 transition-colors duration-300 group-hover:text-accent-300" aria-hidden="true" />
                   </div>
-                  <h3 className="mt-10 font-display text-[26px] font-semibold tracking-[0.04em] text-paper uppercase">{it.palabra}</h3>
+                  <h3 className="mt-10 font-display text-[26px] font-black tracking-[0.02em] text-paper uppercase">{it.palabra}</h3>
                   <p className="t-body mt-4 text-[16px]!">{it.descripcion}</p>
                 </div>
               </Card>
@@ -93,7 +93,7 @@ export function Metodo() {
               onClick={() => goTo(i)}
               className="grid size-8 place-items-center"
             >
-              <span className={`block h-1.5 rounded-full transition-all duration-300 ${index === i ? "w-6 bg-gold-500" : "w-1.5 bg-ink-700"}`} />
+              <span className={`block h-1.5 rounded-full transition-all duration-300 ${index === i ? "w-6 bg-accent-500" : "w-1.5 bg-ink-700"}`} />
             </button>
           ))}
         </div>
@@ -101,7 +101,7 @@ export function Metodo() {
 
       {/* Banda remate */}
       <div ref={band} className="mt-24 border-y border-ink-700 bg-ink-900 py-16 md:mt-32 md:py-24">
-        <div className="container-x flex flex-col gap-3 text-center font-display text-[26px] leading-tight font-medium md:text-[44px]">
+        <div className="container-x flex flex-col gap-3 text-center font-display text-[26px] leading-tight font-extrabold tracking-[-0.025em] md:text-[44px]">
           <p data-first="" className="relative mx-auto w-fit text-mist">
             {m.remateTachado}
             <span data-strike="" aria-hidden="true" className="absolute inset-x-0 top-[55%] h-[2px] origin-left scale-x-0 bg-mist" />

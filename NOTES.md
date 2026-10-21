@@ -1,5 +1,18 @@
 # NOTES — decisiones y pendientes
 
+## Lineamientos de marca (actualizados 2026-10-20)
+
+Reemplazan la paleta dorada y Poppins/Inter del brief original.
+
+- **Colores:** negro + blanco + púrpura `#8A17B2` (`--accent-500`). Para texto o íconos de acento sobre negro se usa `--accent-300` `#B85CDB` (el púrpura de marca sobre negro tiene contraste 2.7:1 y no pasa AA); `--accent-700` `#5C0F78` para sombras del degradado y acentos sobre fondo claro. Los rellenos (hover de botones) usan el púrpura de marca con texto blanco (7.4:1).
+- **Tipografía:** Montserrat (variable, un solo archivo).
+  - H1 / display: Black 900, mayúsculas · H2 y H3: ExtraBold 800
+  - Lead (subtítulos, frases destacadas): Medium 500 (`.t-lead`)
+  - Cuerpo y textos pequeños: Regular 400
+  - Etiquetas / eyebrows: 600 en mayúsculas espaciadas · Botones: 700
+- **Estilo:** minimalista y limpio. Los botones hacen hover con color plano (sin degradado) y se quitó la itálica de las citas.
+- Nombres en código: `accent-*`, `.accent-text`, `<AccentText>`, `accentSweep()`, botón `variant="accent"`.
+
 ## Decisiones técnicas (desviaciones del brief)
 
 - **Next.js 16.4** (el brief pide 15+). Se desactivó `cacheComponents` del scaffold: la página es estática y no lo necesita.

@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
-import { Eyebrow, GoldText } from "@/components/ui/Tag";
+import { Eyebrow, AccentText } from "@/components/ui/Tag";
 import { Stars } from "@/components/ui/Stars";
 import { Wireframe } from "@/components/ui/Wireframe";
-import { drawStroke, goldSweep, isDesktopPointer, maskLines, stagger } from "@/lib/animations";
+import { drawStroke, accentSweep, isDesktopPointer, maskLines, stagger } from "@/lib/animations";
 import { useMotion } from "@/lib/useMotion";
 
 export function Hero() {
@@ -51,7 +51,7 @@ export function Hero() {
           tl.to(img, { y: 0, filter: "blur(0px)", duration: 1, onComplete: () => gsap.set(img, { filter: "none" }) }, 0.3);
         }
         tl.add(maskLines(gsap, h1), 0.5);
-        tl.add(goldSweep(gsap, h1.querySelectorAll(".gold-text"), { stagger: 0.06 }), 0.95);
+        tl.add(accentSweep(gsap, h1.querySelectorAll(".accent-text"), { stagger: 0.06 }), 0.95);
         tl.fromTo(
           rest,
           { y: 32, opacity: 0, filter: "blur(8px)" },
@@ -120,7 +120,7 @@ export function Hero() {
         <div
           aria-hidden="true"
           className="absolute inset-0"
-          style={{ background: "radial-gradient(60% 50% at 55% 38%, rgb(212 165 55 / 0.08), transparent 70%)" }}
+          style={{ background: "radial-gradient(60% 50% at 55% 38%, rgb(138 23 178 / 0.08), transparent 70%)" }}
         />
         <div data-hero-img="" className="absolute inset-0">
           {video && h.videoSrc ? (
@@ -152,7 +152,7 @@ export function Hero() {
         <div
           aria-hidden="true"
           className="absolute inset-0"
-          style={{ background: "radial-gradient(45% 40% at 52% 30%, rgb(232 199 112 / 0.07), transparent 70%)" }}
+          style={{ background: "radial-gradient(45% 40% at 52% 30%, rgb(184 92 219 / 0.07), transparent 70%)" }}
         />
       </div>
 
@@ -165,11 +165,11 @@ export function Hero() {
           <h1
             id="hero-title"
             data-hero=""
-            className="mt-5 font-display text-[clamp(34px,5.2vw,78px)] leading-[0.98] font-semibold tracking-[-0.02em] text-paper uppercase lg:mt-7"
+            className="mt-5 font-display text-[clamp(34px,5.2vw,78px)] leading-[0.96] font-black tracking-[-0.035em] text-paper uppercase lg:mt-7"
           >
-            {h.h1Pre} <GoldText>{h.h1Gold}</GoldText>
+            {h.h1Pre} <AccentText>{h.h1Accent}</AccentText>
           </h1>
-          <p data-hero="rest" className="mt-4 font-display text-[22px] font-medium text-paper/70 lg:mt-6 lg:text-[28px]">
+          <p data-hero="rest" className="t-lead mt-4 text-[22px] text-paper/70 lg:mt-6 lg:text-[28px]">
             {h.subtitulo}
           </p>
           <p data-hero="rest" className="t-body mt-3 max-w-[520px] text-[16px]! lg:mt-5 lg:text-[18px]!">
@@ -192,7 +192,7 @@ export function Hero() {
 
       {/* Indicador de scroll */}
       <div data-hero="rest" aria-hidden="true" className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 lg:[@media(min-height:860px)]:flex">
-        <span className="font-display text-[11px] tracking-[0.3em] text-paper/60 uppercase">Scroll</span>
+        <span className="font-display text-[11px] font-semibold tracking-[0.3em] text-paper/60 uppercase">Scroll</span>
         <span className="scroll-cue relative block h-12 w-px overflow-hidden bg-paper/15" />
       </div>
     </section>

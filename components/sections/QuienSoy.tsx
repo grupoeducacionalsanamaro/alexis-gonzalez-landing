@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { site } from "@/content/site";
-import { Tag, GoldText } from "@/components/ui/Tag";
+import { Tag, AccentText } from "@/components/ui/Tag";
 import { Counter } from "@/components/ui/Counter";
 import { Marquee } from "@/components/ui/Marquee";
 import { useMotion } from "@/lib/useMotion";
@@ -28,7 +28,7 @@ export function QuienSoy() {
       <div className="container-x">
         <div className="grid items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
           {/* Retrato */}
-          <div data-reveal="up" data-cursor="ver" className="group relative aspect-[4/5] overflow-hidden rounded-[4px] border border-ink-700 transition-colors duration-500 hover:border-gold-500 lg:aspect-auto lg:min-h-[640px]">
+          <div data-reveal="up" data-cursor="ver" className="group relative aspect-[4/5] overflow-hidden rounded-[4px] border border-ink-700 transition-colors duration-500 hover:border-accent-500 lg:aspect-auto lg:min-h-[640px]">
             <div data-parallax="6" className="absolute -inset-y-[8%] inset-x-0">
               <Image
                 src={q.imagen}
@@ -46,10 +46,10 @@ export function QuienSoy() {
             <div>
               <Tag className="bg-ink-950! text-paper!">{q.tag}</Tag>
             </div>
-            <h2 id="quien-title" className="mt-8 font-display text-[36px] leading-[1.05] font-medium tracking-[-0.01em] md:text-[52px]">
-              {q.saludoPre} <span className="font-semibold">{q.saludoNombre}</span>
+            <h2 id="quien-title" className="mt-8 font-display text-[36px] leading-[1.05] font-medium tracking-[-0.025em] md:text-[52px]">
+              {q.saludoPre} <span className="font-black">{q.saludoNombre}</span>
             </h2>
-            <span data-grow="" aria-hidden="true" className="mt-5 block h-px w-24 origin-left" style={{ background: "var(--gold-gradient)" }} />
+            <span data-grow="" aria-hidden="true" className="mt-5 block h-px w-24 origin-left" style={{ background: "var(--accent-gradient)" }} />
             <ul className="mt-8 flex flex-col gap-4 text-[16px] leading-relaxed text-ink-950/80 md:text-[17px]">
               {q.bio.map((b) => (
                 <li key={b} className="flex gap-4">
@@ -59,7 +59,7 @@ export function QuienSoy() {
               ))}
             </ul>
             <p className="mt-8 inline-flex w-fit items-center gap-2 rounded-[2px] bg-ink-950 px-4 py-2.5 font-display text-[14px] font-medium text-paper">
-              {q.badge} <GoldText className="font-semibold">{site.marca}</GoldText>
+              {q.badge} <AccentText className="font-extrabold">{site.marca}</AccentText>
             </p>
             <p className="mt-6 text-[16px] leading-relaxed text-ink-950/80 md:text-[17px]">{q.cierre}</p>
           </div>
@@ -70,8 +70,8 @@ export function QuienSoy() {
           {q.cifras.map((c) => (
             <div key={c.label} className="flex flex-col gap-2 md:gap-3">
               <dt className="order-2 text-[13px] leading-snug text-mist md:text-[16px]">{c.label}</dt>
-              <dd className="order-1 font-display text-[44px] leading-none font-semibold tracking-[-0.03em] text-paper md:text-[88px]">
-                {c.prefijo && <span className="text-gold-500">{c.prefijo}</span>}
+              <dd className="order-1 font-display text-[44px] leading-none font-black tracking-[-0.04em] text-paper md:text-[88px]">
+                {c.prefijo && <span className="text-accent-300">{c.prefijo}</span>}
                 <Counter to={c.valor} />
                 {c.sufijo}
               </dd>

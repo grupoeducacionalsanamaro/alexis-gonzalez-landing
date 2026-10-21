@@ -65,10 +65,10 @@ export function ExitIntent() {
           <X strokeWidth={1.5} className="size-5" />
         </button>
         <p className="t-eyebrow flex items-center gap-3 text-paper/70">
-          <span aria-hidden="true" className="h-px w-6 bg-gold-500" />
+          <span aria-hidden="true" className="h-px w-6 bg-accent-500" />
           {site.exitIntent.eyebrow}
         </p>
-        <h2 id="exit-title" className="t-quote gold-text mt-5 text-[34px]!">
+        <h2 id="exit-title" className="t-quote accent-text mt-5 text-[34px]!">
           {site.exitIntent.titulo}
         </h2>
         <p className="t-body mt-4 text-[16px]!">{site.exitIntent.bajada}</p>
@@ -82,7 +82,7 @@ export function ExitIntent() {
                 <p className="t-small mt-1">{site.ebook.exitoEmail}</p>
               </div>
               {url && (
-                <Button variant="gold" href={url} external location="exit_intent_download">
+                <Button variant="accent" href={url} external location="exit_intent_download">
                   {site.ebook.exitoDescargar}
                 </Button>
               )}

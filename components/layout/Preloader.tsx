@@ -5,7 +5,7 @@ import { loadMotion } from "@/lib/animations";
 import { Monogram } from "./Monogram";
 
 /**
- * Preloader de primera visita (≤1.2s): monograma AG en trazo dorado + cortina.
+ * Preloader de primera visita (≤1.2s): monograma AG en trazo púrpura + cortina.
  * El script de <head> decide si se muestra (data-preloader="on"): primera visita
  * de la sesión, desktop y sin reduced-motion. Al terminar emite `ag:preloader-done`.
  */
@@ -57,7 +57,7 @@ export function Preloader() {
       className="preloader fixed inset-0 z-[90] place-items-center bg-ink-950"
       style={{ clipPath: "inset(0 0 0 0)" }}
     >
-      <Monogram className="size-20" stroke="var(--gold-500)" />
+      <Monogram className="size-20" stroke="var(--accent-500)" />
     </div>
   );
 }

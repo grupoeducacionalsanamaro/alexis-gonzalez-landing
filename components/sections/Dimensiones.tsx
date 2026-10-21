@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { site } from "@/content/site";
 import { Wireframe } from "@/components/ui/Wireframe";
-import { GoldText } from "@/components/ui/Tag";
+import { AccentText } from "@/components/ui/Tag";
 import { drawStroke, revealUp } from "@/lib/animations";
 import { useMotion } from "@/lib/useMotion";
 
@@ -104,7 +104,7 @@ export function Dimensiones() {
         <h2 id="dim-title" className="sr-only">
           Las tres dimensiones del Método {site.marca}
         </h2>
-        <p data-intro="" className="mx-auto max-w-[760px] text-center font-display text-[22px] leading-snug font-medium text-paper/80 md:text-[30px]">
+        <p data-intro="" className="mx-auto max-w-[760px] t-lead text-center text-[22px] leading-snug text-paper/80 md:text-[30px]">
           {d.intro}
         </p>
       </div>
@@ -119,7 +119,7 @@ export function Dimensiones() {
                 </p>
                 <h3 data-part="" data-word="" className="dim-word text-paper">
                   {it.palabra}
-                  <span className="text-gold-500">.</span>
+                  <span className="text-accent-300">.</span>
                 </h3>
                 <p data-part="" data-desc="" className="t-body mt-6 max-w-[520px] text-[19px]! md:text-[22px]! lg:mt-10">
                   {it.descripcion}
@@ -136,14 +136,14 @@ export function Dimensiones() {
           <div className="container-x text-center">
             <div className="relative mx-auto flex max-w-[860px] flex-wrap items-center justify-center gap-x-6 gap-y-3 md:gap-x-12">
               {d.items.map((it) => (
-                <span key={it.palabra} data-part="" className="relative z-10 bg-ink-950 px-3 font-display text-[26px] font-semibold tracking-[-0.01em] text-paper uppercase md:text-[44px]">
+                <span key={it.palabra} data-part="" className="relative z-10 bg-ink-950 px-3 font-display text-[26px] font-black tracking-[-0.02em] text-paper uppercase md:text-[44px]">
                   {it.palabra}.
                 </span>
               ))}
-              <span data-line="" aria-hidden="true" className="absolute inset-x-0 top-1/2 h-px origin-left" style={{ background: "var(--gold-gradient)" }} />
+              <span data-line="" aria-hidden="true" className="absolute inset-x-0 top-1/2 h-px origin-left" style={{ background: "var(--accent-gradient)" }} />
             </div>
-            <p data-part="" className="mt-8 font-display text-[44px] leading-none font-semibold tracking-[-0.02em] uppercase md:text-[88px]">
-              <GoldText>{site.marca}</GoldText>
+            <p data-part="" className="mt-8 font-display text-[44px] leading-none font-black tracking-[-0.03em] uppercase md:text-[88px]">
+              <AccentText>{site.marca}</AccentText>
             </p>
           </div>
         </div>

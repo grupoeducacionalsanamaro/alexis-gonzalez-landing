@@ -20,16 +20,16 @@ export function Ecosistema() {
             const inner = (
               <div className="relative z-10 flex h-full min-h-[180px] flex-col">
                 <div className="flex items-start justify-between gap-4">
-                  <span className="font-display text-[13px] font-medium text-paper/40 tabular-nums">0{i + 1}</span>
+                  <span className="font-display text-[13px] font-semibold text-paper/40 tabular-nums">0{i + 1}</span>
                   {it.href && (
                     <ArrowUpRight
                       strokeWidth={1.5}
                       aria-hidden="true"
-                      className="size-5 -translate-x-1 translate-y-1 text-gold-500 opacity-0 transition-all duration-300 ease-out-quart group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100"
+                      className="size-5 -translate-x-1 translate-y-1 text-accent-300 opacity-0 transition-all duration-300 ease-out-quart group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100"
                     />
                   )}
                 </div>
-                <h3 className="mt-auto font-display text-[21px] leading-snug font-medium text-paper md:text-[23px]">{it.titulo}</h3>
+                <h3 className="mt-auto font-display text-[21px] leading-snug font-extrabold tracking-[-0.015em] text-paper md:text-[23px]">{it.titulo}</h3>
                 <p className="t-small mt-2 text-[15px]!">{it.detalle}</p>
               </div>
             );

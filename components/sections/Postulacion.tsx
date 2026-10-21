@@ -51,11 +51,11 @@ export function Postulacion() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(50% 45% at 50% 45%, rgb(212 165 55 / 0.10), transparent 70%)" }}
+        style={{ background: "radial-gradient(50% 45% at 50% 45%, rgb(138 23 178 / 0.10), transparent 70%)" }}
       />
       <div className="container-x relative">
         <div data-reveal="up" className="card-light mx-auto max-w-[880px] p-7 sm:p-10 md:p-14">
-          <h2 id="post-title" className="font-display text-[28px] leading-[1.1] font-medium tracking-[-0.01em] md:text-[40px]">
+          <h2 id="post-title" className="font-display text-[28px] leading-[1.1] font-extrabold tracking-[-0.025em] md:text-[40px]">
             {p.titulo}
           </h2>
           <div className="mt-8 grid gap-8 md:grid-cols-[1fr_1fr] md:gap-10">
@@ -64,7 +64,7 @@ export function Postulacion() {
               <ol className="mt-4 flex flex-col gap-3">
                 {p.evaluacion.map((e, i) => (
                   <li key={e} className="flex items-baseline gap-4 border-b border-ink-950/10 pb-3 text-[16px] md:text-[17px]">
-                    <span className="font-display text-[13px] font-semibold text-gold-700 tabular-nums">0{i + 1}</span>
+                    <span className="font-display text-[13px] font-bold text-accent-700 tabular-nums">0{i + 1}</span>
                     {e}
                   </li>
                 ))}
@@ -74,7 +74,7 @@ export function Postulacion() {
               <p className="text-[17px] leading-relaxed text-ink-950/80 md:text-[19px]">{p.siCumples}</p>
               {p.cuposTexto && (
                 <p className="inline-flex w-fit items-center gap-2 rounded-[2px] bg-ink-950 px-4 py-2 font-display text-[13px] font-medium text-paper">
-                  <span aria-hidden="true" className="size-1.5 rounded-full bg-gold-500" />
+                  <span aria-hidden="true" className="size-1.5 rounded-full bg-accent-500" />
                   {p.cuposTexto}
                 </p>
               )}

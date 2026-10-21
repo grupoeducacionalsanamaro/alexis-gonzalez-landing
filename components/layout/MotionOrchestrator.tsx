@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { countUp, drawStroke, goldSweep, isReducedMotion, loadMotion, maskLines, queueMotion, revealUp, stagger } from "@/lib/animations";
+import { countUp, drawStroke, accentSweep, isReducedMotion, loadMotion, maskLines, queueMotion, revealUp, stagger } from "@/lib/animations";
 
 /** Elementos por tarea: cada lote debe quedar muy por debajo de 50ms en un mobile lento. */
 const BATCH = 4;
@@ -11,7 +11,7 @@ const BATCH = 4;
  *  data-reveal="up" | "lines"   · data-reveal-stagger (hijos)
  *  data-draw (SVG)              · data-grow (filete)
  *  data-count                   · data-stars
- *  .gold-text[data-sweep]       · data-parallax="8" (yPercent ±)
+ *  .accent-text[data-sweep]       · data-parallax="8" (yPercent ±)
  * Los elementos dentro de [data-own-motion] se excluyen (los anima su sección).
  * El trabajo se reparte en lotes (queueMotion) para no generar una tarea larga.
  */
@@ -75,7 +75,7 @@ export function MotionOrchestrator() {
         });
       });
 
-      q(".gold-text[data-sweep]").forEach((el) => jobs.push(() => goldSweep(gsap, el, { scrollTrigger: st(el, "top 85%") })));
+      q(".accent-text[data-sweep]").forEach((el) => jobs.push(() => accentSweep(gsap, el, { scrollTrigger: st(el, "top 85%") })));
 
       if (!reduced) {
         q("[data-parallax]").forEach((el) => {

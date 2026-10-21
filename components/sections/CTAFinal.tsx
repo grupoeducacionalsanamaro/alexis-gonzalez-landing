@@ -3,10 +3,10 @@
 import { useRef } from "react";
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
-import { GoldText } from "@/components/ui/Tag";
+import { AccentText } from "@/components/ui/Tag";
 import { Wireframe } from "@/components/ui/Wireframe";
 import { useMotion } from "@/lib/useMotion";
-import { goldSweep, revealUp, scrubOpacityWords } from "@/lib/animations";
+import { accentSweep, revealUp, scrubOpacityWords } from "@/lib/animations";
 
 export function CTAFinal() {
   const c = site.ctaFinal;
@@ -17,7 +17,7 @@ export function CTAFinal() {
     scope.querySelectorAll<HTMLElement>("[data-words]").forEach((p) => scrubOpacityWords(gsap, p, block));
     const cta = scope.querySelector<HTMLElement>("[data-cta]")!;
     revealUp(gsap, cta, { scrollTrigger: { trigger: cta, start: "top 90%", once: true } });
-    goldSweep(gsap, scope.querySelectorAll(".gold-text"), { scrollTrigger: { trigger: block, start: "center 55%", once: true } });
+    accentSweep(gsap, scope.querySelectorAll(".accent-text"), { scrollTrigger: { trigger: block, start: "center 55%", once: true } });
   });
 
   return (
@@ -42,7 +42,7 @@ export function CTAFinal() {
               {i === c.lineas2.length - 1 && (
                 <>
                   {" "}
-                  <GoldText sweep>{c.palabraFinal}</GoldText>
+                  <AccentText sweep>{c.palabraFinal}</AccentText>
                 </>
               )}
             </p>
@@ -50,8 +50,8 @@ export function CTAFinal() {
         </div>
         <div data-cta="" className="mt-16 flex justify-center md:mt-24">
           <div className="relative">
-            <span aria-hidden="true" className="breathe pointer-events-none absolute -inset-10 rounded-full" style={{ background: "radial-gradient(closest-side, rgb(212 165 55 / 0.55), transparent)" }} />
-            <Button variant="gold" size="lg" href="#postular" location="cta_final" cursor="postular">
+            <span aria-hidden="true" className="breathe pointer-events-none absolute -inset-10 rounded-full" style={{ background: "radial-gradient(closest-side, rgb(138 23 178 / 0.55), transparent)" }} />
+            <Button variant="accent" size="lg" href="#postular" location="cta_final" cursor="postular">
               {c.cta}
             </Button>
           </div>

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { track } from "@/lib/analytics";
 
-/** Filete dorado 2px ligado al progreso del scroll + evento scroll_depth. */
+/** Filete de acento 2px ligado al progreso del scroll + evento scroll_depth. */
 export function ScrollProgress() {
   const bar = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -35,7 +35,7 @@ export function ScrollProgress() {
   }, []);
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[2px]">
-      <div ref={bar} className="h-full origin-left" style={{ background: "var(--gold-gradient)", transform: "scaleX(0)" }} />
+      <div ref={bar} className="h-full origin-left" style={{ background: "var(--accent-gradient)", transform: "scaleX(0)" }} />
     </div>
   );
 }

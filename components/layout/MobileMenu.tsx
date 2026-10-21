@@ -51,7 +51,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                 e.preventDefault();
                 go(l.href);
               }}
-              className="block py-2 font-display text-[40px] leading-tight font-medium text-paper"
+              className="block py-2 font-display text-[40px] leading-tight font-extrabold tracking-[-0.025em] text-paper"
             >
               {l.label}
             </a>

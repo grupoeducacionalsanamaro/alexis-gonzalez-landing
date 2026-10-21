@@ -12,7 +12,7 @@ type Common = {
   hint?: ReactNode;
 };
 
-/** Campo editorial: línea inferior, label flotante, línea dorada al foco, error con shake. */
+/** Campo editorial: línea inferior, label flotante, línea de acento al foco, error con shake. */
 export const Field = forwardRef<HTMLInputElement, Common & InputHTMLAttributes<HTMLInputElement>>(function Field(
   { label, error, valid, dark, prefix, hint, id, className = "", ...rest },
   ref,
@@ -44,7 +44,7 @@ export const Field = forwardRef<HTMLInputElement, Common & InputHTMLAttributes<H
           <span className="field-line" style={{ bottom: 0 }} aria-hidden="true" />
         </div>
         {valid && !error && (
-          <Check aria-hidden="true" strokeWidth={1.5} className="absolute right-0 bottom-3 size-4 text-gold-500" />
+          <Check aria-hidden="true" strokeWidth={1.5} className="absolute right-0 bottom-3 size-4 text-accent-500" />
         )}
       </div>
       <FieldMessage id={`${fid}-err`} error={error} />
@@ -84,7 +84,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, Common & TextareaHTMLAtt
           <span className="field-line" aria-hidden="true" />
         </div>
         {valid && !error && (
-          <Check aria-hidden="true" strokeWidth={1.5} className="absolute right-0 bottom-3 size-4 text-gold-500" />
+          <Check aria-hidden="true" strokeWidth={1.5} className="absolute right-0 bottom-3 size-4 text-accent-500" />
         )}
       </div>
       <FieldMessage id={`${fid}-err`} error={error} />

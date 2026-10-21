@@ -50,7 +50,7 @@ export function Resultado({ result, nombre, email }: { result: R; nombre: string
     return (
       <div className="text-ink-950">
         <p className="t-eyebrow flex items-center gap-3 text-ink-950/70">
-          <span aria-hidden="true" className="h-px w-6 bg-gold-500" />
+          <span aria-hidden="true" className="h-px w-6 bg-accent-500" />
           {T.calificadoEyebrow}
         </p>
         <h3 className="t-h3 mt-4" tabIndex={-1} data-result-heading="">
@@ -89,7 +89,7 @@ export function Resultado({ result, nombre, email }: { result: R; nombre: string
   return (
     <div className="text-ink-950">
       <p className="t-eyebrow flex items-center gap-3 text-ink-950/70">
-        <span aria-hidden="true" className="h-px w-6 bg-gold-500" />
+        <span aria-hidden="true" className="h-px w-6 bg-accent-500" />
         {T.nutrirEyebrow}
       </p>
       <h3 className="t-h3 mt-4" tabIndex={-1} data-result-heading="">

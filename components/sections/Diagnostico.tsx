@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { site } from "@/content/site";
 import { Counter } from "@/components/ui/Counter";
-import { GoldText } from "@/components/ui/Tag";
+import { AccentText } from "@/components/ui/Tag";
 import { SectionDivider } from "@/components/ui/SectionDivider";
 import { useMotion } from "@/lib/useMotion";
 
@@ -61,26 +61,26 @@ export function Diagnostico() {
           <div className="mx-auto max-w-[720px]">
             <h2 id="diag-title" data-reveal="lines" className="t-h2 text-paper">
               {d.tituloPre}{" "}
-              <span className="gold-text" data-sweep="">
+              <span className="accent-text" data-sweep="">
                 <Counter to={d.tituloNumero} />
               </span>{" "}
               {d.tituloPost}
             </h2>
-            <p data-reveal="up" className="mt-5 font-display text-[20px] font-medium text-paper/70 md:text-[24px]">
+            <p data-reveal="up" className="t-lead mt-5 text-[20px] text-paper/70 md:text-[24px]">
               {d.bajada}
             </p>
 
             <ul ref={listRef} className="mt-12 flex flex-col gap-4 md:mt-14 md:gap-5" data-reveal-stagger="0.08">
               {d.sintomas.map((s) => (
-                <li key={s} className="flex items-center gap-4 font-display text-[26px] leading-tight font-medium text-mist md:text-[32px]">
-                  <span data-dash="" aria-hidden="true" className="h-px w-6 shrink-0 origin-left scale-x-0 bg-gold-500" />
+                <li key={s} className="flex items-center gap-4 t-lead text-[26px] leading-tight text-mist md:text-[32px]">
+                  <span data-dash="" aria-hidden="true" className="h-px w-6 shrink-0 origin-left scale-x-0 bg-accent-500" />
                   <span>{s}</span>
                 </li>
               ))}
             </ul>
 
-            <p data-reveal="up" className="mt-14 font-display text-[24px] font-medium text-paper md:mt-16 md:text-[34px]">
-              {d.rematePre} <GoldText sweep>{d.remateGold}</GoldText>
+            <p data-reveal="up" className="mt-14 font-display text-[24px] leading-tight font-extrabold tracking-[-0.02em] text-paper md:mt-16 md:text-[34px]">
+              {d.rematePre} <AccentText sweep>{d.remateAccent}</AccentText>
             </p>
             <SectionDivider className="mx-0! mt-8" />
           </div>

@@ -309,7 +309,7 @@ export function ApplyForm({ location = "postulacion" }: { location?: string }) {
           <div
             className="h-full origin-left transition-transform duration-500 ease-in-out"
             style={{
-              background: "var(--gold-gradient)",
+              background: "var(--accent-gradient)",
               transform: `scaleX(${pct / 100})`,
             }}
           />
