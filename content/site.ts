@@ -140,7 +140,7 @@ export const site = {
     paises: ["Chile", "Argentina", "Brasil", "España", "Estados Unidos", "Ecuador"],
     documental: {
       eyebrow: "Documental",
-      titulo: "La historia detrás del ecosistema",
+      titulo: "La historia detrás del empresario",
       youtubeId: "_wNDXhQ4a84",
     },
   },
