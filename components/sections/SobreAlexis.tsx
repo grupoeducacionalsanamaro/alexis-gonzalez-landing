@@ -1,76 +1,56 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { site } from "@/content/site";
 import { Eyebrow, AccentText } from "@/components/ui/Tag";
 import { ImageSlot } from "@/components/ui/ImageSlot";
 import { Marquee } from "@/components/ui/Marquee";
 import { Documental } from "./Documental";
 
-function Carrusel() {
+/** Programas y experiencias: collage (una foto grande + cuatro). */
+function Programas() {
   const s = site.sobre;
-  const track = useRef<HTMLDivElement>(null);
-  const [edge, setEdge] = useState({ start: true, end: false });
-
-  const onScroll = () => {
-    const el = track.current;
-    if (!el) return;
-    setEdge({ start: el.scrollLeft < 8, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 8 });
-  };
-  const move = (dir: 1 | -1) => {
-    const el = track.current;
-    const card = el?.firstElementChild as HTMLElement | null;
-    if (!el || !card) return;
-    el.scrollBy({ left: dir * (card.offsetWidth + 16), behavior: "smooth" });
-  };
-
+  const [primero, ...resto] = s.carrusel;
+  const caption = (titulo: string, lugar: string, big = false) => (
+    <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 rounded-b-2xl bg-[linear-gradient(to_top,rgb(10_10_11/0.9),transparent)] p-4 pt-14 lg:p-5 lg:pt-16">
+      <span className={`block font-display leading-tight font-extrabold tracking-[-0.015em] text-paper ${big ? "text-[20px] lg:text-[24px]" : "text-[15px] lg:text-[17px]"}`}>{titulo}</span>
+      <span className="mt-1 block text-[12px] text-paper/70 lg:text-[13px]">{lugar}</span>
+    </figcaption>
+  );
   return (
-    <div className="mt-24 lg:mt-32">
-      <div className="container-x flex items-end justify-between gap-6">
-        <h3 data-reveal="up" className="t-h3 text-paper">
-          {s.carruselTitulo}
-        </h3>
-        <div className="hidden gap-2 sm:flex">
-          {([-1, 1] as const).map((d) => (
-            <button
-              key={d}
-              type="button"
-              onClick={() => move(d)}
-              disabled={d === -1 ? edge.start : edge.end}
-              aria-label={d === -1 ? "Ver anteriores" : "Ver siguientes"}
-              className="grid size-12 place-items-center rounded-full border border-ink-700 text-paper transition-colors duration-200 hover:border-accent-300 hover:bg-accent-500 disabled:pointer-events-none disabled:opacity-30"
-            >
-              {d === -1 ? <ChevronLeft strokeWidth={1.5} className="size-5" /> : <ChevronRight strokeWidth={1.5} className="size-5" />}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div
-        ref={track}
-        onScroll={onScroll}
-        className="no-scrollbar mt-8 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 lg:scroll-px-16 lg:px-16"
-        aria-label={s.carruselTitulo}
-        role="region"
-        tabIndex={0}
-      >
-        {s.carrusel.map((c) => (
-          <figure key={c.titulo} className="group relative w-[78vw] shrink-0 snap-start sm:w-[44vw] lg:w-[30vw] lg:max-w-[420px]">
+    <div className="container-x mt-24 lg:mt-32">
+      <h3 data-reveal="up" className="t-h3 text-paper">
+        {s.carruselTitulo}
+      </h3>
+      <ul className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:grid-rows-2 lg:gap-4" data-reveal-stagger="0.06">
+        <li className="col-span-2 lg:row-span-2">
+          <figure className="group relative h-full">
             <ImageSlot
-              src={c.src}
-              alt={`Alexis González en ${c.titulo}`}
-              label={c.titulo}
-              sizes="(min-width: 1024px) 30vw, 78vw"
-              className="aspect-[4/5] rounded-2xl"
-              imgClassName="transition-transform duration-700 ease-out-expo group-hover:scale-[1.04]"
+              src={primero.src}
+              alt={`Alexis González en ${primero.titulo}`}
+              label={primero.titulo}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="aspect-[4/3] h-full rounded-2xl lg:aspect-auto"
+              imgClassName="transition-transform duration-700 ease-out-expo group-hover:scale-[1.03]"
             />
-            <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 rounded-b-2xl bg-[linear-gradient(to_top,rgb(10_10_11/0.9),transparent)] p-5 pt-16">
-              <span className="block font-display text-[19px] leading-tight font-extrabold tracking-[-0.015em] text-paper">{c.titulo}</span>
-              <span className="mt-1 block text-[13px] text-paper/70">{c.lugar}</span>
-            </figcaption>
+            {caption(primero.titulo, primero.lugar, true)}
           </figure>
+        </li>
+        {resto.map((c) => (
+          <li key={c.titulo}>
+            <figure className="group relative">
+              <ImageSlot
+                src={c.src}
+                alt={`Alexis González en ${c.titulo}`}
+                label={c.titulo}
+                sizes="(min-width: 1024px) 25vw, 50vw"
+                className="aspect-square rounded-2xl"
+                imgClassName="transition-transform duration-700 ease-out-expo group-hover:scale-[1.04]"
+              />
+              {caption(c.titulo, c.lugar)}
+            </figure>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
@@ -134,6 +114,9 @@ export function SobreAlexis() {
         </div>
       </div>
 
+      {/* Documental: parte de “quién es Alexis” */}
+      <Documental />
+
       {/* Filosofía */}
       <div className="container-x mt-24 lg:mt-36">
         <div className="mx-auto max-w-[1040px] border-t border-ink-700 pt-14 lg:pt-20">
@@ -155,9 +138,7 @@ export function SobreAlexis() {
 
       <Marquee items={s.paises} className="mt-20 border-y border-ink-700 py-6 lg:mt-28" />
 
-      <Carrusel />
-
-      <Documental />
+      <Programas />
     </section>
   );
 }

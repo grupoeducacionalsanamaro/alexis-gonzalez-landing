@@ -5,7 +5,7 @@
 Referencia visual: joeljota.com (distribución y tarjetas, sin copiarla).
 
 1. **Hero** — foto a pantalla completa (`alexis-hero-v2.webp`), Alexis a la izquierda y el texto a su derecha: “Es mejor ser **próspero** que *exitoso*” (próspero en púrpura sólido, exitoso en contorno) + “Conoce más ↓”.
-2. **Sobre Alexis** (`SobreAlexis.tsx`) — collage de fotos, bio, áreas de formación, la frase como cita grande, cinta de países, carrusel de programas y **documental** de YouTube (se carga y reproduce silenciado al llegar a la sección; los navegadores no permiten autoplay con sonido).
+2. **Sobre Alexis** (`SobreAlexis.tsx`) — collage de fotos, bio, áreas de formación, la frase como cita grande, cinta de países, **documental** de YouTube justo después de la bio (se carga y reproduce silenciado al llegar; los navegadores no permiten autoplay con sonido), y collage “Programas y experiencias a los que he asistido”.
 3. **Ecosistema** (`Ecosistema.tsx`, sección clara) — logos por área. Mientras no haya logo se muestra el nombre con “Logo pendiente”; subir los archivos a `public/logos/` y completar `logo` en `content/site.ts`.
 4. **Eventos y contenido** (`Eventos.tsx`) — mosaico de fotos de eventos + bloque púrpura de podcasts (CEOS, Círculo Sessions, botón a Spotify). Le sigue la sección del **ebook** con su formulario.
 5. **Servicios** (`Servicios.tsx`, sección clara) — Conferencia, Workshop y Mentoría estratégica (→ Google Form) + “Descargar servicios” (Google Doc). Conferencia/Workshop abren WhatsApp si existe `NEXT_PUBLIC_WHATSAPP_NUMBER`; si no, el documento de servicios.

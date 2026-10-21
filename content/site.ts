@@ -129,7 +129,7 @@ export const site = {
       alt: "Alexis González de traje claro, sentado sobre un sillón revisando unos documentos",
     },
     // TODO(cliente): fotos de cada programa
-    carruselTitulo: "Programas y experiencias",
+    carruselTitulo: "Programas y experiencias a los que he asistido",
     carrusel: [
       { titulo: "Acelerador Empresarial", lugar: "Brasil", src: "/img/alexis-retrato.webp" as string | null },
       { titulo: "Harvard Business School", lugar: "Boston, Estados Unidos", src: "/img/galeria-hbs.webp" as string | null },
