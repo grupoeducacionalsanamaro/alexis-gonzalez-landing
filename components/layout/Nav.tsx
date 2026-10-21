@@ -103,6 +103,7 @@ export function Nav() {
                 <a
                   href={l.href}
                   onClick={(e) => {
+                    if (!l.href.startsWith("#")) return;
                     e.preventDefault();
                     scrollToHash(l.href);
                   }}
@@ -127,7 +128,7 @@ export function Nav() {
           </ul>
 
           <div className="flex items-center gap-3">
-            <Button variant="ghost" href="#postular" location="nav" cursor="postular" className="hidden sm:inline-flex">
+            <Button variant="ghost" href="/mentoria" location="nav" cursor="postular" className="hidden sm:inline-flex">
               {site.nav.cta}
             </Button>
             <button

@@ -33,8 +33,8 @@ export function Servicios() {
               <li key={it.tipo}>
                 <a
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="group relative block overflow-hidden rounded-3xl bg-ink-950 text-paper"
                 >
                   <ImageSlot

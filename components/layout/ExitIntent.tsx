@@ -86,7 +86,7 @@ export function ExitIntent() {
                   {site.ebook.exitoDescargar}
                 </Button>
               )}
-              <Button variant="text" href="#postular" location="exit_intent_postular" onClick={close}>
+              <Button variant="text" href="/mentoria" location="exit_intent_postular" onClick={close}>
                 {site.ebook.exitoPostular}
               </Button>
             </div>

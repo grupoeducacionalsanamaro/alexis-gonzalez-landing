@@ -5,23 +5,13 @@ import { StickyCTA } from "@/components/layout/StickyCTA";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { ExitIntent } from "@/components/layout/ExitIntent";
 import { Hero } from "@/components/sections/Hero";
-import { Diagnostico } from "@/components/sections/Diagnostico";
-import { Dimensiones } from "@/components/sections/Dimensiones";
 import { SobreAlexis } from "@/components/sections/SobreAlexis";
 import { Eventos } from "@/components/sections/Eventos";
 import { Servicios } from "@/components/sections/Servicios";
-import { Metodo } from "@/components/sections/Metodo";
-import { ParaQuien } from "@/components/sections/ParaQuien";
-import { Mentoria } from "@/components/sections/Mentoria";
-import { Testimonios } from "@/components/sections/Testimonios";
-import { Postulacion } from "@/components/sections/Postulacion";
 import { Ebook } from "@/components/sections/Ebook";
 import { Ecosistema } from "@/components/sections/Ecosistema";
-import { FAQ, faqRespondidas } from "@/components/sections/FAQ";
-import { CTAFinal } from "@/components/sections/CTAFinal";
 
 function JsonLd() {
-  const faq = faqRespondidas();
   const graph: Record<string, unknown>[] = [
     {
       "@type": "Person",
@@ -54,12 +44,6 @@ function JsonLd() {
       description: site.ebook.bajada,
     },
   ];
-  if (faq.length) {
-    graph.push({
-      "@type": "FAQPage",
-      mainEntity: faq.map((f) => ({ "@type": "Question", name: f.pregunta, acceptedAnswer: { "@type": "Answer", text: f.respuesta } })),
-    });
-  }
   return (
     <script
       type="application/ld+json"
@@ -80,16 +64,6 @@ export default function Home() {
         <Eventos />
         <Ebook />
         <Servicios />
-        {/* Mentoría Método PROSPERA® */}
-        <Diagnostico />
-        <Dimensiones />
-        <Metodo />
-        <ParaQuien />
-        <Mentoria />
-        <Testimonios />
-        <Postulacion />
-        <FAQ />
-        <CTAFinal />
       </main>
       <Footer />
       <StickyCTA />

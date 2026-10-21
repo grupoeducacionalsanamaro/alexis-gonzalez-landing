@@ -39,7 +39,7 @@ export const site = {
       { label: "Ecosistema", href: "#ecosistema" },
       { label: "Eventos", href: "#eventos" },
       { label: "Servicios", href: "#servicios" },
-      { label: "Mentoría", href: "#metodo" },
+      { label: "Mentoría", href: "/mentoria" },
     ],
     cta: "Postular",
     ctaMobile: "Postular a la mentoría",
@@ -181,6 +181,16 @@ export const site = {
 
   testimonios: [] as Testimonio[], // TODO(cliente): 3–5 testimonios reales. Prohibido inventar.
 
+  // Página /mentoria: “¿Para quién es?” + formulario de postulación
+  mentoriaPagina: {
+    eyebrow: `Mentoría 1:1 · Método ${marca}`,
+    titulo: "Mentoría estratégica",
+    bajada:
+      "Dirección estratégica para profesionales y empresarios de la salud que facturan sobre 100 millones al año.",
+    volver: "Volver al inicio",
+    seoTitulo: `Mentoría estratégica · Método ${marca} · Alexis González`,
+  },
+
   postulacion: {
     titulo: "Para postular debes completar el formulario de aplicación.",
     evaluacionTitulo: "La evaluación considera:",
@@ -319,7 +329,7 @@ export const site = {
         detalle: "Dirección estratégica 1:1 para ordenar vida, carrera y negocio.",
         src: "/img/servicio-mentoria.webp" as string | null,
         cta: "Postula a la mentoría",
-        href: "https://forms.gle/RMTngRBZ8TRS5cj46" as string | null,
+        href: "/mentoria" as string | null, // página propia con el formulario
       },
     ],
     brochureCta: "Descargar servicios",

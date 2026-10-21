@@ -9,7 +9,7 @@ Referencia visual: joeljota.com (distribución y tarjetas, sin copiarla).
 3. **Ecosistema** (`Ecosistema.tsx`, sección clara) — logos por área. Logos en `public/logos/` (recortados de su margen transparente y exportados en WebP sin pérdida); si una marca no tiene `logo`, la tarjeta muestra el nombre con “Logo pendiente”.
 4. **Eventos y contenido** (`Eventos.tsx`) — mosaico de fotos de eventos + bloque púrpura de podcasts (CEOS, Círculo Sessions, botón a Spotify). Le sigue la sección del **ebook** con su formulario.
 5. **Servicios** (`Servicios.tsx`, sección clara) — Conferencia, Workshop y Mentoría estratégica (→ Google Form) + “Descargar servicios” (Google Doc). Conferencia/Workshop abren WhatsApp si existe `NEXT_PUBLIC_WHATSAPP_NUMBER`; si no, el documento de servicios.
-6. **Mentoría Método PROSPERA®** — se mantienen Diagnóstico, 3 dimensiones, Método, Para quién, La mentoría, Postulación (formulario propio), FAQ y cierre.
+6. **Mentoría** (`/mentoria`, `app/mentoria/page.tsx`) — página propia con presentación, “¿Para quién es esta mentoría?”, testimonios (ocultos por flag) y el formulario de postulación. Se llega desde la tarjeta “Mentoría estratégica”, el menú y los CTA “Postular”. Desde 2026-10-21 se eliminaron de la home Diagnóstico, 3 dimensiones, Método, La mentoría, FAQ y el cierre.
 7. **Footer** — “Sígueme” con LinkedIn, Instagram y Spotify.
 
 Las fotos pendientes usan `<ImageSlot>`: si `src` es `null` muestra un espacio rayado del mismo tamaño con “Foto pendiente”. Para cargar una foto basta con poner su ruta en `content/site.ts`.

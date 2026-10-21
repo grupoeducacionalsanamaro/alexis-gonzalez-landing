@@ -48,6 +48,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
             <a
               href={l.href}
               onClick={(e) => {
+                if (!l.href.startsWith("#")) return onClose();
                 e.preventDefault();
                 go(l.href);
               }}
@@ -61,13 +62,10 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
       <div className="mt-auto">
         <Button
           variant="primary"
-          href="#postular"
+          href="/mentoria"
           location="mobile_menu"
           className="w-full"
-          onClick={(e) => {
-            e.preventDefault();
-            go("#postular");
-          }}
+          onClick={() => onClose()}
         >
           {site.nav.ctaMobile}
         </Button>

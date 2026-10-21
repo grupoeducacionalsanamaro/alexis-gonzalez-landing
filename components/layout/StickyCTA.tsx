@@ -36,7 +36,7 @@ export function StickyCTA() {
       }`}
       inert={!show}
     >
-      <Button variant="primary" href="#postular" location="sticky_mobile" className="w-full" magnetic={false}>
+      <Button variant="primary" href="/mentoria" location="sticky_mobile" className="w-full" magnetic={false}>
         {site.nav.ctaMobile}
       </Button>
     </div>

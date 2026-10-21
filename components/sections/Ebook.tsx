@@ -134,7 +134,7 @@ export function Ebook() {
                           {e.exitoDescargar}
                         </Button>
                       )}
-                      <Button variant="text" href="#postular" location="ebook_to_apply" cursor="postular">
+                      <Button variant="text" href="/mentoria" location="ebook_to_apply" cursor="postular">
                         {e.exitoPostular}
                       </Button>
                     </div>
