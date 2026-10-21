@@ -23,11 +23,11 @@ export function Ecosistema() {
               <div data-reveal="up" className="lg:col-span-3">
                 <h3 className="font-display text-[20px] leading-snug font-extrabold tracking-[-0.015em] text-ink-950">{g.nombre}</h3>
                 {g.destacado && (
-                  <div className="mt-4 flex flex-col items-start gap-3">
+                  <div className="mt-4 flex w-fit flex-col items-center gap-3">
                     {g.destacadoLogo && (
                       <Image src={g.destacadoLogo} alt="" width={64} height={64} unoptimized className="size-16 shrink-0 object-contain" />
                     )}
-                    <p className="inline-flex rounded-full bg-accent-500 px-3.5 py-1.5 text-[13px] font-semibold whitespace-nowrap text-paper">{g.destacado}</p>
+                    <p className="inline-flex rounded-full bg-[#686A6C] px-3.5 py-1.5 text-[13px] font-semibold whitespace-nowrap text-paper">{g.destacado}</p>
                   </div>
                 )}
               </div>
