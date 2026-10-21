@@ -114,27 +114,28 @@ export function SobreAlexis() {
         </div>
       </div>
 
-      {/* Documental: parte de “quién es Alexis” */}
-      <Documental />
-
-      {/* Filosofía */}
-      <div className="container-x mt-24 lg:mt-36">
-        <div className="mx-auto max-w-[1040px] border-t border-ink-700 pt-14 lg:pt-20">
+      {/* Filosofía: texto centrado, la frase destacada sin dominar la sección */}
+      <div className="container-x mt-20 lg:mt-28">
+        <div className="mx-auto max-w-[760px] text-center">
           <p data-reveal="up" className="t-small text-[15px]!">
             {s.filosofiaIntro}
           </p>
-          <blockquote data-reveal="lines" className="mt-6 font-display text-[clamp(40px,6.4vw,96px)] leading-[0.95] font-black tracking-[-0.045em] text-paper">
+          <blockquote data-reveal="up" className="mt-5 font-display text-[clamp(28px,3.4vw,46px)] leading-[1.08] font-black tracking-[-0.02em] text-paper">
             {pre}
             <AccentText sweep>próspero</AccentText>
-            {medio}
-            <span className="text-outline">exitoso</span>
+            {/* “que exitoso.” siempre juntos en la misma línea */}
+            {medio.replace(/ $/, " ")}
+            <span className="text-outline tracking-[0.01em]">exitoso</span>
             {final}
           </blockquote>
-          <p data-reveal="up" className="t-lead mt-10 max-w-[680px] text-[18px] text-paper/80 lg:text-[21px]">
+          <p data-reveal="up" className="t-lead mx-auto mt-6 max-w-[620px] text-[16px] text-paper/75 lg:text-[18px]">
             {s.filosofiaCierre}
           </p>
         </div>
       </div>
+
+      {/* Documental: parte de “quién es Alexis” */}
+      <Documental />
 
       <Marquee items={s.paises} className="mt-20 border-y border-ink-700 py-6 lg:mt-28" />
 
