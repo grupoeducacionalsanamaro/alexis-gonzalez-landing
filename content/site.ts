@@ -288,7 +288,9 @@ export const site = {
         detalle: "Negocios, salud y visión de largo plazo.",
         logo: "/logos/podcast-circulo-sessions.webp",
         logoFondo: "oscuro" as "claro" | "oscuro", // logo dorado
-        links: [] as { plataforma: "spotify" | "youtube"; label: string; href: string }[], // TODO(cliente): links de Spotify/YouTube
+        links: [
+          { plataforma: "youtube" as const, label: "YouTube", href: "https://www.youtube.com/playlist?list=PLchD3bBwLoDG0QGicj1XTUEyMWuciZOGL" },
+        ] as { plataforma: "spotify" | "youtube"; label: string; href: string }[],
       },
     ],
     spotify: "https://open.spotify.com/show/2m65GqevB03AKwCJ4jc27P",

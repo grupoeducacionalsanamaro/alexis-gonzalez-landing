@@ -55,17 +55,17 @@ export function Eventos() {
           <div aria-hidden="true" className="pointer-events-none absolute -top-8 -right-8 size-[260px] rounded-full border border-paper/10" />
 
           {/* Foto: arriba en mobile, anclada abajo a la derecha en desktop */}
-          <div className="relative h-[280px] sm:h-[340px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[44%]">
+          <div className="relative h-[340px] sm:h-[420px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[54%]">
             <Image
               src={c.podcastsFoto}
               alt="Alexis González hablando frente al micrófono en una grabación del podcast"
               fill
-              sizes="(min-width: 1024px) 44vw, 100vw"
+              sizes="(min-width: 1024px) 54vw, 100vw"
               className="object-contain object-bottom lg:object-right-bottom"
             />
           </div>
 
-          <div className="relative p-6 sm:p-10 lg:w-[58%] lg:p-14">
+          <div className="relative p-6 sm:p-10 lg:w-[56%] lg:p-14">
             <p className="t-eyebrow flex items-center gap-3 text-paper/80">
               <span aria-hidden="true" className="h-px w-6 bg-paper/70" />
               {c.podcastsEyebrow}
@@ -85,7 +85,7 @@ export function Eventos() {
                     <span className="font-display text-[18px] leading-tight font-extrabold tracking-[-0.015em]">{p.nombre}</span>
                     <span className="mt-1.5 text-[14px] leading-snug text-paper/80">{p.detalle}</span>
                     {p.links.length > 0 && (
-                      <div className="mt-5 grid grid-cols-2 gap-2">
+                      <div className={`mt-5 grid gap-2 ${p.links.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
                         {p.links.map((l) => (
                           <a
                             key={l.plataforma}
