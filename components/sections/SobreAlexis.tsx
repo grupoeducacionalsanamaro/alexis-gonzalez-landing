@@ -134,12 +134,13 @@ export function SobreAlexis() {
         </div>
       </div>
 
-      {/* Documental: parte de “quién es Alexis” */}
+      {/* Programas y experiencias (collage), luego el documental */}
+      <Programas />
+
       <Documental />
 
       <Marquee items={s.paises} className="mt-20 border-y border-ink-700 py-6 lg:mt-28" />
 
-      <Programas />
     </section>
   );
 }
