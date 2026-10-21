@@ -20,7 +20,7 @@ export function Ecosistema() {
         <div className="mt-14 flex flex-col gap-14 lg:mt-20 lg:gap-16">
           {e.grupos.map((g) => (
             <div key={g.nombre} className="grid gap-6 border-t border-ink-950/10 pt-8 lg:grid-cols-12 lg:items-center lg:gap-8">
-              <div data-reveal="up" className="lg:col-span-3">
+              <div data-reveal="up" className={`lg:col-span-3 ${g.destacado ? "flex w-fit flex-col items-center text-center" : ""}`}>
                 <h3 className="font-display text-[20px] leading-snug font-extrabold tracking-[-0.015em] text-ink-950">{g.nombre}</h3>
                 {g.destacado && (
                   <div className="mt-4 flex w-fit flex-col items-center gap-3">
