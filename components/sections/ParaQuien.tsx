@@ -21,8 +21,8 @@ function CrossSvg() {
 export function ParaQuien() {
   const p = site.paraQuien;
   return (
-    <section id="para-quien" aria-labelledby="pq-title" className="relative fade-both-900 section-y">
-      <div className="container-x grid gap-16 lg:grid-cols-12 lg:gap-8">
+    <section id="para-quien" aria-labelledby="pq-title" className="relative fade-both-900 py-14 lg:py-20">
+      <div className="container-x grid gap-10 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-7">
           <div data-reveal="up">
             <Tag>{p.tag}</Tag>
@@ -30,28 +30,28 @@ export function ParaQuien() {
           <h2 id="pq-title" className="sr-only">
             {p.tag}
           </h2>
-          <ul className="mt-10 flex flex-col gap-6" data-reveal-stagger="0.1">
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2" data-reveal-stagger="0.06">
             {p.si.map((s) => (
-              <li key={s} className="flex gap-4 t-lead text-[20px] leading-snug text-paper md:text-[26px]">
+              <li key={s} className="flex gap-3 rounded-xl p-4 ring-1 ring-ink-700 t-lead text-[15px] leading-snug text-paper lg:text-[16px]">
                 <CheckSvg />
                 <span>{s}</span>
               </li>
             ))}
           </ul>
-          <div data-reveal="up" className="mt-10">
+          <div data-reveal="up" className="mt-5">
             <Button variant="text" href="#postular" location="para_quien" cursor="postular">
               {p.ctaTexto}
             </Button>
           </div>
         </div>
 
-        <div className="lg:col-span-5 lg:border-l lg:border-ink-700 lg:pl-12">
+        <div className="lg:col-span-5 lg:border-l lg:border-ink-700 lg:pl-10">
           <p data-reveal="up" className="t-eyebrow text-paper/70">
             {p.noTitulo}
           </p>
-          <ul className="mt-8 flex flex-col gap-5 opacity-70" data-reveal-stagger="0.1">
+          <ul className="mt-5 flex flex-col gap-3.5 opacity-70" data-reveal-stagger="0.06">
             {p.no.map((s) => (
-              <li key={s} className="strike-hover flex gap-4 text-[18px] leading-snug text-paper italic md:text-[20px]">
+              <li key={s} className="strike-hover flex gap-3 text-[15px] leading-snug text-paper italic lg:text-[16px]">
                 <CrossSvg />
                 <span className="relative">
                   {s}

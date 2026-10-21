@@ -47,7 +47,7 @@ export function Postulacion() {
   }, [isDesktop, overlay]);
 
   return (
-    <section id="postular" aria-labelledby="post-title" className="relative overflow-hidden bg-ink-950 section-y">
+    <section id="postular" aria-labelledby="post-title" className="relative overflow-hidden bg-ink-950 py-12 lg:py-16">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
