@@ -267,14 +267,30 @@ export const site = {
       { titulo: "Workshop Establecimiento de metas", src: "/img/evento-workshop-metas.webp" as string | null, alt: "Alexis González dictando el workshop de establecimiento de metas en una sala" },
     ],
     podcastsEyebrow: "Podcasts",
-    podcastsTitulo: "CEOS y Círculo Sessions",
+    podcastsTitulo: "CEOs y El Círculo Sessions",
     podcastsBajada: "Conversaciones con empresarios y líderes sobre negocios, crecimiento y calidad de vida.",
+    podcastsFoto: "/img/podcast-alexis.webp",
     podcasts: [
-      { nombre: "CEOS", detalle: "Conversaciones con líderes y empresarios." },
-      { nombre: "Círculo Sessions", detalle: "Negocios, salud y visión de largo plazo." },
+      {
+        nombre: "CEOs Podcast",
+        detalle: "Conversaciones con líderes y empresarios.",
+        logo: "/logos/podcast-ceos.webp",
+        logoFondo: "claro" as "claro" | "oscuro", // el logo es púrpura con texto negro
+        links: [
+          { plataforma: "spotify" as const, label: "Spotify", href: "https://open.spotify.com/show/2m65GqevB03AKwCJ4jc27P" },
+          // TODO(cliente): el link de YouTube llegó cortado (los IDs de lista suelen tener 34 caracteres); confirmar
+          { plataforma: "youtube" as const, label: "YouTube", href: "https://www.youtube.com/playlist?list=PLTMVo0qOQ-WM" },
+        ],
+      },
+      {
+        nombre: "El Círculo Sessions",
+        detalle: "Negocios, salud y visión de largo plazo.",
+        logo: "/logos/podcast-circulo-sessions.webp",
+        logoFondo: "oscuro" as "claro" | "oscuro", // logo dorado
+        links: [] as { plataforma: "spotify" | "youtube"; label: string; href: string }[], // TODO(cliente): links de Spotify/YouTube
+      },
     ],
     spotify: "https://open.spotify.com/show/2m65GqevB03AKwCJ4jc27P",
-    spotifyCta: "Escuchar en Spotify",
   },
 
   servicios: {
