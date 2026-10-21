@@ -85,7 +85,7 @@ export function Resultado({ result, nombre, email }: { result: R; nombre: string
     );
   }
 
-  const podcasts = site.ecosistema.items.filter((i) => i.titulo.toLowerCase().includes("podcast") && i.href);
+  const podcasts = [{ titulo: site.contenido.podcastsTitulo, href: site.contenido.spotify }];
   return (
     <div className="text-ink-950">
       <p className="t-eyebrow flex items-center gap-3 text-ink-950/70">
@@ -107,8 +107,8 @@ export function Resultado({ result, nombre, email }: { result: R; nombre: string
           </Button>
         )}
         {podcasts.map((p) => (
-          <a key={p.titulo} href={p.href!} target="_blank" rel="noopener noreferrer" className="t-btn underline-offset-8 hover:underline">
-            {T.nutrirPodcast}: {p.titulo.replace(/^Podcast\s*/i, "")} →
+          <a key={p.titulo} href={p.href} target="_blank" rel="noopener noreferrer" className="t-btn underline-offset-8 hover:underline">
+            {T.nutrirPodcast}: {p.titulo} →
           </a>
         ))}
       </div>

@@ -112,8 +112,8 @@ export function splitLines(el: HTMLElement): HTMLElement[] {
   const wrapNode = (node: Node, parentClone: (w: HTMLElement) => HTMLElement) => {
     node.childNodes.forEach((child) => {
       if (child.nodeType === Node.TEXT_NODE) {
-        (child.textContent ?? "").split(/(\s+)/).forEach((part) => {
-          if (!part.trim()) return;
+        (child.textContent ?? "").split(/([ \t\n\r]+)/).forEach((part) => {
+          if (!part.replace(/[ \t\n\r]/g, "")) return;
           const w = document.createElement("span");
           w.style.display = "inline-block";
           w.textContent = part;
@@ -252,9 +252,9 @@ export function splitWords(el: HTMLElement): HTMLElement[] {
     Array.from(node.childNodes).forEach((child) => {
       if (child.nodeType === Node.TEXT_NODE) {
         const frag = document.createDocumentFragment();
-        (child.textContent ?? "").split(/(\s+)/).forEach((part) => {
+        (child.textContent ?? "").split(/([ \t\n\r]+)/).forEach((part) => {
           if (!part) return;
-          if (!part.trim()) {
+          if (!part.replace(/[ \t\n\r]/g, "")) {
             frag.appendChild(document.createTextNode(part));
             return;
           }

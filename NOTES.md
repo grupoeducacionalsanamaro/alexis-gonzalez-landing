@@ -1,5 +1,19 @@
 # NOTES — decisiones y pendientes
 
+## Estructura de la página (desde 2026-10-20)
+
+Referencia visual: joeljota.com (distribución y tarjetas, sin copiarla).
+
+1. **Hero** — foto a pantalla completa (`alexis-hero-v2.webp`), Alexis a la izquierda y el texto a su derecha: “Es mejor ser **próspero** que *exitoso*” (próspero en púrpura sólido, exitoso en contorno) + “Conoce más ↓”.
+2. **Sobre Alexis** (`SobreAlexis.tsx`) — collage de fotos, bio, áreas de formación, la frase como cita grande, cinta de países, carrusel de programas y **documental** de YouTube (se carga y reproduce silenciado al llegar a la sección; los navegadores no permiten autoplay con sonido).
+3. **Ecosistema** (`Ecosistema.tsx`, sección clara) — logos por área. Mientras no haya logo se muestra el nombre con “Logo pendiente”; subir los archivos a `public/logos/` y completar `logo` en `content/site.ts`.
+4. **Eventos y contenido** (`Eventos.tsx`) — mosaico de fotos de eventos + bloque púrpura de podcasts (CEOS, Círculo Sessions, botón a Spotify). Le sigue la sección del **ebook** con su formulario.
+5. **Servicios** (`Servicios.tsx`, sección clara) — Conferencia, Workshop y Mentoría estratégica (→ Google Form) + “Descargar servicios” (Google Doc). Conferencia/Workshop abren WhatsApp si existe `NEXT_PUBLIC_WHATSAPP_NUMBER`; si no, el documento de servicios.
+6. **Mentoría Método PROSPERA®** — se mantienen Diagnóstico, 3 dimensiones, Método, Para quién, La mentoría, Postulación (formulario propio), FAQ y cierre.
+7. **Footer** — “Sígueme” con LinkedIn, Instagram y Spotify.
+
+Las fotos pendientes usan `<ImageSlot>`: si `src` es `null` muestra un espacio rayado del mismo tamaño con “Foto pendiente”. Para cargar una foto basta con poner su ruta en `content/site.ts`.
+
 ## Lineamientos de marca (actualizados 2026-10-20)
 
 Reemplazan la paleta dorada y Poppins/Inter del brief original.
@@ -17,7 +31,7 @@ Reemplazan la paleta dorada y Poppins/Inter del brief original.
 
 - **Next.js 16.4** (el brief pide 15+). Se desactivó `cacheComponents` del scaffold: la página es estática y no lo necesita.
 - **H1 del hero**: el token `.t-display` (hasta 104px) no cabe en 6 columnas con una frase de 9 palabras. El H1 usa `clamp(34px, 5.2vw, 78px)` con el mismo estilo (Poppins 600, mayúsculas, −0.02em).
-- **Retrato del hero**: desde el 2026-10-20 es la composición en color entregada por el cliente (`Hero Landing Alexis Gonzalez.png`, 2560×1440, con panel magenta y monograma AG), exportada a `public/img/alexis-hero.webp` (1920px) y encuadrada sobre Alexis con `object-[28%_20%]`. Va en color, sin el B/N horneado anterior. Si se quisiera volver a B/N: `node scripts/bake-photo-bw.mjs public/img/alexis-hero.webp public/img/alexis-hero-bw.webp` y apuntar `hero.imagen` a ese archivo.
+- **Retrato del hero**: desde el 2026-10-20 es la composición en color entregada por el cliente (`Hero Landing Alexis Gonzalez.png`, 2560×1440, con panel magenta y monograma AG), exportada a `public/img/alexis-hero-v2.webp` (1920px) y encuadrada sobre Alexis con `object-[28%_20%]`. Va en color, sin el B/N horneado anterior. Si se quisiera volver a B/N: `node scripts/bake-photo-bw.mjs public/img/alexis-hero.webp public/img/alexis-hero-bw.webp` y apuntar `hero.imagen` a ese archivo.
 - **Galería de autoridad**: 3 fotos (Harvard Business School, Faculty Club, conferencia). La 4.ª foto disponible (evento Acelerador) se usa como retrato de “¿Quién soy?”.
 - **Mockup del ebook**: construido en CSS 3D (tapa, lomo, páginas) con el título real, en vez de usar la imagen con fondo blanco. Cuando exista la portada final en alta, puede reemplazarse el contenido de la tapa.
 - **Framer Motion**: no se usa. Las microinteracciones van en CSS y las transiciones de pasos del formulario con Web Animations API (más liviano).

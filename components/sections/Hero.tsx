@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { ArrowDown } from "lucide-react";
 import { site } from "@/content/site";
-import { Button } from "@/components/ui/Button";
 import { Eyebrow, AccentText } from "@/components/ui/Tag";
-import { Stars } from "@/components/ui/Stars";
-import { Wireframe } from "@/components/ui/Wireframe";
-import { drawStroke, accentSweep, isDesktopPointer, maskLines, stagger } from "@/lib/animations";
+import { accentSweep, isDesktopPointer, maskLines, stagger } from "@/lib/animations";
 import { useMotion } from "@/lib/useMotion";
+import { track } from "@/lib/analytics";
+import { scrollToHash } from "@/components/layout/SmoothScroll";
 
 export function Hero() {
   const h = site.hero;
@@ -27,36 +27,30 @@ export function Hero() {
   }, [h.videoSrc]);
 
   useMotion(ref, ({ gsap, reduced, scope }) => {
-    const q = <T extends Element = HTMLElement>(s: string) => Array.from(scope.querySelectorAll<T>(s));
     const h1 = scope.querySelector<HTMLElement>("h1")!;
     const img = scope.querySelector<HTMLElement>("[data-hero-img]")!;
-    const wires = q<SVGSVGElement>("svg[data-draw]");
-    const rest = q("[data-hero='rest']");
-    const bg = scope.querySelector<HTMLElement>("[data-hero='bg']")!;
+    const rest = Array.from(scope.querySelectorAll<HTMLElement>("[data-hero='rest']"));
     let tl: gsap.core.Timeline | null = null;
 
     const run = () =>
       document.fonts.ready.then(() => {
         if (reduced) {
           gsap.set(img, { y: 0, filter: "none" });
-          gsap.set(wires, { opacity: 1 });
-          wires.forEach((w) => drawStroke(gsap, w));
-          gsap.to([bg, h1, ...rest], { opacity: 1, duration: 0.2 });
+          gsap.to([h1, ...rest], { opacity: 1, duration: 0.2 });
           return;
         }
         tl = gsap.timeline({ defaults: { ease: "expo.out" } });
-        tl.to(bg, { opacity: 1, duration: 0.6, ease: "power2.out" }, 0);
-        wires.forEach((w, i) => tl!.add(drawStroke(gsap, w, { duration: 1.2 }), 0.2 + i * 0.08));
         if (window.matchMedia("(min-width: 1024px)").matches) {
-          tl.to(img, { y: 0, filter: "blur(0px)", duration: 1, onComplete: () => gsap.set(img, { filter: "none" }) }, 0.3);
+          tl.to(img, { y: 0, filter: "blur(0px)", duration: 1.1, onComplete: () => gsap.set(img, { filter: "none" }) }, 0.1);
         }
-        tl.add(maskLines(gsap, h1), 0.5);
-        tl.add(accentSweep(gsap, h1.querySelectorAll(".accent-text"), { stagger: 0.06 }), 0.95);
+        tl.fromTo(rest[0], { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 0.3);
+        tl.add(maskLines(gsap, h1), 0.4);
+        tl.add(accentSweep(gsap, h1.querySelectorAll(".accent-text")), 0.95);
         tl.fromTo(
-          rest,
-          { y: 32, opacity: 0, filter: "blur(8px)" },
+          rest.slice(1),
+          { y: 24, opacity: 0, filter: "blur(6px)" },
           { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.9, stagger: stagger.items, clearProps: "filter" },
-          1.0,
+          1.05,
         );
       });
 
@@ -65,30 +59,11 @@ export function Hero() {
       window.addEventListener("ag:preloader-done", run, { once: true });
     } else run();
 
-    // Parallax de mouse en wireframes (máx. 12px)
-    let off = () => {};
+    // Leve parallax de la foto al hacer scroll (desktop)
     if (!reduced && isDesktopPointer()) {
-      const layers = q("[data-depth]").map((el) => ({
-        d: Number(el.dataset.depth),
-        x: gsap.quickTo(el, "x", { duration: 1.2, ease: "power3.out" }),
-        y: gsap.quickTo(el, "y", { duration: 1.2, ease: "power3.out" }),
-      }));
-      const onMove = (e: PointerEvent) => {
-        const nx = e.clientX / window.innerWidth - 0.5;
-        const ny = e.clientY / window.innerHeight - 0.5;
-        layers.forEach((l) => {
-          l.x(nx * 24 * l.d);
-          l.y(ny * 24 * l.d);
-        });
-      };
-      window.addEventListener("pointermove", onMove, { passive: true });
-      off = () => window.removeEventListener("pointermove", onMove);
-
-      // Retrato: leve parallax de scroll
-      gsap.to(img, { yPercent: 6, ease: "none", scrollTrigger: { trigger: scope, start: "top top", end: "bottom top", scrub: true } });
+      gsap.to(img, { yPercent: 5, ease: "none", scrollTrigger: { trigger: scope, start: "top top", end: "bottom top", scrub: true } });
     }
     return () => {
-      off();
       window.removeEventListener("ag:preloader-done", run);
       tl?.kill();
     };
@@ -102,30 +77,12 @@ export function Hero() {
       data-own-motion=""
       className="relative isolate flex h-[100svh] min-h-[680px] flex-col overflow-hidden bg-ink-950"
     >
-      {/* Fondo: wireframes en capas + halo */}
-      <div data-hero="bg" aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div data-depth="0.25" className="absolute top-[12%] -left-[8%] w-[46vw] max-w-[520px] lg:top-[8%] lg:left-[2%] lg:w-[28vw]">
-          <Wireframe variant="cluster" strokeOpacity={0.4} className="h-auto w-full" />
-        </div>
-        <div data-depth="0.5" className="absolute right-[4%] bottom-[18%] hidden w-[14vw] max-w-[220px] lg:block">
-          <Wireframe variant="cube" strokeOpacity={0.5} className="h-auto w-full" />
-        </div>
-        <div data-depth="1" className="absolute bottom-[6%] left-[38%] hidden w-[9vw] max-w-[140px] lg:block">
-          <Wireframe variant="prism" strokeOpacity={0.6} className="h-auto w-full" />
-        </div>
-      </div>
-
-      {/* Retrato */}
-      <div className="absolute inset-x-0 top-0 -z-10 h-[60svh] lg:inset-y-0 lg:right-0 lg:left-auto lg:h-full lg:w-[55%] lg:[mask-image:linear-gradient(to_right,transparent_0%,rgb(0_0_0/0.4)_20%,#000_50%)]">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{ background: "radial-gradient(60% 50% at 55% 38%, rgb(138 23 178 / 0.08), transparent 70%)" }}
-        />
+      {/* Foto: Alexis a la izquierda; el texto ocupa el lado derecho */}
+      <div className="absolute inset-x-0 top-0 -z-10 h-[62svh] lg:inset-0 lg:h-full">
         <div data-hero-img="" className="absolute inset-0">
           {video && h.videoSrc ? (
             <video
-              className="photo-bw size-full object-cover object-[28%_20%]"
+              className="size-full object-cover object-[27%_18%] lg:object-[32%_50%]"
               src={h.videoSrc}
               poster={h.imagen}
               autoPlay
@@ -141,59 +98,51 @@ export function Hero() {
               fill
               priority
               fetchPriority="high"
-              sizes="(min-width: 1024px) 55vw, 100vw"
-              className="object-cover object-[28%_20%]"
+              sizes="100vw"
+              className="object-cover object-[27%_18%] lg:object-[32%_50%]"
             />
           )}
         </div>
-        {/* Funde la foto con el negro (bordes) */}
-        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_top,var(--ink-950)_8%,rgb(10_10_11/0.85)_30%,transparent_62%)] lg:bg-[linear-gradient(to_top,var(--ink-950)_0%,transparent_32%)]" />
-        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(10_10_11/0.55)_0%,transparent_18%)]" />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{ background: "radial-gradient(45% 40% at 52% 30%, rgb(184 92 219 / 0.07), transparent 70%)" }}
-        />
+        {/* Legibilidad: lado derecho oscuro (desktop) y fundido inferior (mobile) */}
+        <div aria-hidden="true" className="absolute inset-0 hidden lg:block lg:bg-[linear-gradient(to_left,rgb(10_10_11/0.94)_0%,rgb(10_10_11/0.82)_34%,rgb(10_10_11/0.25)_56%,transparent_68%)]" />
+        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_top,var(--ink-950)_6%,rgb(10_10_11/0.7)_26%,transparent_55%)] lg:bg-[linear-gradient(to_top,var(--ink-950)_0%,transparent_22%)]" />
+        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(10_10_11/0.6)_0%,transparent_16%)]" />
       </div>
 
-      {/* Contenido */}
-      <div className="container-x relative flex flex-1 flex-col justify-end pt-[calc(var(--nav-h)+16px)] pb-8 lg:justify-center lg:pb-0">
-        <div className="max-w-[640px] lg:max-w-[600px] xl:max-w-[660px]">
+      {/* Texto a la derecha del personaje */}
+      <div className="container-x relative flex flex-1 flex-col justify-end pt-[calc(var(--nav-h)+16px)] pb-10 lg:flex-row lg:items-center lg:justify-end lg:pb-0">
+        <div className="lg:w-[52%] xl:w-[50%]">
           <div data-hero="rest">
             <Eyebrow>{h.eyebrow}</Eyebrow>
           </div>
           <h1
             id="hero-title"
             data-hero=""
-            className="mt-5 font-display text-[clamp(34px,5.2vw,78px)] leading-[0.96] font-black tracking-[-0.035em] text-paper uppercase lg:mt-7"
+            className="mt-5 font-display text-[clamp(46px,5.4vw,92px)] leading-[0.94] font-black tracking-[-0.045em] text-paper lg:mt-7"
           >
-            {h.h1Pre} <AccentText>{h.h1Accent}</AccentText>
+            {h.h1Pre}
+            <br />
+            <AccentText>{h.h1Destacado}</AccentText>
+            <br />
+            {h.h1Medio}&nbsp;<span className="text-outline">{h.h1Contraste}</span>
           </h1>
-          <p data-hero="rest" className="t-lead mt-4 text-[22px] text-paper/70 lg:mt-6 lg:text-[28px]">
-            {h.subtitulo}
-          </p>
-          <p data-hero="rest" className="t-body mt-3 max-w-[520px] text-[16px]! lg:mt-5 lg:text-[18px]!">
-            {h.bajada}
-          </p>
-          <div data-hero="rest" className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-8 lg:mt-10">
-            <Button href="#postular" location="hero" cursor="postular" className="w-full sm:w-auto">
-              {h.ctaPrimario}
-            </Button>
-            <Button variant="text" href="#ebook" location="hero_ebook" className="self-center sm:self-auto">
-              {h.ctaSecundario}
-            </Button>
-          </div>
-          <div data-hero="rest" className="mt-4 flex items-center gap-3 lg:mt-8">
-            <Stars />
-            <span className="text-[13px] text-paper/70 lg:text-[14px]">{h.microPrueba}</span>
+          <div data-hero="rest" className="mt-8 lg:mt-12">
+            <a
+              href={h.ctaHref}
+              onClick={(e) => {
+                e.preventDefault();
+                track("cta_click", { location: "hero" });
+                scrollToHash(h.ctaHref);
+              }}
+              className="group inline-flex min-h-12 items-center gap-4 font-display text-[15px] font-bold tracking-[0.04em] text-paper"
+            >
+              <span className="grid size-12 place-items-center rounded-full border border-paper/30 transition-colors duration-300 group-hover:border-accent-300 group-hover:bg-accent-500">
+                <ArrowDown strokeWidth={1.75} className="size-5 transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden="true" />
+              </span>
+              {h.cta}
+            </a>
           </div>
         </div>
-      </div>
-
-      {/* Indicador de scroll */}
-      <div data-hero="rest" aria-hidden="true" className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 lg:[@media(min-height:860px)]:flex">
-        <span className="font-display text-[11px] font-semibold tracking-[0.3em] text-paper/60 uppercase">Scroll</span>
-        <span className="scroll-cue relative block h-12 w-px overflow-hidden bg-paper/15" />
       </div>
     </section>
   );

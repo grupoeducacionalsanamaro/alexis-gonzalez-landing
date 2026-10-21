@@ -7,7 +7,6 @@
 export const marca = "PROSPERA®"; // TODO(cliente): cambiar a "PROSPERA™" si el registro está en trámite
 
 export type FaqItem = { pregunta: string; respuesta: string | null };
-export type EcoItem = { titulo: string; detalle: string; href: string | null };
 export type Testimonio = {
   nombre: string;
   especialidad: string;
@@ -36,28 +35,27 @@ export const site = {
 
   nav: {
     links: [
-      { label: "Método", href: "#metodo" },
-      { label: "Mentoría", href: "#mentoria" },
       { label: "Sobre mí", href: "#sobre-mi" },
-      { label: "Ebook", href: "#ebook" },
+      { label: "Ecosistema", href: "#ecosistema" },
+      { label: "Eventos", href: "#eventos" },
+      { label: "Servicios", href: "#servicios" },
+      { label: "Mentoría", href: "#metodo" },
     ],
     cta: "Postular",
     ctaMobile: "Postular a la mentoría",
   },
 
   hero: {
-    eyebrow: `Mentoría 1:1 · Método ${marca}`,
-    h1Pre: "Si tu negocio depende de ti,",
-    h1Accent: "no tienes un negocio.",
-    subtitulo: "Tienes un empleo caro.",
-    bajada:
-      "Dirección estratégica para profesionales y empresarios de la salud que facturan sobre 100 millones al año.",
-    ctaPrimario: "Postular a la mentoría",
-    ctaSecundario: "Descargar ebook gratis",
-    microPrueba: "MBA · +10 años construyendo ecosistemas en salud",
-    // B/N horneado en el archivo (scripts/bake-photo-bw.mjs); el original en color es alexis-hero.webp
-    imagen: "/img/alexis-hero.webp",
-    imagenAlt: "Alexis González, mentor de negocios, dictando una charla frente a un auditorio",
+    eyebrow: "Alexis González · MBA · Mentor estratégico",
+    // “Es mejor ser próspero que exitoso.” — próspero en sólido, exitoso en contorno
+    h1Pre: "Es mejor ser",
+    h1Destacado: "próspero",
+    h1Medio: "que",
+    h1Contraste: "exitoso.",
+    cta: "Conoce más",
+    ctaHref: "#sobre-mi",
+    imagen: "/img/alexis-hero-v2.webp",
+    imagenAlt: "Alexis González de chaqueta clara frente a un panel púrpura, junto a una foto de él dando una charla",
     videoSrc: null as string | null, // TODO(cliente): loop MP4/WebM ≤2MB si se produce
   },
 
@@ -98,51 +96,53 @@ export const site = {
     ],
   },
 
-  quienSoy: {
-    tag: "¿Quién soy?",
-    saludoPre: "Soy",
-    saludoNombre: "Alexis González.",
+  sobre: {
+    eyebrow: "Sobre Alexis",
+    nombre: "Alexis González",
+    rol: "MBA · Emprendedor · Mentor Estratégico",
     bio: [
-      "MBA | Inversionista inmobiliario (oficinas, departamentos y parcelas).",
-      "He realizado programas de formación en Chile, Brasil, España y Estados Unidos.",
-      "Fundador de un ecosistema educacional en el área de la salud, con más de 10 años creando estructura académica, comunidades y modelos de negocio.",
+      "Empresario con más de 10 años de experiencia creando y desarrollando marcas, negocios y proyectos vinculados a la formación continua de profesionales de la salud.",
+      "MBA y especialista en marketing aplicado al sector salud. A lo largo de su trayectoria ha complementado su formación con programas ejecutivos y experiencias de negocios en Chile, Argentina, Brasil, España, Estados Unidos y Ecuador.",
     ],
-    badge: "Creador del Método",
-    cierre: "Host del podcast CEOS, El Círculo Sessions y creador de eventos memorables.",
-    imagen: "/img/alexis-retrato.webp",
-    imagenAlt: "Alexis González con los brazos cruzados en un evento empresarial",
-    // TODO(cliente): validar cifras
-    cifras: [
-      { prefijo: "+", valor: 10, sufijo: "", label: "años en el ecosistema salud" },
-      { prefijo: "", valor: 4, sufijo: "", label: "países con programas de formación" },
-      { prefijo: "", valor: 1, sufijo: "", label: "ecosistema educacional propio" },
+    formacionTitulo: "Su formación ha incluido áreas como:",
+    formacion: [
+      "Habilidades Directivas",
+      "Delegación",
+      "Transformación y Mentoring",
+      "Negociación y Persuasión",
+      "Comunicación",
+      "Estrategia",
+      "Aceleración Empresarial",
     ],
-    galeria: [
-      {
-        src: "/img/galeria-hbs.webp",
-        alt: "Alexis González frente a Harvard Business School",
-        pie: "Harvard Business School · Boston",
-      },
-      {
-        src: "/img/galeria-faculty-club.webp",
-        alt: "Alexis González de traje frente al Faculty Club de Harvard",
-        pie: "Faculty Club · Harvard",
-      },
-      {
-        src: "/img/galeria-conferencia.webp",
-        alt: "Alexis González dictando una conferencia frente a un auditorio",
-        pie: "Conferencia · Formación empresarial en salud",
-      },
+    bio2: [
+      "Ha construido empresas y patrimonio desde cero, experiencia que hoy integra en su trabajo como mentor estratégico de profesionales y dueños de pequeñas y medianas empresas.",
+      "Reside en Concepción, Chile, desde donde lidera sus negocios priorizando una filosofía que combina crecimiento, patrimonio, tiempo y calidad de vida.",
     ],
-    marquee: [
-      "Chile",
-      "Brasil",
-      "España",
-      "Estados Unidos",
-      "Harvard Business School",
-      "Podcast CEOS",
-      "El Círculo Sessions",
+    filosofiaIntro: "Su filosofía se resume en una idea que guía tanto su vida como sus negocios:",
+    filosofia: "Es mejor ser próspero que exitoso.",
+    filosofiaCierre:
+      "Porque para Alexis, crecer no significa únicamente facturar más. Significa también avanzar en libertad, familia, experiencias, aprendizaje y propósito.",
+    // Collage junto a la bio (placeholders hasta cargar fotos)
+    fotos: [
+      { src: "/img/alexis-retrato.webp" as string | null, alt: "Alexis González con los brazos cruzados en el Acelerador Empresarial" },
+      { src: null as string | null, alt: "Foto de Alexis (pendiente)" },
+      { src: null as string | null, alt: "Foto de Alexis (pendiente)" },
     ],
+    // TODO(cliente): fotos de cada programa
+    carruselTitulo: "Programas y experiencias",
+    carrusel: [
+      { titulo: "Acelerador Empresarial", lugar: "Brasil", src: "/img/alexis-retrato.webp" as string | null },
+      { titulo: "Harvard Business School", lugar: "Boston, Estados Unidos", src: "/img/galeria-hbs.webp" as string | null },
+      { titulo: "ESE Business School", lugar: "Chile", src: null as string | null },
+      { titulo: "IDE Business School", lugar: "Ecuador", src: null as string | null },
+      { titulo: "Faculty Club · Harvard", lugar: "Boston, Estados Unidos", src: "/img/galeria-faculty-club.webp" as string | null },
+    ],
+    paises: ["Chile", "Argentina", "Brasil", "España", "Estados Unidos", "Ecuador"],
+    documental: {
+      eyebrow: "Documental",
+      titulo: "La historia detrás del ecosistema",
+      youtubeId: "_wNDXhQ4a84",
+    },
   },
 
   metodo: {
@@ -214,16 +214,95 @@ export const site = {
   },
 
   ecosistema: {
-    titulo: "Ecosistema",
-    bajada: "Además de la mentoría, lidero:",
+    eyebrow: "Ecosistema",
+    titulo: "Marcas, comunidades y experiencias que lidera",
+    // TODO(cliente): subir logos (SVG/PNG en /public/logos) y completar `logo`
+    grupos: [
+      {
+        nombre: "Área educacional",
+        destacado: "Grupo Educacional San Amaro" as string | null,
+        marcas: [
+          { nombre: "AGC Instituto de Odontología", logo: null as string | null },
+          { nombre: "Harmony Institute Internacional", logo: null as string | null },
+          { nombre: "Simetría Academia", logo: null as string | null },
+          { nombre: "KONCEPTO Instituto de Formación", logo: null as string | null },
+          { nombre: "Premier Medical Institute", logo: null as string | null },
+        ],
+      },
+      {
+        nombre: "Comunidades, medios y desarrollo profesional",
+        destacado: null as string | null,
+        marcas: [
+          { nombre: "Círculo Society", logo: null as string | null },
+          { nombre: "ORO Magazine", logo: null as string | null },
+          { nombre: "Emplea Dental", logo: null as string | null },
+          { nombre: "EmpleaSalud", logo: null as string | null },
+        ],
+      },
+      {
+        nombre: "Eventos y experiencias",
+        destacado: null as string | null,
+        marcas: [
+          { nombre: "Momentum", logo: null as string | null },
+          { nombre: "Level Up", logo: null as string | null },
+          { nombre: "ICONS Dental Congress", logo: null as string | null },
+          { nombre: "Harmony On Tour", logo: null as string | null },
+          { nombre: "Next", logo: null as string | null },
+        ],
+      },
+    ],
+  },
+
+  contenido: {
+    eyebrow: "Eventos y contenido",
+    titulo: "Escenarios, conversaciones y comunidad",
+    // TODO(cliente): fotos de eventos
+    eventos: [
+      { titulo: "Momentum", src: null as string | null },
+      { titulo: "Level Up", src: null as string | null },
+      { titulo: "ICONS Dental Congress", src: null as string | null },
+      { titulo: "Harmony On Tour", src: null as string | null },
+      { titulo: "Conferencia", src: "/img/galeria-conferencia.webp" as string | null },
+    ],
+    podcastsEyebrow: "Podcasts",
+    podcastsTitulo: "CEOS y Círculo Sessions",
+    podcastsBajada: "Conversaciones con empresarios y líderes sobre negocios, crecimiento y calidad de vida.",
+    podcasts: [
+      { nombre: "CEOS", detalle: "Conversaciones con líderes y empresarios." },
+      { nombre: "Círculo Sessions", detalle: "Negocios, salud y visión de largo plazo." },
+    ],
+    spotify: "https://open.spotify.com/show/2m65GqevB03AKwCJ4jc27P",
+    spotifyCta: "Escuchar en Spotify",
+  },
+
+  servicios: {
+    eyebrow: "Servicios",
+    titulo: "Inspírese y acceda a los resultados que merece",
     items: [
-      { titulo: "Podcast CEOS", detalle: "Conversaciones con líderes y empresarios.", href: null },
-      { titulo: "Podcast El Círculo Sessions", detalle: "Negocios, salud y visión de largo plazo.", href: null },
-      { titulo: "El Círculo", detalle: "Eventos y negocios.", href: null },
-      { titulo: "Comunidad de empresarios de la salud", detalle: "Desarrollo de comunidad y redes de colaboración.", href: null },
-      { titulo: "Grupo Educacional San Amaro", detalle: "Formación académica en el área de la salud.", href: "https://sanamaro.cl" },
-      { titulo: "Clínicas de cirugía y medicina estética", detalle: "Modelos de negocio clínico en operación.", href: null },
-    ] as EcoItem[], // TODO(cliente): links de podcasts (Spotify/YouTube) y El Círculo
+      {
+        tipo: "Conferencia",
+        detalle: "Charlas en escenario sobre crecimiento, patrimonio y negocios en salud.",
+        src: null as string | null, // TODO(cliente): foto potente en escenario (ej. Momentum)
+        cta: "Solicitar conferencia",
+        href: null as string | null, // sin link: abre WhatsApp si está configurado
+      },
+      {
+        tipo: "Workshop",
+        detalle: "Talleres prácticos para equipos y programas de postgrado.",
+        src: null as string | null, // TODO(cliente): foto dando taller en postgrado
+        cta: "Solicitar workshop",
+        href: null as string | null,
+      },
+      {
+        tipo: "Mentoría estratégica",
+        detalle: "Dirección estratégica 1:1 para ordenar vida, carrera y negocio.",
+        src: null as string | null,
+        cta: "Postula a la mentoría",
+        href: "https://forms.gle/RMTngRBZ8TRS5cj46" as string | null,
+      },
+    ],
+    brochureCta: "Descargar servicios",
+    brochureHref: "https://docs.google.com/document/d/1obyJ7tUYH6kdAGQr3cIdJk2f0uMQsmRDZxIdox8r24o/edit?usp=sharing",
   },
 
   faq: {
@@ -254,14 +333,13 @@ export const site = {
 
   footer: {
     tagline: `Alexis González · Método ${marca}`,
-    // TODO(cliente): links reales de redes, podcasts y email
+    redesTitulo: "Sígueme",
     redes: [
-      { label: "Instagram", href: null as string | null },
-      { label: "LinkedIn", href: null as string | null },
-      { label: "YouTube", href: null as string | null },
-      { label: "Podcast CEOS", href: null as string | null },
+      { label: "LinkedIn", handle: "alexisgonzalezc", href: "https://www.linkedin.com/in/alexisgonzalezc/" },
+      { label: "Instagram", handle: "@alexis.gonzalezagc", href: "https://www.instagram.com/alexis.gonzalezagc/" },
+      { label: "Spotify", handle: "Podcast", href: "https://open.spotify.com/show/2m65GqevB03AKwCJ4jc27P" },
     ],
-    email: null as string | null,
+    email: null as string | null, // TODO(cliente)
   },
 
   applyForm: {

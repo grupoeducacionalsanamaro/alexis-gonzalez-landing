@@ -7,7 +7,9 @@ import { ExitIntent } from "@/components/layout/ExitIntent";
 import { Hero } from "@/components/sections/Hero";
 import { Diagnostico } from "@/components/sections/Diagnostico";
 import { Dimensiones } from "@/components/sections/Dimensiones";
-import { QuienSoy } from "@/components/sections/QuienSoy";
+import { SobreAlexis } from "@/components/sections/SobreAlexis";
+import { Eventos } from "@/components/sections/Eventos";
+import { Servicios } from "@/components/sections/Servicios";
 import { Metodo } from "@/components/sections/Metodo";
 import { ParaQuien } from "@/components/sections/ParaQuien";
 import { Mentoria } from "@/components/sections/Mentoria";
@@ -25,9 +27,11 @@ function JsonLd() {
       "@type": "Person",
       "@id": `${site.url}/#alexis`,
       name: site.nombre,
-      jobTitle: "Mentor de negocios para profesionales y empresarios de la salud",
-      description: site.quienSoy.bio.join(" "),
-      image: `${site.url}${site.quienSoy.imagen}`,
+      jobTitle: "MBA · Emprendedor · Mentor Estratégico",
+      homeLocation: { "@type": "Place", name: "Concepción, Chile" },
+      description: [...site.sobre.bio, ...site.sobre.bio2].join(" "),
+      image: `${site.url}${site.hero.imagen}`,
+      sameAs: site.footer.redes.map((r) => r.href),
       url: site.url,
       knowsAbout: ["Estrategia de negocios", "Gestión de clínicas", "Inversión inmobiliaria", "Educación en salud"],
     },
@@ -69,17 +73,21 @@ export default function Home() {
     <>
       <Nav />
       <main id="contenido" tabIndex={-1} className="outline-none">
+        {/* Marca personal: partes 1–5 */}
         <Hero />
+        <SobreAlexis />
+        <Ecosistema />
+        <Eventos />
+        <Ebook />
+        <Servicios />
+        {/* Mentoría Método PROSPERA® */}
         <Diagnostico />
         <Dimensiones />
-        <QuienSoy />
         <Metodo />
         <ParaQuien />
         <Mentoria />
         <Testimonios />
         <Postulacion />
-        <Ebook />
-        <Ecosistema />
         <FAQ />
         <CTAFinal />
       </main>
