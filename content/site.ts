@@ -303,21 +303,21 @@ export const site = {
       {
         tipo: "Conferencia",
         detalle: "Charlas en escenario sobre crecimiento, patrimonio y negocios en salud.",
-        src: null as string | null, // TODO(cliente): foto potente en escenario (ej. Momentum)
+        src: "/img/servicio-conferencia.webp" as string | null,
         cta: "Solicitar conferencia",
         href: null as string | null, // sin link: abre WhatsApp si está configurado
       },
       {
         tipo: "Workshop",
         detalle: "Talleres prácticos para equipos y programas de postgrado.",
-        src: null as string | null, // TODO(cliente): foto dando taller en postgrado
+        src: "/img/servicio-workshop.webp" as string | null,
         cta: "Solicitar workshop",
         href: null as string | null,
       },
       {
         tipo: "Mentoría estratégica",
         detalle: "Dirección estratégica 1:1 para ordenar vida, carrera y negocio.",
-        src: null as string | null,
+        src: "/img/servicio-mentoria.webp" as string | null,
         cta: "Postula a la mentoría",
         href: "https://forms.gle/RMTngRBZ8TRS5cj46" as string | null,
       },

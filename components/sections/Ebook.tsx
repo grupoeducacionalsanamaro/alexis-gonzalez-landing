@@ -147,7 +147,7 @@ export function Ebook() {
           </div>
         </div>
 
-        <div className="book-scene flex justify-center py-6 lg:col-span-6 lg:py-0">
+        <div className="book-scene flex justify-center py-6 lg:col-span-6 lg:justify-end lg:py-0 lg:pr-1">
           <div className="relative">
             <div aria-hidden="true" className="absolute top-1/2 left-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(circle, rgb(138 23 178 / 0.12), transparent 65%)" }} />
             {/* sombra proyectada en el piso */}

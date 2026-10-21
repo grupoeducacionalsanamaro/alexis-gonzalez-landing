@@ -45,9 +45,14 @@ export function Servicios() {
                     className="aspect-[4/5] md:aspect-[3/4]"
                     imgClassName="transition-transform duration-700 ease-out-expo group-hover:scale-[1.04]"
                   />
-                  <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(to_top,rgb(10_10_11/0.95)_30%,transparent)] p-6 pt-24 lg:p-8 lg:pt-28">
+                  {/* Fundido de abajo hacia arriba: la mitad inferior queda oscura para que el texto se lea */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,var(--ink-950)_0%,rgb(10_10_11/0.92)_28%,rgb(10_10_11/0.55)_50%,rgb(10_10_11/0.12)_68%,transparent_80%)]"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
                     <h3 className="font-display text-[26px] leading-none font-black tracking-[-0.03em] uppercase lg:text-[30px]">{it.tipo}</h3>
-                    <p className="mt-3 text-[15px] leading-snug text-paper/75">{it.detalle}</p>
+                    <p className="mt-3 text-[15px] leading-snug text-paper/85">{it.detalle}</p>
                     <span className="mt-6 inline-flex items-center gap-2 text-[14px] font-bold text-accent-300 transition-colors group-hover:text-paper">
                       {it.cta}
                       <ArrowUpRight strokeWidth={2} className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
