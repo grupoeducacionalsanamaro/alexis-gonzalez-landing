@@ -804,56 +804,162 @@ img {
   transform: scale(1);
 }
 
-/* ───────────────────────── Ebook 3D ───────────────────────── */
+/* ───────────────────────── Ebook 3D (tapa dura realista) ─────────────────────────
+   Caja 3D: tapa (z=0), contratapa (z=-T), lomo a la izquierda y cantos de papel
+   arriba, abajo y a la derecha. T = grosor del libro. */
 .book-scene {
-  perspective: 1200px;
+  perspective: 1400px;
 }
 .book {
+  --T: 30px;
   position: relative;
   transform-style: preserve-3d;
-  transform: rotateY(-22deg) rotateX(6deg);
-  will-change: auto;
+  transform: rotateY(-24deg) rotateX(8deg);
+}
+@media (min-width: 640px) {
+  .book {
+    --T: 38px;
+  }
 }
 .book-face {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
+  border-radius: 2px 6px 6px 2px;
 }
 .book-cover {
+  background:
+    linear-gradient(100deg, #1a1a1d 0%, #121214 40%, #0e0e10 100%);
   transform-origin: left center;
   transform-style: preserve-3d;
   transition: transform 1200ms var(--ease-out-expo);
+  /* canto del cartón: brillo fino arriba y a la derecha */
+  box-shadow:
+    inset -1px 0 0 rgb(255 255 255 / 0.07),
+    inset 0 1px 0 rgb(255 255 255 / 0.08),
+    inset 0 -1px 0 rgb(0 0 0 / 0.6);
 }
 .book[data-open="true"] .book-cover {
   transform: rotateY(-35deg);
 }
+/* Textura del forro (grano mate) */
+.book-texture {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: soft-light;
+  opacity: 0.55;
+  pointer-events: none;
+}
+/* Viñeta: los bordes de la tapa reciben menos luz */
+.book-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 30% 25%, transparent 45%, rgb(0 0 0 / 0.45) 100%);
+  pointer-events: none;
+}
+/* Bisagra de tapa dura: surco junto al lomo con su luz y su sombra */
+.book-hinge {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 22px;
+  background:
+    linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.55) 0,
+      rgb(255 255 255 / 0.05) 6px,
+      rgb(0 0 0 / 0.35) 9px,
+      rgb(255 255 255 / 0.07) 12px,
+      transparent 22px
+    );
+  pointer-events: none;
+}
+/* Brillo especular fijo arriba a la izquierda (laminado mate) */
+.book-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(155deg, rgb(255 255 255 / 0.08) 0%, transparent 35%);
+  pointer-events: none;
+}
+/* Título en foil: leve relieve */
+.book-foil {
+  filter: drop-shadow(0 1px 0 rgb(0 0 0 / 0.7)) drop-shadow(0 0 6px rgb(184 92 219 / 0.25));
+}
+.book-back {
+  transform: translateZ(calc(var(--T) * -1));
+  background: #0c0c0e;
+  box-shadow: 0 40px 70px -20px rgb(0 0 0 / 0.85);
+}
+.book-inner {
+  transform: translateZ(-2px);
+  background: linear-gradient(to right, #e9e7e0, #f6f5f0);
+}
+/* Lomo */
 .book-spine {
   position: absolute;
   top: 0;
   left: 0;
-  width: 36px;
+  width: var(--T);
   height: 100%;
   transform-origin: left center;
   transform: rotateY(90deg);
-  background: linear-gradient(to right, #0b0b0c, #1e1e21 60%, #111113);
+  border-radius: 3px;
+  background:
+    linear-gradient(to right, #08080a 0%, #1d1d21 35%, #26262b 50%, #1a1a1e 70%, #0a0a0c 100%);
+}
+/* Cantos de las hojas: líneas finas, sombra hacia las tapas y leve curvatura */
+.book-pages,
+.book-pages-top,
+.book-pages-bottom {
+  position: absolute;
+  background-color: #efede6;
 }
 .book-pages {
-  position: absolute;
-  top: 3px;
-  right: 0;
-  width: 34px;
-  height: calc(100% - 6px);
+  top: 4px;
+  right: 3px;
+  width: calc(var(--T) - 4px);
+  height: calc(100% - 8px);
   transform-origin: right center;
-  transform: rotateY(90deg);
-  background: repeating-linear-gradient(to right, #e9e8e3 0 1px, #cfcdc6 1px 2px);
+  transform: translateZ(-2px) rotateY(90deg);
+  background-image:
+    linear-gradient(to right, rgb(0 0 0 / 0.28), transparent 18%, transparent 82%, rgb(0 0 0 / 0.3)),
+    linear-gradient(to bottom, rgb(0 0 0 / 0.08), transparent 12%, transparent 88%, rgb(0 0 0 / 0.1)),
+    repeating-linear-gradient(to right, #f4f2ec 0 1px, #d9d6cd 1px 1.6px, #ebe8e0 1.6px 2.4px);
 }
-.book-back {
-  transform: translateZ(-36px);
-  background: #0b0b0c;
+.book-pages-top,
+.book-pages-bottom {
+  left: 4px;
+  width: calc(100% - 7px);
+  height: calc(var(--T) - 4px);
+  background-image:
+    linear-gradient(to bottom, rgb(0 0 0 / 0.25), transparent 20%, transparent 80%, rgb(0 0 0 / 0.28)),
+    repeating-linear-gradient(to bottom, #f4f2ec 0 1px, #d9d6cd 1px 1.6px, #ebe8e0 1.6px 2.4px);
 }
-.book-inner {
-  transform: translateZ(-1px);
-  background: linear-gradient(to right, #ecebe6, #f7f6f2);
+.book-pages-top {
+  top: 2px;
+  transform-origin: top center;
+  transform: translateZ(-2px) rotateX(-90deg);
+}
+.book-pages-bottom {
+  bottom: 2px;
+  transform-origin: bottom center;
+  transform: translateZ(-2px) rotateX(90deg);
+}
+/* Sombra proyectada en el piso (no gira con el libro) */
+.book-floor-shadow {
+  position: absolute;
+  left: 8%;
+  right: -12%;
+  bottom: -26px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(0 0 0 / 0.75), transparent);
+  filter: blur(10px);
+  transform: skewX(-24deg);
+  pointer-events: none;
 }
 
 /* ───────────────────────── Utilidades varias ───────────────────────── */

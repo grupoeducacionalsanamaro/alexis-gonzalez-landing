@@ -197,6 +197,7 @@ export const site = {
   },
 
   ebook: {
+    antetitulo: "Espera un poco, aún hay más...",
     titulo: "De Clínico a Empresario",
     tituloPortada: ["De gran clínico", "a empresario"],
     subtituloPortada: "Guía rápida para escalar tu impacto profesional y empresarial",

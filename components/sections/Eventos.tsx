@@ -25,7 +25,7 @@ export function Eventos() {
   const c = site.contenido;
   const [primero, ...resto] = c.eventos;
   return (
-    <section id="eventos" aria-labelledby="eventos-title" className="relative bg-ink-950 section-y">
+    <section id="eventos" aria-labelledby="eventos-title" className="relative bg-ink-950 section-y pb-12! lg:pb-16!">
       <div className="container-x">
         <div data-reveal="up">
           <Eyebrow>{c.eyebrow}</Eyebrow>

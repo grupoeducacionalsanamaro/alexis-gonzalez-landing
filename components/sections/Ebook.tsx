@@ -13,18 +13,23 @@ function Book({ open }: { open: boolean }) {
   const e = site.ebook;
   return (
     <div className="book relative h-[300px] w-[225px] sm:h-[400px] sm:w-[300px]" data-open={open}>
-      {/* contratapa, páginas, lomo */}
-      <div className="book-face book-back rounded-[2px_4px_4px_2px]" />
+      {/* contratapa, cantos de páginas, lomo */}
+      <div className="book-face book-back" />
       <div className="book-pages" />
+      <div className="book-pages-top" />
+      <div className="book-pages-bottom" />
       <div className="book-spine" />
-      <div className="book-face book-inner rounded-[2px_4px_4px_2px]" />
-      {/* tapa */}
-      <div className="book-face book-cover overflow-hidden rounded-[2px_4px_4px_2px] bg-[#111113] shadow-[0_30px_80px_-20px_rgb(0_0_0/0.9)]">
-        <Wireframe variant="cluster" draw={false} strokeOpacity={0.5} stroke="#3a3a40" className="absolute -right-10 -bottom-6 w-[90%] opacity-70" />
-        <div className="absolute inset-y-0 left-0 w-3 bg-[linear-gradient(to_right,rgb(0_0_0/0.6),transparent)]" />
-        <div className="relative flex h-full flex-col p-6 sm:p-8">
+      <div className="book-face book-inner" />
+      {/* tapa dura */}
+      <div className="book-face book-cover overflow-hidden">
+        <Wireframe variant="cluster" draw={false} strokeOpacity={0.5} stroke="#3a3a40" className="absolute -right-10 -bottom-6 w-[90%] opacity-60" />
+        {/* textura del cartón forrado + viñeta + bisagra de la tapa */}
+        <div aria-hidden="true" className="book-texture" />
+        <div aria-hidden="true" className="book-vignette" />
+        <div aria-hidden="true" className="book-hinge" />
+        <div className="relative flex h-full flex-col p-6 pl-8 sm:p-8 sm:pl-10">
           <p className="font-display text-[9px] tracking-[0.3em] text-paper/60 uppercase sm:text-[10px]">Mini ebook</p>
-          <p className="accent-text mt-auto font-display text-[24px] leading-[1.02] font-black uppercase tracking-[-0.02em] sm:text-[32px]">
+          <p className="accent-text book-foil mt-auto font-display text-[24px] leading-[1.02] font-black uppercase tracking-[-0.02em] sm:text-[32px]">
             {e.tituloPortada[0]}
             <br />
             {e.tituloPortada[1]}
@@ -34,7 +39,8 @@ function Book({ open }: { open: boolean }) {
           <p className="mt-8 font-display text-[10px] font-bold tracking-[0.24em] text-accent-300 uppercase sm:text-[11px]">Alexis González C.</p>
         </div>
         {/* reflejo de luz que se mueve con el tilt */}
-        <div data-glare="" aria-hidden="true" className="pointer-events-none absolute -inset-1/2 bg-[linear-gradient(115deg,transparent_40%,rgb(255_255_255/0.10)_50%,transparent_60%)]" />
+        <div data-glare="" aria-hidden="true" className="pointer-events-none absolute -inset-1/2 bg-[linear-gradient(115deg,transparent_40%,rgb(255_255_255/0.09)_50%,transparent_60%)]" />
+        <div aria-hidden="true" className="book-sheen" />
       </div>
     </div>
   );
@@ -92,14 +98,15 @@ export function Ebook() {
   };
 
   return (
-    <section id="ebook" ref={ref} aria-labelledby="ebook-title" data-own-motion="" className="relative overflow-hidden fade-both-900 section-y">
+    <section id="ebook" ref={ref} aria-labelledby="ebook-title" data-own-motion="" className="relative overflow-hidden fade-both-900 section-y pt-12! lg:pt-16!">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Wireframe variant="stack" draw={false} strokeOpacity={0.35} strokeWidth={0.7} className="absolute top-[10%] -left-16 w-[300px] md:w-[380px]" />
         <Wireframe variant="cube" draw={false} strokeOpacity={0.3} className="absolute right-[6%] bottom-[8%] w-[140px]" />
       </div>
       <div className="container-x relative grid items-center gap-16 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-6">
-          <h2 id="ebook-title" className="t-quote accent-text pr-2">
+          <p className="font-display text-[clamp(20px,2.2vw,28px)] leading-tight font-extrabold tracking-[-0.02em] text-paper/90">{e.antetitulo}</p>
+          <h2 id="ebook-title" className="t-quote accent-text mt-4 pr-2">
             {e.titulo}
           </h2>
           <p className="t-body mt-6 max-w-[520px] text-[19px]! text-paper!">{e.bajada}</p>
@@ -143,6 +150,8 @@ export function Ebook() {
         <div className="book-scene flex justify-center py-6 lg:col-span-6 lg:py-0">
           <div className="relative">
             <div aria-hidden="true" className="absolute top-1/2 left-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(circle, rgb(138 23 178 / 0.12), transparent 65%)" }} />
+            {/* sombra proyectada en el piso */}
+            <div aria-hidden="true" className="book-floor-shadow" />
             <Book open={!!done} />
           </div>
         </div>
