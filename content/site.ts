@@ -128,13 +128,12 @@ export const site = {
       src: "/img/alexis-quien-es.webp" as string | null,
       alt: "Alexis González de traje claro, sentado sobre un sillón revisando unos documentos",
     },
-    // TODO(cliente): fotos de cada programa
     carruselTitulo: "Programas y experiencias a los que he asistido",
     carrusel: [
       { titulo: "Acelerador Empresarial", lugar: "Brasil", src: "/img/alexis-retrato.webp" as string | null },
       { titulo: "Harvard Business School", lugar: "Boston, Estados Unidos", src: "/img/galeria-hbs.webp" as string | null },
-      { titulo: "ESE Business School", lugar: "Chile", src: null as string | null },
-      { titulo: "IDE Business School", lugar: "Ecuador", src: null as string | null },
+      { titulo: "ESE Business School", lugar: "Chile", src: "/img/programa-ese.webp" as string | null },
+      { titulo: "IDE Business School", lugar: "Ecuador", src: "/img/programa-ide.webp" as string | null },
       { titulo: "Faculty Club · Harvard", lugar: "Boston, Estados Unidos", src: "/img/galeria-faculty-club.webp" as string | null },
     ],
     paises: ["Chile", "Argentina", "Brasil", "España", "Estados Unidos", "Ecuador"],
