@@ -215,7 +215,7 @@ export const site = {
 
   ecosistema: {
     eyebrow: "Ecosistema",
-    titulo: "Marcas, comunidades y experiencias que lidera",
+    titulo: "Marcas, comunidades y experiencias que lidero",
     // TODO(cliente): subir logos (SVG/PNG en /public/logos) y completar `logo`
     grupos: [
       {

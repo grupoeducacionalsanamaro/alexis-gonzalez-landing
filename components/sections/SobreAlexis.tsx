@@ -137,9 +137,10 @@ export function SobreAlexis() {
       {/* Programas y experiencias (collage), luego el documental */}
       <Programas />
 
+      <Marquee items={s.paises} className="mt-20 border-y border-ink-700 py-6 lg:mt-28" />
+
       <Documental />
 
-      <Marquee items={s.paises} className="mt-20 border-y border-ink-700 py-6 lg:mt-28" />
 
     </section>
   );
