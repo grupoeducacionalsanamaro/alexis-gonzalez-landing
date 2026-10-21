@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import { site } from "@/content/site";
 import { Eyebrow, AccentText } from "@/components/ui/Tag";
-import { accentSweep, isDesktopPointer, maskLines, stagger } from "@/lib/animations";
+import { accentSweep, maskLines, stagger } from "@/lib/animations";
 import { useMotion } from "@/lib/useMotion";
 import { track } from "@/lib/analytics";
 import { scrollToHash } from "@/components/layout/SmoothScroll";
@@ -28,21 +28,16 @@ export function Hero() {
 
   useMotion(ref, ({ gsap, reduced, scope }) => {
     const h1 = scope.querySelector<HTMLElement>("h1")!;
-    const img = scope.querySelector<HTMLElement>("[data-hero-img]")!;
     const rest = Array.from(scope.querySelectorAll<HTMLElement>("[data-hero='rest']"));
     let tl: gsap.core.Timeline | null = null;
 
     const run = () =>
       document.fonts.ready.then(() => {
         if (reduced) {
-          gsap.set(img, { y: 0, filter: "none" });
           gsap.to([h1, ...rest], { opacity: 1, duration: 0.2 });
           return;
         }
         tl = gsap.timeline({ defaults: { ease: "expo.out" } });
-        if (window.matchMedia("(min-width: 1024px)").matches) {
-          tl.to(img, { y: 0, filter: "blur(0px)", duration: 1.1, onComplete: () => gsap.set(img, { filter: "none" }) }, 0.1);
-        }
         tl.fromTo(rest[0], { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 0.3);
         tl.add(maskLines(gsap, h1), 0.4);
         tl.add(accentSweep(gsap, h1.querySelectorAll(".accent-text")), 0.95);
@@ -59,10 +54,6 @@ export function Hero() {
       window.addEventListener("ag:preloader-done", run, { once: true });
     } else run();
 
-    // Leve parallax de la foto al hacer scroll (desktop)
-    if (!reduced && isDesktopPointer()) {
-      gsap.to(img, { yPercent: 5, ease: "none", scrollTrigger: { trigger: scope, start: "top top", end: "bottom top", scrub: true } });
-    }
     return () => {
       window.removeEventListener("ag:preloader-done", run);
       tl?.kill();
@@ -77,9 +68,11 @@ export function Hero() {
       data-own-motion=""
       className="relative isolate flex h-[100svh] min-h-[680px] flex-col overflow-hidden bg-ink-950"
     >
-      {/* Foto: Alexis a la izquierda; el texto ocupa el lado derecho */}
+      {/* Foto: Alexis a la izquierda; el texto ocupa el lado derecho.
+          Se muestra tal cual (1920×1080, WebP sin pérdida, sin capas encima) y su
+          contenedor nunca supera 1920×1080, así la foto solo se reduce, nunca se agranda. */}
       <div className="absolute inset-x-0 top-0 -z-10 h-[62svh] lg:inset-0 lg:h-full">
-        <div data-hero-img="" className="absolute inset-0">
+        <div className="relative mx-auto size-full lg:top-1/2 lg:max-h-[1080px] lg:max-w-[1920px] lg:-translate-y-1/2">
           {video && h.videoSrc ? (
             <video
               className="size-full object-cover object-[27%_18%] lg:object-[32%_50%]"
@@ -98,15 +91,12 @@ export function Hero() {
               fill
               priority
               fetchPriority="high"
+              unoptimized
               sizes="100vw"
               className="object-cover object-[27%_18%] lg:object-[32%_50%]"
             />
           )}
         </div>
-        {/* Legibilidad: lado derecho oscuro (desktop) y fundido inferior (mobile) */}
-        <div aria-hidden="true" className="absolute inset-0 hidden lg:block lg:bg-[linear-gradient(to_left,rgb(10_10_11/0.94)_0%,rgb(10_10_11/0.82)_34%,rgb(10_10_11/0.25)_56%,transparent_68%)]" />
-        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_top,var(--ink-950)_6%,rgb(10_10_11/0.7)_26%,transparent_55%)] lg:bg-[linear-gradient(to_top,var(--ink-950)_0%,transparent_22%)]" />
-        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(10_10_11/0.6)_0%,transparent_16%)]" />
       </div>
 
       {/* Texto a la derecha del personaje */}

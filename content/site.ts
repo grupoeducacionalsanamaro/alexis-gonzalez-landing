@@ -54,7 +54,7 @@ export const site = {
     h1Contraste: "exitoso.",
     cta: "Conoce más",
     ctaHref: "#sobre-mi",
-    imagen: "/img/alexis-hero-v2.webp",
+    imagen: "/img/alexis-hero-v3.webp",
     imagenAlt: "Alexis González de chaqueta clara frente a un panel púrpura, junto a una foto de él dando una charla",
     videoSrc: null as string | null, // TODO(cliente): loop MP4/WebM ≤2MB si se produce
   },

@@ -317,14 +317,6 @@ img {
 .js [data-grow] {
   transform: scaleX(0);
 }
-/* El retrato del hero no se oculta con opacidad (no retrasar el LCP).
-   En mobile se pinta de inmediato: es el elemento LCP. */
-@media (min-width: 1024px) {
-  .js:not(.rm) [data-hero-img] {
-    transform: translateY(40px);
-    filter: blur(8px);
-  }
-}
 .line-mask {
   display: block;
   overflow: hidden;
