@@ -8,7 +8,7 @@ import { Stars } from "@/components/ui/Stars";
 import type { Resultado as R } from "./types";
 
 const BOOKING = process.env.NEXT_PUBLIC_BOOKING_URL;
-const WA = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+const WA = site.whatsapp.numero || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 
 export function Resultado({ result, nombre, email }: { result: R; nombre: string; email: string }) {
   const T = site.applyForm.resultado;

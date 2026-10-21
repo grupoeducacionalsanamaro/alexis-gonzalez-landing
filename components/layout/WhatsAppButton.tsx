@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { site } from "@/content/site";
 import { track } from "@/lib/analytics";
 
-const NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+const NUMBER = site.whatsapp.numero || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 
 export function WhatsAppButton() {
   const [lifted, setLifted] = useState(false);

@@ -2,14 +2,15 @@ import { ArrowUpRight, FileDown } from "lucide-react";
 import { site } from "@/content/site";
 import { ImageSlot } from "@/components/ui/ImageSlot";
 
-const WA = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+const WA = site.whatsapp.numero || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 
 /** Parte 5 · Servicios: tarjetas con foto + descarga del brochure. */
 export function Servicios() {
   const s = site.servicios;
-  const link = (tipo: string, href: string | null) => {
+  // Conferencia y Workshop abren WhatsApp con su mensaje prellenado
+  const link = (href: string | null, mensaje: string | null) => {
     if (href) return href;
-    if (WA) return `https://wa.me/${WA}?text=${encodeURIComponent(`Hola Alexis, quiero solicitar un(a) ${tipo.toLowerCase()}.`)}`;
+    if (WA && mensaje) return `https://wa.me/${WA}?text=${encodeURIComponent(mensaje)}`;
     return s.brochureHref;
   };
   return (
@@ -28,7 +29,7 @@ export function Servicios() {
 
         <ul className="mt-14 grid gap-4 md:grid-cols-3 lg:mt-20 lg:gap-6" data-reveal-stagger="0.1">
           {s.items.map((it) => {
-            const href = link(it.tipo, it.href);
+            const href = link(it.href, it.whatsappMensaje);
             return (
               <li key={it.tipo}>
                 <a

@@ -315,7 +315,9 @@ export const site = {
         detalle: "Charlas en escenario sobre crecimiento, patrimonio y negocios en salud.",
         src: "/img/servicio-conferencia.webp" as string | null,
         cta: "Solicitar conferencia",
-        href: null as string | null, // sin link: abre WhatsApp si está configurado
+        href: null as string | null, // sin link: abre WhatsApp con este mensaje
+        whatsappMensaje:
+          "Hola Alexis, vengo de tu web y me encantaría poder conversar sobre tu servicio de conferencista para mi evento." as string | null,
       },
       {
         tipo: "Workshop",
@@ -323,6 +325,8 @@ export const site = {
         src: "/img/servicio-workshop.webp" as string | null,
         cta: "Solicitar workshop",
         href: null as string | null,
+        whatsappMensaje:
+          "Hola Alexis, vengo de tu web y me encantaría poder conversar sobre la posibilidad de poder contar con tu workshop para mi evento." as string | null,
       },
       {
         tipo: "Mentoría estratégica",
@@ -330,6 +334,7 @@ export const site = {
         src: "/img/servicio-mentoria.webp" as string | null,
         cta: "Postula a la mentoría",
         href: "/mentoria" as string | null, // página propia con el formulario
+        whatsappMensaje: null as string | null,
       },
     ],
     brochureCta: "Descargar servicios",
@@ -413,6 +418,9 @@ export const site = {
   },
 
   whatsapp: {
+    // Número en formato internacional sin “+” ni espacios (ej. 56912345678).
+    // Si está vacío se usa NEXT_PUBLIC_WHATSAPP_NUMBER.
+    numero: "56959777238" as string | null, // +56 9 5977 7238
     mensaje: "Hola Alexis, quiero saber más sobre la mentoría PROSPERA.",
   },
 
