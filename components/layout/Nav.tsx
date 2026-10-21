@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { scrollToHash } from "./SmoothScroll";
 import { MobileMenu } from "./MobileMenu";
-import { Monogram } from "./Monogram";
+import { Logo } from "./Logo";
 
 export function Nav() {
   const [floating, setFloating] = useState(false);
@@ -94,8 +94,7 @@ export function Nav() {
             className="flex items-center gap-3"
             aria-label={`${site.nombre} — inicio`}
           >
-            <Monogram className="size-9" />
-            <span className="t-eyebrow hidden text-paper sm:inline">{site.nombre}</span>
+            <Logo priority className="h-8 lg:h-9" />
           </a>
 
           <ul ref={linksRef} className="relative hidden items-center gap-8 lg:flex">

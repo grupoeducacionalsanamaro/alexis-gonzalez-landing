@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Monogram } from "./Monogram";
+import { Logo } from "./Logo";
 import { Footer } from "./Footer";
 
 export function LegalPage({ title, updated, children }: { title: string; updated: string; children: ReactNode }) {
@@ -8,8 +8,7 @@ export function LegalPage({ title, updated, children }: { title: string; updated
     <>
       <header className="container-x flex h-[72px] items-center">
         <Link href="/" className="flex items-center gap-3" aria-label="Volver al inicio">
-          <Monogram className="size-9" />
-          <span className="t-eyebrow text-paper">Alexis González</span>
+          <Logo className="h-9" />
         </Link>
       </header>
       <main id="contenido" className="container-x pt-16 pb-32">

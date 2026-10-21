@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
-import { Monogram } from "./Monogram";
+import { Logo } from "./Logo";
 import { FooterYear } from "./FooterYear";
 
 const ICONS: Record<string, React.ReactNode> = {
@@ -53,12 +53,9 @@ export function Footer() {
       </div>
 
       <div className="container-x mt-16 flex flex-col gap-10 border-t border-ink-700 pt-10 md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center gap-4">
-          <Monogram className="size-11" />
-          <div>
-            <p className="t-eyebrow text-paper">{site.nombre}</p>
-            <p className="t-small mt-1">Método {site.marca}</p>
-          </div>
+        <div>
+          <Logo className="h-11" />
+          <p className="t-small mt-3">Método {site.marca}</p>
         </div>
         <nav aria-label="Pie de página" className="flex flex-wrap gap-x-8 gap-y-3 text-[14px] text-paper/70">
           {f.email && (
