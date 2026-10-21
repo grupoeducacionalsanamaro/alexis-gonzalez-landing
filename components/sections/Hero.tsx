@@ -125,7 +125,7 @@ export function Hero() {
         <div data-hero-img="" className="absolute inset-0">
           {video && h.videoSrc ? (
             <video
-              className="photo-bw size-full object-cover object-[50%_18%]"
+              className="photo-bw size-full object-cover object-[28%_20%]"
               src={h.videoSrc}
               poster={h.imagen}
               autoPlay
@@ -142,7 +142,7 @@ export function Hero() {
               priority
               fetchPriority="high"
               sizes="(min-width: 1024px) 55vw, 100vw"
-              className="object-cover object-[50%_18%]"
+              className="object-cover object-[28%_20%]"
             />
           )}
         </div>
