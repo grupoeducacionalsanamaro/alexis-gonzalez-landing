@@ -298,7 +298,7 @@ export const site = {
 
   servicios: {
     eyebrow: "Servicios",
-    titulo: "Inspírese y acceda a los resultados que merece",
+    titulo: "Inspírate y accede a los resultados que mereces.",
     items: [
       {
         tipo: "Conferencia",
