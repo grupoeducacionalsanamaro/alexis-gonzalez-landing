@@ -9,42 +9,42 @@ import type { ApplyForm } from "./types";
 export function Step2Situacion({ form, onEnter }: { form: ApplyForm; onEnter: () => void }) {
   const L = site.applyForm.labels;
   const { control, register, watch, formState } = form;
-  const len = (watch("objetivo") ?? "").length;
+  const { errors, touchedFields: t } = formState;
+  const contador = (n: number) => <span className="tabular-nums">{n}/400</span>;
   return (
     <div className="grid gap-6">
       <Controller
         control={control}
-        name="dolores"
+        name="etapa"
         render={({ field, fieldState }) => (
-          <ChipGroup
-            multiple
-            name="dolores"
-            label={L.dolores}
-            options={formOptions.dolores}
-            value={field.value}
-            onChange={field.onChange}
-            error={fieldState.error?.message}
-            onEnter={onEnter}
-          />
+          <ChipGroup name="etapa" label={L.etapa} options={formOptions.etapa} value={field.value} onChange={field.onChange} error={fieldState.error?.message} onEnter={onEnter} />
         )}
       />
       <TextArea
-        label={L.objetivo}
+        label={L.problema}
         maxLength={400}
-        error={formState.errors.objetivo?.message}
-        valid={formState.touchedFields.objetivo && !formState.errors.objetivo}
-        hint={<span className="tabular-nums">{len}/400</span>}
-        {...register("objetivo")}
+        error={errors.problema?.message}
+        valid={t.problema && !errors.problema}
+        hint={contador((watch("problema") ?? "").length)}
+        {...register("problema")}
+      />
+      <TextArea
+        label={L.resultado}
+        maxLength={400}
+        error={errors.resultado?.message}
+        valid={t.resultado && !errors.resultado}
+        hint={contador((watch("resultado") ?? "").length)}
+        {...register("resultado")}
       />
       <Controller
         control={control}
-        name="compromiso"
+        name="inversion"
         render={({ field, fieldState }) => (
           <ChipGroup
-            name="compromiso"
+            name="inversion"
             columns={1}
-            label={L.compromiso}
-            options={formOptions.compromiso}
+            label={L.inversion}
+            options={formOptions.inversion}
             value={field.value}
             onChange={field.onChange}
             error={fieldState.error?.message}

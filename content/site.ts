@@ -195,10 +195,10 @@ export const site = {
     titulo: "Para postular debes completar el formulario de aplicación.",
     evaluacionTitulo: "La evaluación considera:",
     evaluacion: [
+      "Perfil profesional y sector",
       "Facturación anual",
-      "Estructura actual del negocio",
-      "Nivel de compromiso",
-      "Objetivos a 3–5 años",
+      "Etapa actual del negocio",
+      "Disposición a invertir",
     ],
     siCumples: "Si cumples con el perfil, coordinaremos una conversación estratégica inicial.",
     cuposTexto: null as string | null, // TODO(cliente): ej. "Cupos limitados por trimestre" solo si es real
@@ -380,19 +380,18 @@ export const site = {
 
   applyForm: {
     pasos: ["Tu negocio", "Tu situación", "Tus datos"],
+    // Mismas preguntas que el Google Form de postulación (las respuestas se envían ahí)
     labels: {
-      especialidad: "Especialidad o rubro",
-      especialidadOtro: "¿Cuál?",
-      facturacion: "Facturación anual (CLP)",
-      equipo: "Tamaño de tu equipo",
-      dolores: "¿Qué te preocupa más hoy?",
-      objetivo: "¿Dónde quieres estar en 3 a 5 años?",
-      compromiso: "Nivel de compromiso",
+      perfil: "¿Cuál es tu perfil profesional?",
+      sector: "¿En qué sector desarrollas tu actividad?",
+      facturacion: "¿Cuál es tu facturación anual aproximada?",
+      etapa: "¿En qué etapa estás actualmente?",
+      problema: "¿Cuál es el principal problema que necesitas resolver?",
+      resultado: "¿Qué resultado concreto quieres conseguir en los próximos 90 días?",
+      inversion: "¿Tienes disposición a invertir en una mentoría estratégica personalizada?",
       nombre: "Nombre y apellido",
-      email: "Email",
+      email: "Correo electrónico",
       whatsapp: "WhatsApp",
-      ciudad: "Ciudad",
-      webOInstagram: "Instagram o web (opcional)",
       consentimientoPre: "Acepto el tratamiento de mis datos según la",
       consentimientoLink: "Política de privacidad",
     },
@@ -443,20 +442,54 @@ export const site = {
 };
 
 /** Opciones del formulario de postulación (compartidas cliente/servidor). */
+// Textos exactos del Google Form: si cambian allá, hay que cambiarlos aquí (Google rechaza opciones que no existen).
 export const formOptions = {
-  especialidad: ["Medicina", "Odontología", "Estética", "Kinesiología", "Clínica o centro de salud", "Otro"],
-  facturacion: ["Menos de 100M", "100–300M", "300M–1.000M", "Más de 1.000M"],
-  equipo: ["Solo yo", "2–5", "6–20", "Más de 20"],
-  dolores: [
-    "Mi negocio depende de mí",
-    "Desorden financiero",
-    "Falta de tiempo",
-    "No sé cómo escalar",
-    "Mi vida personal",
+  perfil: [
+    "Dueño o socio de un negocio de salud",
+    "Profesional independiente con negocio propio",
+    "Director o gerente de una empresa de salud",
+    "Empleado sin negocio propio",
   ],
-  compromiso: [
-    "Estoy listo para invertir tiempo y recursos ahora",
-    "En los próximos 3 meses",
-    "Solo estoy explorando",
+  sector: [
+    "Clínicas o centros médicos",
+    "Odontología",
+    "Medicina estética",
+    "Tecnología, educación o servicios de salud",
+    "Otro sector",
+  ],
+  facturacion: [
+    "Aún no facturo",
+    "Menos de $100 millones CLP",
+    "$100 a $300 millones CLP",
+    "$300 a $1.000 millones CLP",
+    "Más de $1.000 millones CLP",
+  ],
+  etapa: [
+    "Ordenando mi negocio",
+    "Creciendo, pero con dificultades",
+    "Estancado o sin dirección clara",
+    "Buscando escalar y delegar",
+  ],
+  inversion: [
+    "Sí, si la propuesta se ajusta a mis objetivos",
+    "Depende de la inversión requerida",
+    "No tengo presupuesto actualmente",
   ],
 } as const;
+
+/** Google Form donde se guardan las postulaciones (entry IDs de cada pregunta). */
+export const googleFormPostulacion = {
+  url: "https://docs.google.com/forms/d/e/1FAIpQLSd_iHy8c-a9f6ZUXluiXlQCN-wRR-LW5p-Lv6P_hmGNPgAhPg/formResponse",
+  entries: {
+    nombre: "entry.670670278",
+    email: "entry.739325739",
+    whatsapp: "entry.483650534",
+    perfil: "entry.1632148123",
+    sector: "entry.273442735",
+    facturacion: "entry.354936249",
+    etapa: "entry.623871348",
+    problema: "entry.442351829",
+    resultado: "entry.2028600305",
+    inversion: "entry.1207377167",
+  },
+};

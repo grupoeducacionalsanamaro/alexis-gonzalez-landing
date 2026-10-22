@@ -15,7 +15,7 @@ export function Step3Datos({ form, onEmailValid }: { form: ApplyForm; onEmailVal
   const wa = register("whatsapp");
   return (
     <div className="grid gap-x-8 gap-y-1 sm:grid-cols-2">
-      <Field label={L.nombre} autoComplete="name" error={errors.nombre?.message} valid={t.nombre} {...register("nombre")} />
+      <Field label={L.nombre} className="sm:col-span-2" autoComplete="name" error={errors.nombre?.message} valid={t.nombre} {...register("nombre")} />
       <Field
         label={L.email}
         type="email"
@@ -44,8 +44,6 @@ export function Step3Datos({ form, onEmailValid }: { form: ApplyForm; onEmailVal
           setValue("whatsapp", f);
         }}
       />
-      <Field label={L.ciudad} autoComplete="address-level2" error={errors.ciudad?.message} valid={t.ciudad} {...register("ciudad")} />
-      <Field label={L.webOInstagram} className="sm:col-span-2" autoComplete="url" error={errors.webOInstagram?.message} {...register("webOInstagram")} />
       {/* Honeypot */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
         <label>

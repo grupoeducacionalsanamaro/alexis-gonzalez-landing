@@ -37,6 +37,6 @@ export async function emailEbook(to: string, nombre: string) {
 export async function emailAvisoPrioritario(resumen: ResumenLead) {
   const to = process.env.LEADS_NOTIFY_EMAIL;
   if (!to) return false;
-  const subject = `[PRIORITARIO] ${resumen.nombre} · ${resumen.especialidad} · ${resumen.facturacion}`;
+  const subject = `[PRIORITARIO] ${resumen.nombre} · ${resumen.facturacion}`;
   return send(to, subject, correoAvisoPrioritario(resumen), { copia: false });
 }

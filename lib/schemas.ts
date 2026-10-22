@@ -22,34 +22,25 @@ export const utmSchema = z
   })
   .partial();
 
-export const step1Schema = z
-  .object({
-    especialidad: enumOf(formOptions.especialidad, "Elige tu especialidad"),
-    especialidadOtro: z.string().trim().max(80).optional(),
-    facturacion: enumOf(formOptions.facturacion, "Elige un rango de facturación"),
-    equipo: enumOf(formOptions.equipo, "Elige el tamaño de tu equipo"),
-  })
-  .refine((d) => d.especialidad !== "Otro" || (d.especialidadOtro && d.especialidadOtro.length >= 2), {
-    path: ["especialidadOtro"],
-    message: "Cuéntanos tu especialidad",
-  });
+const textoLibre = z.string().trim().min(10, "Escribe al menos 10 caracteres").max(400, "Máximo 400 caracteres");
+
+export const step1Schema = z.object({
+  perfil: z.array(enumOf(formOptions.perfil, "Opción inválida")).min(1, "Elige al menos una opción"),
+  sector: z.array(enumOf(formOptions.sector, "Opción inválida")).min(1, "Elige al menos una opción"),
+  facturacion: enumOf(formOptions.facturacion, "Elige un rango de facturación"),
+});
 
 export const step2Schema = z.object({
-  dolores: z.array(enumOf(formOptions.dolores, "Opción inválida")).min(1, "Elige al menos una opción"),
-  objetivo: z
-    .string()
-    .trim()
-    .min(10, "Escribe al menos 10 caracteres")
-    .max(400, "Máximo 400 caracteres"),
-  compromiso: enumOf(formOptions.compromiso, "Elige tu nivel de compromiso"),
+  etapa: enumOf(formOptions.etapa, "Elige tu etapa actual"),
+  problema: textoLibre,
+  resultado: textoLibre,
+  inversion: enumOf(formOptions.inversion, "Elige una opción"),
 });
 
 export const step3Schema = z.object({
   nombre: z.string().trim().min(2, "Ingresa tu nombre").max(80),
   email: z.string().trim().toLowerCase().email("Ingresa un email válido").max(120),
   whatsapp: phoneCL,
-  ciudad: z.string().trim().min(2, "Ingresa tu ciudad").max(60),
-  webOInstagram: z.string().trim().max(120).optional().or(z.literal("")),
   consentimiento: z.literal(true, { error: () => "Debes aceptar la política de privacidad" }),
 });
 
@@ -75,10 +66,9 @@ export const applyPartialSchema = z
     email: z.string().trim().toLowerCase().email().max(120),
     nombre: z.string().trim().max(80).optional(),
     whatsapp: z.string().max(20).optional(),
-    especialidad: z.string().max(80).optional(),
     facturacion: z.string().max(40).optional(),
-    equipo: z.string().max(40).optional(),
-    compromiso: z.string().max(80).optional(),
+    etapa: z.string().max(60).optional(),
+    inversion: z.string().max(80).optional(),
   })
   .and(metaSchema.partial());
 

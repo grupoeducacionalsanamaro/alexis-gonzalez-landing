@@ -13,7 +13,20 @@ export function GET(req: Request) {
       : t === "postulacion-no"
         ? correoPostulacion("Camila Rojas", false, pdf)
         : t === "aviso"
-          ? correoAvisoPrioritario({ nombre: "Camila Rojas", especialidad: "Odontología", facturacion: "$10M–$30M", objetivo: "Abrir una segunda clínica", email: "camila@ejemplo.cl", whatsapp: "912345678", score: 86 })
+          ? correoAvisoPrioritario({
+              nombre: "Camila Rojas",
+              email: "camila@ejemplo.cl",
+              whatsapp: "+56 9 1234 5678",
+              whatsappDigitos: "912345678",
+              perfil: ["Dueño o socio de un negocio de salud"],
+              sector: ["Odontología"],
+              facturacion: "$300 a $1.000 millones CLP",
+              etapa: "Buscando escalar y delegar",
+              problema: "Todo depende de mí y no tengo tiempo para pensar en el negocio.",
+              resultado: "Tener un gerente operativo y los números ordenados.",
+              inversion: "Sí, si la propuesta se ajusta a mis objetivos",
+              score: 8,
+            })
           : correoEbook("Camila Rojas", pdf);
   // Imágenes y links desde el servidor local mientras se revisa
   return new Response(html.replaceAll(EMAIL_BASE, u.origin), { headers: { "Content-Type": "text/html; charset=utf-8" } });

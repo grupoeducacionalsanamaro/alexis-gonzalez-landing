@@ -1,4 +1,5 @@
 import "server-only";
+import { googleFormPostulacion } from "@/content/site";
 
 export type CrmPayload = {
   tipo: "postulacion" | "ebook";
@@ -30,6 +31,34 @@ export async function sendToCrm(payload: CrmPayload): Promise<boolean> {
     return res.ok;
   } catch (e) {
     console.error("[crm] error enviando webhook", e);
+    return false;
+  }
+}
+
+/**
+ * Guarda la postulación en el Google Form de Alexis (POST a formResponse, como si se llenara el Form).
+ * Las opciones deben coincidir exactamente con las del Form: ver formOptions en content/site.ts.
+ */
+export async function sendToGoogleForm(r: Record<string, unknown>): Promise<boolean> {
+  const { url, entries } = googleFormPostulacion;
+  const body = new URLSearchParams();
+  for (const [campo, entry] of Object.entries(entries)) {
+    const v = r[campo];
+    for (const valor of Array.isArray(v) ? v : [v]) if (valor != null && valor !== "") body.append(entry, String(valor));
+  }
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body,
+      redirect: "manual",
+      signal: AbortSignal.timeout(8000),
+    });
+    // Google responde 200 con la página de confirmación; 400 si falta una pregunta obligatoria o una opción no existe
+    if (!res.ok) console.error("[google-form] respondió", res.status);
+    return res.ok;
+  } catch (e) {
+    console.error("[google-form] error", e);
     return false;
   }
 }

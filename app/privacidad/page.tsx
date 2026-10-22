@@ -24,7 +24,7 @@ export default function Privacidad() {
       </p>
       <h2>Datos que recolectamos</h2>
       <ul>
-        <li>Formulario de postulación: especialidad, rango de facturación, tamaño de equipo, preocupaciones, objetivos, nivel de compromiso, nombre, email, WhatsApp, ciudad y, opcionalmente, web o Instagram.</li>
+        <li>Formulario de postulación: perfil profesional, sector, rango de facturación, etapa del negocio, principal problema, resultado esperado a 90 días, disposición a invertir, nombre, email y WhatsApp.</li>
         <li>Formulario del ebook: nombre, email y WhatsApp.</li>
         <li>Datos de navegación: origen de la visita (parámetros UTM) y, solo si aceptas cookies, datos de medición de Google Tag Manager, Meta Pixel y Microsoft Clarity.</li>
       </ul>

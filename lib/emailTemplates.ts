@@ -184,11 +184,18 @@ export function correoPostulacion(nombre: string, calificado: boolean, pdfUrl: s
 
 export type ResumenLead = {
   nombre: string;
-  especialidad: string;
-  facturacion: string;
-  objetivo: string;
   email: string;
+  /** Formateado, ej. +56 9 1234 5678 */
   whatsapp: string;
+  /** Solo dígitos sin +56, para el link de WhatsApp */
+  whatsappDigitos: string;
+  perfil: readonly string[];
+  sector: readonly string[];
+  facturacion: string;
+  etapa: string;
+  problema: string;
+  resultado: string;
+  inversion: string;
   score: number;
 };
 
@@ -197,18 +204,22 @@ export function correoAvisoPrioritario(r: ResumenLead) {
   const fila = (k: string, v: string) =>
     `<tr><td style="padding:10px 0;border-bottom:1px solid ${C.borde};font-family:${FUENTE};font-size:13px;color:${C.gris};width:130px;vertical-align:top">${k}</td><td style="padding:10px 0;border-bottom:1px solid ${C.borde};font-family:${FUENTE};font-size:15px;color:${C.blanco}">${v}</td></tr>`;
   return plantillaCorreo({
-    preheader: `${r.nombre} · ${r.especialidad} · score ${r.score}`,
+    preheader: `${r.nombre} · ${r.facturacion} · score ${r.score}`,
     eyebrow: "Lead prioritario",
     titulo: esc(r.nombre),
     cuerpo: `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px">
-${fila("Especialidad", esc(r.especialidad))}
+${fila("Perfil", esc(r.perfil.join(", ")))}
+${fila("Sector", esc(r.sector.join(", ")))}
 ${fila("Facturación", esc(r.facturacion))}
-${fila("Objetivo", esc(r.objetivo))}
+${fila("Etapa", esc(r.etapa))}
+${fila("Problema", esc(r.problema))}
+${fila("Resultado a 90 días", esc(r.resultado))}
+${fila("Inversión", esc(r.inversion))}
 ${fila("Email", `<a href="mailto:${esc(r.email)}" style="color:${C.lila};text-decoration:none">${esc(r.email)}</a>`)}
-${fila("WhatsApp", `+56 ${esc(r.whatsapp)}`)}
+${fila("WhatsApp", esc(r.whatsapp))}
 ${fila("Score", String(r.score))}
 </table>`,
-    cta: { label: "Escribir por WhatsApp", href: `https://wa.me/56${r.whatsapp.replace(/\D/g, "")}` },
+    cta: { label: "Escribir por WhatsApp", href: `https://wa.me/56${r.whatsappDigitos}` },
     firma: false,
   });
 }

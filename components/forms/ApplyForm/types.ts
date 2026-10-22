@@ -7,9 +7,9 @@ export type ApplyValues = z.input<typeof clientApplySchema>;
 export type ApplyForm = UseFormReturn<ApplyValues>;
 
 export const STEP_FIELDS: (keyof ApplyValues)[][] = [
-  ["especialidad", "especialidadOtro", "facturacion", "equipo"],
-  ["dolores", "objetivo", "compromiso"],
-  ["nombre", "email", "whatsapp", "ciudad", "webOInstagram", "consentimiento"],
+  ["perfil", "sector", "facturacion"],
+  ["etapa", "problema", "resultado", "inversion"],
+  ["nombre", "email", "whatsapp", "consentimiento"],
 ];
 
 export type Resultado = { segmento: "prioritario" | "calificado" | "nutrir"; ebookUrl: string | null };

@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { applyPartialSchema, applySchema, MIN_FILL_MS } from "@/lib/schemas";
 import { calcularScore } from "@/lib/scoring";
-import { deviceFromUA, sendMetaCapi, sendToCrm } from "@/lib/crm";
+import { deviceFromUA, sendMetaCapi, sendToCrm, sendToGoogleForm } from "@/lib/crm";
 import { emailAvisoPrioritario, emailConfirmacionPostulacion } from "@/lib/email";
 import { clientIp, rateLimit } from "@/lib/ratelimit";
 import { site } from "@/content/site";
@@ -48,25 +48,25 @@ export async function POST(req: NextRequest) {
 
   // Score siempre en servidor
   const { score, segmento } = calcularScore(d);
-  const especialidad = d.especialidad === "Otro" && d.especialidadOtro ? `Otro: ${d.especialidadOtro}` : d.especialidad;
+  const whatsapp = `+56 ${d.whatsapp.replace(/^(\d)(\d{4})(\d{4})$/, "$1 $2 $3")}`;
 
   const respuestas = {
-    especialidad,
-    facturacion: d.facturacion,
-    equipo: d.equipo,
-    dolores: d.dolores,
-    objetivo: d.objetivo,
-    compromiso: d.compromiso,
     nombre: d.nombre,
     email: d.email,
-    whatsapp: `+56${d.whatsapp}`,
-    ciudad: d.ciudad,
-    webOInstagram: d.webOInstagram || undefined,
+    whatsapp,
+    perfil: d.perfil,
+    sector: d.sector,
+    facturacion: d.facturacion,
+    etapa: d.etapa,
+    problema: d.problema,
+    resultado: d.resultado,
+    inversion: d.inversion,
     consentimiento: true,
   };
 
   const url = new URL(d.landing || "/", req.nextUrl.origin).toString();
-  await Promise.allSettled([
+  const [formOk] = await Promise.allSettled([
+    sendToGoogleForm(respuestas),
     sendToCrm({
       tipo: "postulacion",
       estado: "completa",
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
     }),
     emailConfirmacionPostulacion(d.email, d.nombre, segmento !== "nutrir"),
     segmento === "prioritario"
-      ? emailAvisoPrioritario({ nombre: d.nombre, especialidad, facturacion: d.facturacion, objetivo: d.objetivo, email: d.email, whatsapp: d.whatsapp, score })
+      ? emailAvisoPrioritario({ ...respuestas, whatsappDigitos: d.whatsapp, score })
       : Promise.resolve(false),
     sendMetaCapi({
       eventName: "Lead",
@@ -93,6 +93,9 @@ export async function POST(req: NextRequest) {
       customData: { content_name: "postulacion", segmento },
     }),
   ]);
+
+  // Si el Google Form no la recibió, que quede rastro para recuperarla desde los logs
+  if (formOk.status !== "fulfilled" || !formOk.value) console.error("[apply] postulación no guardada en Google Form", JSON.stringify(respuestas));
 
   return NextResponse.json({ ok: true, segmento, ebookUrl: segmento === "nutrir" ? (process.env.EBOOK_PDF_URL || site.ebook.pdfUrl) : null });
 }
