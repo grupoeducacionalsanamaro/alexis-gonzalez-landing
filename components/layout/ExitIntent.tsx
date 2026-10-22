@@ -81,11 +81,6 @@ export function ExitIntent() {
                 <p className="text-paper">{site.ebook.exitoTitulo}</p>
                 <p className="t-small mt-1">{site.ebook.exitoEmail}</p>
               </div>
-              {url && (
-                <Button variant="accent" href={url} external location="exit_intent_download">
-                  {site.ebook.exitoDescargar}
-                </Button>
-              )}
               <Button variant="text" href="/mentoria" location="exit_intent_postular" onClick={close}>
                 {site.ebook.exitoPostular}
               </Button>

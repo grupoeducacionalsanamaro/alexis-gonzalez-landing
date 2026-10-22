@@ -217,9 +217,8 @@ export const site = {
     reflexionPost: "y entiende en qué segmento estás.",
     cta: "¡Descarga aquí!",
     formCta: "Recibir el ebook",
-    exitoTitulo: "Tu ebook está listo.",
-    exitoEmail: "También te lo enviamos a tu email.",
-    exitoDescargar: "Descargar PDF",
+    exitoTitulo: "¡Gracias! Tu ebook ya va en camino.",
+    exitoEmail: "Revisa tu bandeja de entrada: allí te enviamos el link de descarga. Si no lo ves en unos minutos, busca en spam o promociones.",
     exitoPostular: "¿Listo para el siguiente paso? Postula a la mentoría",
   },
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { MailCheck } from "lucide-react";
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { Wireframe } from "@/components/ui/Wireframe";
@@ -49,7 +50,7 @@ function Book({ open }: { open: boolean }) {
 export function Ebook() {
   const e = site.ebook;
   const [expanded, setExpanded] = useState(false);
-  const [done, setDone] = useState<{ url: string | null } | null>(null);
+  const [done, setDone] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
   useMotion(ref, ({ gsap, reduced, scope }) => {
@@ -113,46 +114,49 @@ export function Ebook() {
           <p className="t-body mt-4 max-w-[520px]">
             {e.reflexionPre} <strong className="font-bold text-paper">{e.reflexionBold}</strong> {e.reflexionPost}
           </p>
+        </div>
 
-          <div className="mt-10">
+        <div className="flex flex-col items-center lg:col-span-6">
+          <div className="book-scene flex w-full justify-center py-6 lg:py-0">
+            <div className="relative">
+              <div aria-hidden="true" className="absolute top-1/2 left-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(circle, rgb(138 23 178 / 0.12), transparent 65%)" }} />
+              {/* sombra proyectada en el piso */}
+              <div aria-hidden="true" className="book-floor-shadow" />
+              <Book open={done} />
+            </div>
+          </div>
+
+          {/* CTA centrado bajo el mockup; el formulario se despliega en el mismo lugar */}
+          <div className="mt-10 w-full max-w-[560px] lg:mt-14">
             {!expanded && (
-              <Button variant="accent" onClick={open} location="ebook_open">
-                {e.cta}
-              </Button>
+              <div className="flex justify-center">
+                <Button variant="accent" onClick={open} location="ebook_open">
+                  {e.cta}
+                </Button>
+              </div>
             )}
             <div className="acc-panel" data-open={expanded}>
               <div>
                 <div className="card-dark mt-2 p-6 md:p-8" inert={!expanded}>
                   {done ? (
-                    <div className="flex flex-col items-start gap-5" aria-live="polite">
+                    <div className="flex flex-col items-center gap-5 text-center" aria-live="polite">
+                      <span className="grid size-14 place-items-center rounded-full bg-accent-500/15 text-accent-300 ring-1 ring-accent-500/40">
+                        <MailCheck strokeWidth={1.75} className="size-6" aria-hidden="true" />
+                      </span>
                       <div>
-                        <p className="font-display text-[22px] font-extrabold tracking-[-0.02em] text-paper">{e.exitoTitulo}</p>
-                        <p className="t-small mt-1">{e.exitoEmail}</p>
+                        <p className="font-display text-[22px] leading-tight font-extrabold tracking-[-0.02em] text-paper">{e.exitoTitulo}</p>
+                        <p className="mt-2 text-[15px] leading-relaxed text-paper/75">{e.exitoEmail}</p>
                       </div>
-                      {done.url && (
-                        <Button variant="accent" href={done.url} external location="ebook_download">
-                          {e.exitoDescargar}
-                        </Button>
-                      )}
                       <Button variant="text" href="/mentoria" location="ebook_to_apply" cursor="postular">
                         {e.exitoPostular}
                       </Button>
                     </div>
                   ) : (
-                    expanded && <EbookForm location="ebook_section" onSuccess={(url) => setDone({ url })} />
+                    expanded && <EbookForm location="ebook_section" onSuccess={() => setDone(true)} />
                   )}
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="book-scene flex justify-center py-6 lg:col-span-6 lg:justify-end lg:py-0 lg:pr-1">
-          <div className="relative">
-            <div aria-hidden="true" className="absolute top-1/2 left-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(circle, rgb(138 23 178 / 0.12), transparent 65%)" }} />
-            {/* sombra proyectada en el piso */}
-            <div aria-hidden="true" className="book-floor-shadow" />
-            <Book open={!!done} />
           </div>
         </div>
       </div>
