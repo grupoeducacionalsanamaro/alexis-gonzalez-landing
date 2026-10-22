@@ -55,8 +55,8 @@ export const site = {
     h1Cierre: ".", // punto sólido (no en contorno)
     cta: "Conoce más",
     ctaHref: "#sobre-mi",
-    imagen: "/img/alexis-hero-v3.webp",
-    imagenAlt: "Alexis González de chaqueta clara frente a un panel púrpura, junto a una foto de él dando una charla",
+    imagen: "/img/alexis-hero-v4.webp",
+    imagenAlt: "Alexis González de camisa blanca frente a un panel púrpura, junto a una foto de él dando una charla",
     videoSrc: null as string | null, // TODO(cliente): loop MP4/WebM ≤2MB si se produce
   },
 
