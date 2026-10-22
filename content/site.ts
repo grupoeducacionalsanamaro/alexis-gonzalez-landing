@@ -235,7 +235,6 @@ export const site = {
           { nombre: "AGC Instituto de Odontología", logo: "/logos/agc.webp" as string | null },
           { nombre: "Harmony Institute Internacional", logo: "/logos/harmony-institute.webp" as string | null },
           { nombre: "Simetría Academia", logo: "/logos/simetria.webp" as string | null },
-          { nombre: "KONCEPTO Instituto de Formación", logo: "/logos/koncepto.webp" as string | null },
           { nombre: "Premier Medical Institute", logo: "/logos/premier.webp" as string | null },
         ],
       },
