@@ -104,8 +104,9 @@ export function Ebook() {
         <Wireframe variant="stack" draw={false} strokeOpacity={0.35} strokeWidth={0.7} className="absolute top-[10%] -left-16 w-[300px] md:w-[380px]" />
         <Wireframe variant="cube" draw={false} strokeOpacity={0.3} className="absolute right-[6%] bottom-[8%] w-[140px]" />
       </div>
-      <div className="container-x relative grid items-center gap-16 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-6">
+      {/* Mobile: texto → libro → CTA. Desktop: CTA bajo el texto y el libro a la derecha ocupando ambas filas. */}
+      <div className="container-x relative grid items-center gap-16 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-10">
+        <div className="lg:col-span-6 lg:row-start-1 lg:self-end">
           <p className="font-display text-[clamp(20px,2.2vw,28px)] leading-tight font-extrabold tracking-[-0.02em] text-paper/90">{e.antetitulo}</p>
           <h2 id="ebook-title" className="t-quote accent-text mt-4 pr-2">
             {e.titulo}
@@ -116,45 +117,43 @@ export function Ebook() {
           </p>
         </div>
 
-        <div className="flex flex-col items-center lg:col-span-6">
-          <div className="book-scene flex w-full justify-center py-6 lg:py-0">
-            <div className="relative">
-              <div aria-hidden="true" className="absolute top-1/2 left-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(circle, rgb(138 23 178 / 0.12), transparent 65%)" }} />
-              {/* sombra proyectada en el piso */}
-              <div aria-hidden="true" className="book-floor-shadow" />
-              <Book open={done} />
-            </div>
+        <div className="book-scene flex w-full justify-center py-6 lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1 lg:py-0">
+          <div className="relative">
+            <div aria-hidden="true" className="absolute top-1/2 left-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(circle, rgb(138 23 178 / 0.12), transparent 65%)" }} />
+            {/* sombra proyectada en el piso */}
+            <div aria-hidden="true" className="book-floor-shadow" />
+            <Book open={done} />
           </div>
+        </div>
 
-          {/* CTA centrado bajo el mockup; el formulario se despliega en el mismo lugar */}
-          <div className="mt-10 w-full max-w-[560px] lg:mt-14">
-            {!expanded && (
-              <div className="flex justify-center">
-                <Button variant="accent" onClick={open} location="ebook_open">
-                  {e.cta}
-                </Button>
-              </div>
-            )}
-            <div className="acc-panel" data-open={expanded}>
-              <div>
-                <div className="card-dark mt-2 p-6 md:p-8" inert={!expanded}>
-                  {done ? (
-                    <div className="flex flex-col items-center gap-5 text-center" aria-live="polite">
-                      <span className="grid size-14 place-items-center rounded-full bg-accent-500/15 text-accent-300 ring-1 ring-accent-500/40">
-                        <MailCheck strokeWidth={1.75} className="size-6" aria-hidden="true" />
-                      </span>
-                      <div>
-                        <p className="font-display text-[22px] leading-tight font-extrabold tracking-[-0.02em] text-paper">{e.exitoTitulo}</p>
-                        <p className="mt-2 text-[15px] leading-relaxed text-paper/75">{e.exitoEmail}</p>
-                      </div>
-                      <Button variant="text" href="/mentoria" location="ebook_to_apply" cursor="postular">
-                        {e.exitoPostular}
-                      </Button>
+        {/* CTA: centrado bajo el mockup en mobile, bajo el texto en desktop; el formulario se despliega en el mismo lugar */}
+        <div className="mx-auto -mt-6 w-full max-w-[560px] lg:col-span-6 lg:row-start-2 lg:mx-0 lg:mt-0 lg:self-start">
+          {!expanded && (
+            <div className="flex justify-center lg:justify-start">
+              <Button variant="accent" onClick={open} location="ebook_open">
+                {e.cta}
+              </Button>
+            </div>
+          )}
+          <div className="acc-panel" data-open={expanded}>
+            <div>
+              <div className="card-dark mt-2 p-6 md:p-8" inert={!expanded}>
+                {done ? (
+                  <div className="flex flex-col items-center gap-5 text-center" aria-live="polite">
+                    <span className="grid size-14 place-items-center rounded-full bg-accent-500/15 text-accent-300 ring-1 ring-accent-500/40">
+                      <MailCheck strokeWidth={1.75} className="size-6" aria-hidden="true" />
+                    </span>
+                    <div>
+                      <p className="font-display text-[22px] leading-tight font-extrabold tracking-[-0.02em] text-paper">{e.exitoTitulo}</p>
+                      <p className="mt-2 text-[15px] leading-relaxed text-paper/75">{e.exitoEmail}</p>
                     </div>
-                  ) : (
-                    expanded && <EbookForm location="ebook_section" onSuccess={() => setDone(true)} />
-                  )}
-                </div>
+                    <Button variant="text" href="/mentoria" location="ebook_to_apply" cursor="postular">
+                      {e.exitoPostular}
+                    </Button>
+                  </div>
+                ) : (
+                  expanded && <EbookForm location="ebook_section" onSuccess={() => setDone(true)} />
+                )}
               </div>
             </div>
           </div>
