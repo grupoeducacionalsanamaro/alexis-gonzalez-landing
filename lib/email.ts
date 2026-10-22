@@ -1,6 +1,6 @@
 import "server-only";
 import { site } from "@/content/site";
-import { correoAvisoPrioritario, correoEbook, correoPostulacion, type ResumenLead } from "@/lib/emailTemplates";
+import { correoAvisoPrioritario, correoEbook, correoPostulacion, textoPlano, type ResumenLead } from "@/lib/emailTemplates";
 
 const FROM = process.env.RESEND_FROM || "Alexis González <onboarding@resend.dev>";
 // Respuestas de los usuarios y copia oculta de cada correo enviado (se configuran en Vercel)
@@ -16,7 +16,7 @@ async function send(to: string, subject: string, html: string, { copia = true } 
   try {
     const { Resend } = await import("resend");
     const resend = new Resend(key);
-    const { data, error } = await resend.emails.send({ from: FROM, to, subject, html, replyTo: REPLY_TO, bcc: copia ? COPIA : undefined });
+    const { data, error } = await resend.emails.send({ from: FROM, to, subject, html, text: textoPlano(html), replyTo: REPLY_TO, bcc: copia ? COPIA : undefined });
     if (error) console.error("[email] Resend:", error);
     else console.info(`[email] enviado ${data?.id} · ${subject}`);
     return !error;

@@ -212,3 +212,32 @@ ${fila("Score", String(r.score))}
     firma: false,
   });
 }
+
+/** Versión en texto plano del correo: los correos solo-HTML puntúan peor en los filtros de spam */
+export function textoPlano(html: string) {
+  return html
+    .replace(/<head[\s\S]*?<\/head>/i, "")
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .replace(/<div style="display:none[\s\S]*?<\/div>/i, "")
+    .replace(/<img[^>]*>/gi, "")
+    .replace(/<a [^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (_, href: string, label: string) => {
+      const t = label.replace(/<[^>]+>|&nbsp;&rarr;/g, "").trim();
+      return t && !href.startsWith("mailto:") && !href.endsWith(".vercel.app") ? `${t}: ${href}` : t;
+    })
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/(p|h1|tr|table)>/gi, "\n\n")
+    .replace(/<\/td>/gi, " ")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&rarr;/g, "→")
+    .replace(/&#847;|&zwnj;/g, "")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&")
+    .replace(/[ \t]+/g, " ")
+    .replace(/ *\n */g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
