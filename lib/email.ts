@@ -3,8 +3,11 @@ import { site } from "@/content/site";
 import { correoAvisoPrioritario, correoEbook, correoPostulacion, type ResumenLead } from "@/lib/emailTemplates";
 
 const FROM = process.env.RESEND_FROM || "Alexis González <onboarding@resend.dev>";
+// Respuestas de los usuarios y copia oculta de cada correo enviado (se configuran en Vercel)
+const REPLY_TO = process.env.EMAIL_REPLY_TO || undefined;
+const COPIA = process.env.EMAIL_BCC || undefined;
 
-async function send(to: string, subject: string, html: string) {
+async function send(to: string, subject: string, html: string, { copia = true } = {}) {
   const key = process.env.RESEND_API_KEY;
   if (!key) {
     if (process.env.NODE_ENV !== "production") console.info(`[email] RESEND_API_KEY no definido. Para: ${to} · ${subject}`);
@@ -13,7 +16,7 @@ async function send(to: string, subject: string, html: string) {
   try {
     const { Resend } = await import("resend");
     const resend = new Resend(key);
-    const { error } = await resend.emails.send({ from: FROM, to, subject, html });
+    const { error } = await resend.emails.send({ from: FROM, to, subject, html, replyTo: REPLY_TO, bcc: copia ? COPIA : undefined });
     if (error) console.error("[email] Resend:", error);
     return !error;
   } catch (e) {
@@ -34,5 +37,5 @@ export async function emailAvisoPrioritario(resumen: ResumenLead) {
   const to = process.env.LEADS_NOTIFY_EMAIL;
   if (!to) return false;
   const subject = `[PRIORITARIO] ${resumen.nombre} · ${resumen.especialidad} · ${resumen.facturacion}`;
-  return send(to, subject, correoAvisoPrioritario(resumen));
+  return send(to, subject, correoAvisoPrioritario(resumen), { copia: false });
 }
