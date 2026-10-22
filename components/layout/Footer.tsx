@@ -25,7 +25,7 @@ export function Footer() {
       {/* Redes sociales */}
       <div className="container-x pt-16 lg:pt-24">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <h2 className="font-display text-[clamp(40px,6vw,88px)] leading-none font-black tracking-[-0.045em] text-paper">{f.redesTitulo}</h2>
+          <h2 className="text-center font-display text-[clamp(40px,6vw,88px)] leading-none font-black tracking-[-0.045em] text-paper lg:text-left">{f.redesTitulo}</h2>
           <ul className="grid gap-3 sm:grid-cols-3 lg:w-[62%]">
             {f.redes.map((r) => (
               <li key={r.label}>
@@ -52,12 +52,12 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="container-x mt-16 flex flex-col gap-10 border-t border-ink-700 pt-10 md:flex-row md:items-center md:justify-between">
-        <div>
+      <div className="container-x mt-16 flex flex-col gap-10 border-t border-ink-700 pt-10 text-center md:flex-row md:items-center md:justify-between md:text-left">
+        <div className="flex flex-col items-center md:items-start">
           <Logo className="h-11" />
           <p className="t-small mt-3">Método {site.marca}</p>
         </div>
-        <nav aria-label="Pie de página" className="flex flex-wrap gap-x-8 gap-y-3 text-[14px] text-paper/70">
+        <nav aria-label="Pie de página" className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-[14px] text-paper/70 md:justify-start">
           {f.email && (
             <a href={`mailto:${f.email}`} className="transition-colors hover:text-paper">
               {f.email}
@@ -72,7 +72,7 @@ export function Footer() {
         </nav>
       </div>
       <div className="container-x mt-8">
-        <p className="t-small text-[13px]">
+        <p className="t-small text-center text-[13px] md:text-left">
           © <FooterYear /> {f.tagline}. Todos los derechos reservados.
         </p>
       </div>

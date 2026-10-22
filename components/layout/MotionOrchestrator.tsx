@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { countUp, drawStroke, accentSweep, isReducedMotion, loadMotion, maskLines, queueMotion, revealUp, stagger } from "@/lib/animations";
 
 /** Elementos por tarea: cada lote debe quedar muy por debajo de 50ms en un mobile lento. */
@@ -16,6 +17,9 @@ const BATCH = 4;
  * El trabajo se reparte en lotes (queueMotion) para no generar una tarea larga.
  */
 export function MotionOrchestrator() {
+  // Vive en el layout: hay que volver a recorrer el DOM en cada navegación del cliente
+  // (p. ej. /mentoria → /), si no, las secciones nuevas quedan en su estado inicial (opacity 0).
+  const pathname = usePathname();
   useEffect(() => {
     let ctx: { revert: () => void } | null = null;
     let cancelled = false;
@@ -133,6 +137,6 @@ export function MotionOrchestrator() {
       ro?.disconnect();
       ctx?.revert();
     };
-  }, []);
+  }, [pathname]);
   return null;
 }

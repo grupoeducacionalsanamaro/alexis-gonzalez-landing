@@ -29,8 +29,8 @@ function Programas() {
               alt={`Alexis González en ${primero.titulo}`}
               label={primero.titulo}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="aspect-[4/3] h-full rounded-2xl lg:aspect-auto"
-              imgClassName="transition-transform duration-700 ease-out-expo group-hover:scale-[1.03]"
+              className="aspect-[4/5] h-full rounded-2xl sm:aspect-[4/3] lg:aspect-auto"
+              imgClassName="object-[50%_12%] transition-transform duration-700 ease-out-expo group-hover:scale-[1.03]"
             />
             {caption(primero.titulo, primero.lugar, true)}
           </figure>
