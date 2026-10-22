@@ -10,14 +10,15 @@ const COPIA = process.env.EMAIL_BCC || undefined;
 async function send(to: string, subject: string, html: string, { copia = true } = {}) {
   const key = process.env.RESEND_API_KEY;
   if (!key) {
-    if (process.env.NODE_ENV !== "production") console.info(`[email] RESEND_API_KEY no definido. Para: ${to} · ${subject}`);
+    console.warn(`[email] RESEND_API_KEY no definido, no se envía: ${subject}`);
     return false;
   }
   try {
     const { Resend } = await import("resend");
     const resend = new Resend(key);
-    const { error } = await resend.emails.send({ from: FROM, to, subject, html, replyTo: REPLY_TO, bcc: copia ? COPIA : undefined });
+    const { data, error } = await resend.emails.send({ from: FROM, to, subject, html, replyTo: REPLY_TO, bcc: copia ? COPIA : undefined });
     if (error) console.error("[email] Resend:", error);
+    else console.info(`[email] enviado ${data?.id} · ${subject}`);
     return !error;
   } catch (e) {
     console.error("[email] error", e);
