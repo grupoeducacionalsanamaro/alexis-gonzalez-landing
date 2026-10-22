@@ -3,6 +3,7 @@ import { ebookSchema, MIN_FILL_MS } from "@/lib/schemas";
 import { deviceFromUA, sendMetaCapi, sendToCrm } from "@/lib/crm";
 import { emailEbook } from "@/lib/email";
 import { clientIp, rateLimit } from "@/lib/ratelimit";
+import { site } from "@/content/site";
 
 export async function POST(req: NextRequest) {
   const ip = clientIp(req.headers);
@@ -13,7 +14,7 @@ export async function POST(req: NextRequest) {
   const parsed = ebookSchema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ ok: false, error: "Revisa los datos del formulario." }, { status: 422 });
   const d = parsed.data;
-  const pdf = process.env.EBOOK_PDF_URL ?? null;
+  const pdf = process.env.EBOOK_PDF_URL || site.ebook.pdfUrl;
 
   if (d.empresa_web || Date.now() - d.startedAt < MIN_FILL_MS) return NextResponse.json({ ok: true, url: pdf });
 

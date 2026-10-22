@@ -23,11 +23,11 @@ async function send(to: string, subject: string, html: string) {
 }
 
 export async function emailConfirmacionPostulacion(to: string, nombre: string, calificado: boolean) {
-  return send(to, `Recibimos tu postulación · Método ${site.marca}`, correoPostulacion(nombre, calificado, process.env.EBOOK_PDF_URL ?? null));
+  return send(to, `Recibimos tu postulación · Método ${site.marca}`, correoPostulacion(nombre, calificado, process.env.EBOOK_PDF_URL || site.ebook.pdfUrl));
 }
 
 export async function emailEbook(to: string, nombre: string) {
-  return send(to, `Tu ebook: ${site.ebook.titulo}`, correoEbook(nombre, process.env.EBOOK_PDF_URL ?? null));
+  return send(to, `Tu ebook: ${site.ebook.titulo}`, correoEbook(nombre, process.env.EBOOK_PDF_URL || site.ebook.pdfUrl));
 }
 
 export async function emailAvisoPrioritario(resumen: ResumenLead) {

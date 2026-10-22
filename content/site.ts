@@ -216,6 +216,8 @@ export const site = {
     reflexionBold: "descarga gratis",
     reflexionPost: "y entiende en qué segmento estás.",
     cta: "¡Descarga aquí!",
+    // Link de descarga que llega por correo (EBOOK_PDF_URL lo reemplaza si está definido)
+    pdfUrl: "https://mega.nz/file/FQswyDha#GkM5l2k3JXOaH4RAYYb4i3KeEwU8ZNF2bkamEfrLRMc",
     formCta: "Recibir el ebook",
     exitoTitulo: "¡Gracias! Tu ebook ya va en camino.",
     exitoEmail: "Revisa tu bandeja de entrada: allí te enviamos el link de descarga. Si no lo ves en unos minutos, busca en spam o promociones.",

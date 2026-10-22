@@ -50,7 +50,7 @@ Reemplazan la paleta dorada y Poppins/Inter del brief original.
 
 ## Variables de entorno
 
-Ver `.env.example`. Todas degradan con elegancia: sin `CRM_WEBHOOK_URL` el payload se registra en consola (dev); sin `RESEND_API_KEY` no se envían emails; sin `NEXT_PUBLIC_WHATSAPP_NUMBER` el botón no aparece; sin `EBOOK_PDF_URL` no hay botón de descarga directa.
+Ver `.env.example`. Todas degradan con elegancia: sin `CRM_WEBHOOK_URL` el payload se registra en consola (dev); sin `RESEND_API_KEY` no se envían emails; sin `NEXT_PUBLIC_WHATSAPP_NUMBER` el botón no aparece; `EBOOK_PDF_URL` reemplaza el link del ebook definido en `site.ebook.pdfUrl` (MEGA).
 
 Para Resend, verificar el dominio remitente y definir `RESEND_FROM` (por defecto usa `onboarding@resend.dev`, que solo envía al dueño de la cuenta).
 
@@ -97,7 +97,7 @@ Pipeline: Nuevo → Calificado → Agendado → Diagnóstico realizado → Propu
 - 3–5 testimonios reales (activar `flags.showTestimonios`).
 - Duración del programa, modalidad e inversión (o decisión de no mostrarla).
 - Respuestas de FAQ (las preguntas sin respuesta no se muestran).
-- PDF final del ebook (`EBOOK_PDF_URL`) y portada en alta.
+- Portada del ebook en alta (el PDF ya está en MEGA: `site.ebook.pdfUrl`).
 - Links de podcasts, redes, email de contacto y número de WhatsApp.
 - Confirmar ® o ™ en PROSPERA (`marca` en `content/site.ts`) y validar cifras de “¿Quién soy?”.
 - Dominio definitivo (`NEXT_PUBLIC_SITE_URL`) y datos del responsable para la política de privacidad (revisar con abogado).

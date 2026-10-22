@@ -4,6 +4,7 @@ import { calcularScore } from "@/lib/scoring";
 import { deviceFromUA, sendMetaCapi, sendToCrm } from "@/lib/crm";
 import { emailAvisoPrioritario, emailConfirmacionPostulacion } from "@/lib/email";
 import { clientIp, rateLimit } from "@/lib/ratelimit";
+import { site } from "@/content/site";
 
 export async function POST(req: NextRequest) {
   const ip = clientIp(req.headers);
@@ -42,7 +43,7 @@ export async function POST(req: NextRequest) {
 
   // Anti-bot: honeypot y tiempo mínimo de llenado. Se responde ok para no dar pistas.
   if (d.empresa_web || Date.now() - d.startedAt < MIN_FILL_MS) {
-    return NextResponse.json({ ok: true, segmento: "nutrir", ebookUrl: process.env.EBOOK_PDF_URL ?? null });
+    return NextResponse.json({ ok: true, segmento: "nutrir", ebookUrl: process.env.EBOOK_PDF_URL || site.ebook.pdfUrl });
   }
 
   // Score siempre en servidor
@@ -93,5 +94,5 @@ export async function POST(req: NextRequest) {
     }),
   ]);
 
-  return NextResponse.json({ ok: true, segmento, ebookUrl: segmento === "nutrir" ? (process.env.EBOOK_PDF_URL ?? null) : null });
+  return NextResponse.json({ ok: true, segmento, ebookUrl: segmento === "nutrir" ? (process.env.EBOOK_PDF_URL || site.ebook.pdfUrl) : null });
 }
